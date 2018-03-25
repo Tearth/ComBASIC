@@ -23,7 +23,6 @@ void vector_add(vector* vector, void* data)
 	{
 		vector->size = 8;
 		vector->data = malloc(sizeof(void*) * vector->size);
-		memset(vector->data, 0, sizeof(void*) * vector->size);
 	}
 
 	if (vector->count + 1 > vector->size)
