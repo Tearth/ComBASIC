@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include "source-loader.h"
+#include "lexical-analysis.h"
 
 bool compile = false;
 char* input_filename = NULL;
@@ -28,6 +30,7 @@ int main(int argc, char *argv[])
 		}
 
 		const char* source = source_load(input_filename);
+		vector* tokens = lexical_gettokens(source);
 	}
 
 	return 0;

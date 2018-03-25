@@ -115,12 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="source-loader.c" />
+    <ClCompile Include="string.c" />
     <ClCompile Include="vector.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="source-loader.h" />
+    <ClInclude Include="string.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
