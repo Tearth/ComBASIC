@@ -79,3 +79,11 @@ void vector_free(vector* vector)
 		free(vector->data);
 	}
 }
+
+void vector_dump(vector* vector)
+{
+	for (int i = 0; i < vector->count; i++)
+	{
+		printf("[%d] %s\n", i, vector->data[i]);
+	}
+}
