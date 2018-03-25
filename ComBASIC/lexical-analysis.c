@@ -38,6 +38,7 @@ vector* lexical_gettokens(const char* source)
 	}
 
 	lexical_checklasttoken(tokens_vector);
+	lexical_mergeoperators(tokens_vector);
 
 	return tokens_vector;
 }
@@ -131,5 +132,35 @@ void lexical_checklasttoken(vector* tokens_vector)
 		string_append_c(&end_of_instruction_token->value, '\n');
 
 		vector_add(tokens_vector, end_of_instruction_token);
+	}
+}
+
+void lexical_mergeoperators(vector* tokens_vector)
+{
+	for (int i = 0; i < vector_count(tokens_vector) - 1; i++)
+	{
+		token* first = vector_get(tokens_vector, i);
+		token* second = vector_get(tokens_vector, i + 1);
+
+		if (first->token_type == OPERATOR && second->token_type == OPERATOR)
+		{
+			string* merged_operator = (string*)malloc(sizeof(string));
+			string_init(merged_operator);
+
+			string_append_s(merged_operator, string_get(&first->value));
+			string_append_s(merged_operator, string_get(&second->value));
+
+			for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
+			{
+				if (operators[op] != NULL && strcmp(string_get(merged_operator), operators[op]) == 0)
+				{
+					string_free(&first->value);
+					string_free(&second->value);
+
+					first->value = *merged_operator;
+					vector_remove(tokens_vector, i + 1);
+				}
+			}
+		}
 	}
 }
