@@ -3,12 +3,14 @@
 #include "source-loader.h"
 #include "lexical-analysis.h"
 
-bool compile = false;
+bool compile_flag = false;
+bool display_tokens_flag = false;
 char* input_filename = NULL;
 char* output_filename = NULL;
 
 void parse_arguments(int argc, char *argv[]);
 void display_help();
+void display_tokens(vector* tokens);
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +23,7 @@ int main(int argc, char *argv[])
 		parse_arguments(argc, argv);
 	}
 
-	if (compile)
+	if (compile_flag)
 	{
 		if (input_filename == NULL || output_filename == NULL)
 		{
@@ -29,13 +31,18 @@ int main(int argc, char *argv[])
 			return;
 		}
 
+		printf("Starting compilation %s...\n", input_filename);
+		printf("--------------------------------------------------------------\n");
+
 		const char* source = source_load(input_filename);
 		if (source != NULL)
 		{
 			vector* tokens = lexical_gettokens(source);
+			if (display_tokens_flag) display_tokens(tokens);
 		}
 	}
 
+	system("pause");
 	return 0;
 }
 
@@ -55,7 +62,13 @@ void parse_arguments(int argc, char *argv[])
 
 				case 'c':
 				{
-					compile = true;
+					compile_flag = true;
+					break;
+				}
+
+				case 't':
+				{
+					display_tokens_flag = true;
 					break;
 				}
 
@@ -93,4 +106,24 @@ void display_help()
 	printf("Available options:\n");
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
+	printf(" -t - displays tokens.\n");
+}
+
+void display_tokens(vector* tokens)
+{
+	printf("List of generated tokens:\n");
+	for (int i = 0; i < tokens->count; i++)
+	{
+		token* r = tokens->data[i];
+
+		if (r->token_type == END_OF_INSTRUCTION)
+		{
+			printf("[%d END]\n", (int)r->token_type);
+		}
+		else
+		{
+			printf("[%d %s] ", (int)r->token_type, string_get(&r->value));
+		}
+	}
+	printf("End of tokens list\n");
 }
