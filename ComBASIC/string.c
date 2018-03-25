@@ -45,6 +45,12 @@ void string_append_s(string* string, const char* str)
 	}
 }
 
+void string_removelast(string* string)
+{
+	string->data[string->count - 1] = '\0';
+	string->count--;
+}
+
 const char* string_get(string* string)
 {
 	return string->data;
