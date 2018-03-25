@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
 			printf("Invalid -c usage, type -h for more information.");
 			return;
 		}
+
+		const char* source = source_load(input_filename);
 	}
 
 	return 0;

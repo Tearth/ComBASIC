@@ -19,6 +19,18 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{9bfddb78-6232-4900-8146-5e97dc259361}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Compilation">
+      <UniqueIdentifier>{06a05c02-9df8-431f-93d0-91e644edae5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Compilation">
+      <UniqueIdentifier>{a5558c29-a3f3-4417-b64c-64a413290d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Grammar">
+      <UniqueIdentifier>{bb30217d-1e99-4e20-81f9-48ddc22a7d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Grammar">
+      <UniqueIdentifier>{f6164437-654c-4cb9-be5a-4a4ff2a85902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -27,10 +39,16 @@
     <ClCompile Include="vector.c">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="source-loader.c">
+      <Filter>Source Files\Compilation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="source-loader.h">
+      <Filter>Header Files\Compilation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
