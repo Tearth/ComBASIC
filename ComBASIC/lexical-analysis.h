@@ -2,14 +2,18 @@
 #define MAX_KEYWORDS_TOKENS_COUNT 64
 
 #include <ctype.h>
+#include <string.h>
 #include "vector.h"
 #include "string.h"
 
 typedef enum token_type
 {
+	KEYWORD,
 	IDENTIFIER,
 	NUMBER,
-	OPERATOR
+	STRING,
+	OPERATOR,
+	END_OF_INSTRUCTION
 } token_type;
 
 typedef struct token
@@ -19,6 +23,7 @@ typedef struct token
 } token;
 
 vector* lexical_gettokens(const char* source);
-token* lexical_readidentifier(const char* source, int* length);
+token* lexical_readword(const char* source, int* length);
 token* lexical_readnumber(const char* source, int* length);
 token* lexical_readoperator(const char* source, int* length);
+void lexical_checklasttoken(vector* tokens_vector);
