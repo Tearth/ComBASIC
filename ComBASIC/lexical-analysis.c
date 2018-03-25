@@ -77,7 +77,7 @@ string* lexical_readoperator(const char* source, int* length)
 	string_init(token);
 
 	string_append_c(token, *source);
-	*length = 1;
+	(*length) = 1;
 	source++;
 
 	return token;

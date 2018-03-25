@@ -8,6 +8,7 @@ const char* source_load(const char* filename)
 	FILE* source = fopen(filename, "r");
 	if (source == NULL)
 	{
+		printf("Unable to load file.\n");
 		return NULL;
 	}
 

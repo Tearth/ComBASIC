@@ -30,7 +30,10 @@ int main(int argc, char *argv[])
 		}
 
 		const char* source = source_load(input_filename);
-		vector* tokens = lexical_gettokens(source);
+		if (source != NULL)
+		{
+			vector* tokens = lexical_gettokens(source);
+		}
 	}
 
 	return 0;
