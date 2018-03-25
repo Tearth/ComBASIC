@@ -7,7 +7,7 @@ vector* lexical_gettokens(const char* source)
 
 	while (*source != '\0')
 	{
-		string* token = NULL;
+		token* token = NULL;
 		int length = 0;
 
 		if (isalpha(*source))
@@ -37,48 +37,51 @@ vector* lexical_gettokens(const char* source)
 	return tokens_vector;
 }
 
-string* lexical_readidentifier(const char* source, int* length)
+token* lexical_readidentifier(const char* source, int* length)
 {
 	bool firstLetter = true;
 
-	string* token = (string*)malloc(sizeof(string));
-	string_init(token);
+	token* read_token = (token*)malloc(sizeof(token));
+	read_token->token_type = IDENTIFIER;
+	string_init(&read_token->value);
 
 	while (isalpha(*source) != 0 || (!firstLetter && isdigit(*source)) != 0)
 	{
-		string_append_c(token, *source);
+		string_append_c(&read_token->value, *source);
 
 		firstLetter = false;
 		(*length)++;
 		source++;
 	}
 
-	return token;
+	return read_token;
 }
 
-string* lexical_readnumber(const char* source, int* length)
+token* lexical_readnumber(const char* source, int* length)
 {
-	string* token = (string*)malloc(sizeof(string));
-	string_init(token);
+	token* read_token = (token*)malloc(sizeof(token));
+	read_token->token_type = NUMBER;
+	string_init(&read_token->value);
 
 	while (isdigit(*source) != 0)
 	{
-		string_append_c(token, *source);
+		string_append_c(&read_token->value, *source);
 		(*length)++;
 		source++;
 	}
 
-	return token;
+	return read_token;
 }
 
-string* lexical_readoperator(const char* source, int* length)
+token* lexical_readoperator(const char* source, int* length)
 {
-	string* token = (string*)malloc(sizeof(string));
-	string_init(token);
+	token* read_token = (token*)malloc(sizeof(token));
+	read_token->token_type = OPERATOR;
+	string_init(&read_token->value);
 
-	string_append_c(token, *source);
+	string_append_c(&read_token->value, *source);
 	(*length) = 1;
 	source++;
 
-	return token;
+	return read_token;
 }
