@@ -1,6 +1,6 @@
-#include "source-loader.h"
+#include "file-loader.h"
 
-const char* source_load(const char* filename)
+const char* file_load(const char* filename)
 {
 	char* buffer = NULL;
 	int length = 0;

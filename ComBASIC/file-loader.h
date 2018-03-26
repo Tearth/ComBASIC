@@ -4,4 +4,4 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-const char* source_load(const char* filename);
+const char* file_load(const char* filename);
