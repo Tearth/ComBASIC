@@ -45,11 +45,11 @@
     <ClCompile Include="string.c">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="grammar-loader.cpp">
-      <Filter>Source Files\Grammar</Filter>
-    </ClCompile>
     <ClCompile Include="file-loader.c">
       <Filter>Source Files\Compilation</Filter>
+    </ClCompile>
+    <ClCompile Include="grammar-loader.c">
+      <Filter>Source Files\Grammar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,11 +62,11 @@
     <ClInclude Include="string.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="grammar-loader.h">
-      <Filter>Header Files\Grammar</Filter>
-    </ClInclude>
     <ClInclude Include="file-loader.h">
       <Filter>Header Files\Compilation</Filter>
+    </ClInclude>
+    <ClInclude Include="grammar-loader.h">
+      <Filter>Header Files\Grammar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

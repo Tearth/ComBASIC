@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="grammar-loader.cpp" />
+    <ClCompile Include="grammar-loader.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="file-loader.c" />

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "file-loader.h"
+#include "grammar-loader.h"
 #include "lexical-analysis.h"
 
 bool compile_flag = false;
@@ -35,6 +36,8 @@ int main(int argc, char *argv[])
 		printf("--------------------------------------------------------------\n");
 
 		const char* source = file_load(input_filename);
+		vector* grammar_tokens = grammar_load("grammar.txt");
+
 		if (source != NULL)
 		{
 			vector* tokens = lexical_gettokens(source);
