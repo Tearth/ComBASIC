@@ -7,16 +7,6 @@ void vector_init(vector* vector)
 	vector->count = 0;
 }
 
-int vector_size(vector* vector)
-{
-	return vector->size;
-}
-
-int vector_count(vector* vector)
-{
-	return vector->count;
-}
-
 void vector_add(vector* vector, void* data)
 {
 	if (vector->size == 0)
@@ -33,26 +23,6 @@ void vector_add(vector* vector, void* data)
 
 	vector->data[vector->count] = data;
 	vector->count++;
-}
-
-void* vector_get(vector* vector, int index)
-{
-	if (index >= vector->count)
-	{
-		return NULL;
-	}
-
-	return vector->data[index];
-}
-
-void vector_set(vector* vector, int index, void* data)
-{
-	if (index >= vector->count)
-	{
-		return;
-	}
-
-	vector->data[index] = data;
 }
 
 void vector_remove(vector* vector, int index)

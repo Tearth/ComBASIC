@@ -45,37 +45,37 @@ grammar_token* grammar_readtoken(const char* grammar)
 	grammar_token* read_token = (grammar_token*)malloc(sizeof(grammar_token));
 	string_init(&read_token->value);
 	
-	if (strcmp(string_get(&token), "KEYWORD") == 0)
+	if (strcmp(token.data, "KEYWORD") == 0)
 	{
 		grammar_readargument(grammar, &read_token->value);
 		read_token->grammar_token_type = GT_KEYWORD;
 	}
-	else if (strcmp(string_get(&token), "OPERATOR") == 0)
+	else if (strcmp(token.data, "OPERATOR") == 0)
 	{
 		grammar_readargument(grammar, &read_token->value);
 		read_token->grammar_token_type = GT_OPERATOR;
 	}
-	else if (strcmp(string_get(&token), "*") == 0)
+	else if (strcmp(token.data, "*") == 0)
 	{
 		read_token->grammar_token_type = GT_ANY;
 	}
-	else if (strcmp(string_get(&token), "END_OF_INSTRUCTION") == 0)
+	else if (strcmp(token.data, "END_OF_INSTRUCTION") == 0)
 	{
 		read_token->grammar_token_type = GT_END_OF_INSTRUCTION;
 	}
-	else if (strcmp(string_get(&token), "IDENTIFIER") == 0)
+	else if (strcmp(token.data, "IDENTIFIER") == 0)
 	{
 		read_token->grammar_token_type = GT_IDENTIFIER;
 	}
-	else if (strcmp(string_get(&token), "STRING") == 0)
+	else if (strcmp(token.data, "STRING") == 0)
 	{
 		read_token->grammar_token_type = GT_STRING;
 	}
-	else if (strcmp(string_get(&token), "EXPRESSION") == 0)
+	else if (strcmp(token.data, "EXPRESSION") == 0)
 	{
 		read_token->grammar_token_type = GT_EXPRESSION;
 	}
-	else if (strcmp(string_get(&token), "LINE_NUMBER") == 0)
+	else if (strcmp(token.data, "LINE_NUMBER") == 0)
 	{
 		read_token->grammar_token_type = GT_LINE_NUMBER;
 	}

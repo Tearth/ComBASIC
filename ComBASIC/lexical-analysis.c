@@ -62,7 +62,7 @@ token* lexical_readword(const char* source, int* length)
 
 	for (int i = 0; i < MAX_KEYWORDS_TOKENS_COUNT; i++)
 	{
-		if (keywords[i] != NULL && strcmp(string_get(&read_token->value), keywords[i]) == 0)
+		if (keywords[i] != NULL && strcmp(read_token->value.data, keywords[i]) == 0)
 		{
 			read_token->token_type = T_KEYWORD;
 			break;
@@ -98,11 +98,11 @@ token* lexical_readoperator(const char* source, int* length)
 	(*length) = 1;
 	source++;
 
-	if (strcmp(string_get(&read_token->value), "\n") == 0)
+	if (strcmp(read_token->value.data, "\n") == 0)
 	{
 		read_token->token_type = T_END_OF_INSTRUCTION;
 	}
-	else if(strcmp(string_get(&read_token->value), "\"") == 0)
+	else if(strcmp(read_token->value.data, "\"") == 0)
 	{
 		string_removelast(&read_token->value);
 
@@ -122,7 +122,7 @@ token* lexical_readoperator(const char* source, int* length)
 
 void lexical_checklasttoken(vector* tokens_vector)
 {
-	token* last_token = vector_get(tokens_vector, vector_count(tokens_vector) - 1);
+	token* last_token = tokens_vector->data[tokens_vector->count - 1];
 	if (last_token->token_type != T_END_OF_INSTRUCTION)
 	{
 		token* end_of_instruction_token = (token*)malloc(sizeof(token));
@@ -137,22 +137,22 @@ void lexical_checklasttoken(vector* tokens_vector)
 
 void lexical_mergeoperators(vector* tokens_vector)
 {
-	for (int i = 0; i < vector_count(tokens_vector) - 1; i++)
+	for (int i = 0; i < tokens_vector->count - 1; i++)
 	{
-		token* first = vector_get(tokens_vector, i);
-		token* second = vector_get(tokens_vector, i + 1);
+		token* first = tokens_vector->data[i];
+		token* second = tokens_vector->data[i + 1];
 
 		if (first->token_type == T_OPERATOR && second->token_type == T_OPERATOR)
 		{
 			string* merged_operator = (string*)malloc(sizeof(string));
 			string_init(merged_operator);
 
-			string_append_s(merged_operator, string_get(&first->value));
-			string_append_s(merged_operator, string_get(&second->value));
+			string_append_s(merged_operator, first->value.data);
+			string_append_s(merged_operator, second->value.data);
 
 			for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
 			{
-				if (operators[op] != NULL && strcmp(string_get(merged_operator), operators[op]) == 0)
+				if (operators[op] != NULL && strcmp(merged_operator->data, operators[op]) == 0)
 				{
 					string_free(&first->value);
 					string_free(&second->value);
@@ -180,7 +180,7 @@ void lexical_dump(vector* tokens)
 		}
 		else
 		{
-			printf("[%d %s] ", (int)r->token_type, string_get(&r->value));
+			printf("[%d %s] ", (int)r->token_type, r->value.data);
 		}
 	}
 	printf("End of tokens list\n");

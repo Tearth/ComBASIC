@@ -7,16 +7,6 @@ void string_init(string* string)
 	string->count = 0;
 }
 
-int string_size(string* string)
-{
-	return string->size;
-}
-
-int string_count(string* string)
-{
-	return string->count;
-}
-
 void string_append_c(string* string, char c)
 {
 	if (string->size == 0)
@@ -49,11 +39,6 @@ void string_removelast(string* string)
 {
 	string->data[string->count - 1] = '\0';
 	string->count--;
-}
-
-const char* string_get(string* string)
-{
-	return string->data;
 }
 
 void string_free(string* string)
