@@ -1,3 +1,10 @@
+#ifdef _DEBUG
+#define _CRTDBG_MAP_ALLOC 
+
+#include <stdlib.h>
+#include <crtdbg.h>  
+#endif
+
 #include <stdio.h>
 #include <stdbool.h>
 #include "file-loader.h"
@@ -45,6 +52,10 @@ int main(int argc, char *argv[])
 			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
 		}
 	}
+
+#ifdef _DEBUG
+	_CrtDumpMemoryLeaks();
+#endif
 
 	system("pause");
 	return 0;
