@@ -115,17 +115,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="grammar-loader.cpp" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="source-loader.c" />
+    <ClCompile Include="file-loader.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="vector.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grammar-loader.h" />
     <ClInclude Include="lexical-analysis.h" />
-    <ClInclude Include="source-loader.h" />
+    <ClInclude Include="file-loader.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="grammar.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

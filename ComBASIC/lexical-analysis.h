@@ -8,12 +8,12 @@
 
 typedef enum token_type
 {
-	KEYWORD,
-	IDENTIFIER,
-	NUMBER,
-	STRING,
-	OPERATOR,
-	END_OF_INSTRUCTION
+	T_KEYWORD,
+	T_IDENTIFIER,
+	T_NUMBER,
+	T_STRING,
+	T_OPERATOR,
+	T_END_OF_INSTRUCTION
 } token_type;
 
 typedef struct token

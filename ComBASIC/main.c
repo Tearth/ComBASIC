@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "source-loader.h"
+#include "file-loader.h"
 #include "lexical-analysis.h"
 
 bool compile_flag = false;
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		printf("Starting compilation %s...\n", input_filename);
 		printf("--------------------------------------------------------------\n");
 
-		const char* source = source_load(input_filename);
+		const char* source = file_load(input_filename);
 		if (source != NULL)
 		{
 			vector* tokens = lexical_gettokens(source);
@@ -116,7 +116,7 @@ void display_tokens(vector* tokens)
 	{
 		token* r = tokens->data[i];
 
-		if (r->token_type == END_OF_INSTRUCTION)
+		if (r->token_type == T_END_OF_INSTRUCTION)
 		{
 			printf("[%d END]\n", (int)r->token_type);
 		}
