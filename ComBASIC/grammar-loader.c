@@ -118,10 +118,11 @@ void grammar_free(vector* grammar_tokens)
 	while(grammar_tokens->count > 0)
 	{
 		grammar_token* token = grammar_tokens->data[0];
+
 		string_free(&token->value);
+		free(token);
 
 		vector_remove(grammar_tokens, 0);
-		free(token);
 	}
 
 	vector_free(grammar_tokens);

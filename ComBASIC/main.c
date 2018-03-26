@@ -45,13 +45,15 @@ int main(int argc, char *argv[])
 
 		if (source != NULL)
 		{
-			//vector* tokens = lexical_gettokens(source);
-			//if (display_tokens_flag) lexical_dump(tokens);
+			vector* tokens = lexical_gettokens(source);
+			if (display_tokens_flag) lexical_dump(tokens);
 			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
 
 			grammar_free(grammar_tokens);
+			lexical_free(tokens);
 
 			free(grammar_tokens);
+			free(tokens);
 			free((char*)source);
 		}
 	}

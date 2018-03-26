@@ -185,3 +185,18 @@ void lexical_dump(vector* tokens)
 	}
 	printf("End of tokens list\n");
 }
+
+void lexical_free(vector* tokens)
+{
+	while (tokens->count > 0)
+	{
+		token* token = tokens->data[0];
+
+		string_free(&token->value);
+		free(token);
+
+		vector_remove(tokens, 0);
+	}
+
+	vector_free(tokens);
+}
