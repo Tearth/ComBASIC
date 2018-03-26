@@ -1,7 +1,5 @@
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC 
-
-#include <stdlib.h>
 #include <crtdbg.h>  
 #endif
 
@@ -47,9 +45,14 @@ int main(int argc, char *argv[])
 
 		if (source != NULL)
 		{
-			vector* tokens = lexical_gettokens(source);
-			if (display_tokens_flag) lexical_dump(tokens);
-			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
+			//vector* tokens = lexical_gettokens(source);
+			//if (display_tokens_flag) lexical_dump(tokens);
+			//if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
+
+			grammar_free(grammar_tokens);
+
+			free(grammar_tokens);
+			free((char*)source);
 		}
 	}
 
