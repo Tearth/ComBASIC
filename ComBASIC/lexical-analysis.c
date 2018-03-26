@@ -176,7 +176,7 @@ void lexical_dump(vector* tokens)
 
 		if (r->token_type == T_END_OF_INSTRUCTION)
 		{
-			printf("[%d END]\n", (int)r->token_type);
+			printf("[%d END_OF_INSTRUCTION]\n", (int)r->token_type);
 		}
 		else
 		{

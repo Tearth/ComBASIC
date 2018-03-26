@@ -6,6 +6,7 @@
 
 bool compile_flag = false;
 bool display_tokens_flag = false;
+bool display_grammar_tokens_flag = false;
 char* input_filename = NULL;
 char* output_filename = NULL;
 
@@ -41,6 +42,7 @@ int main(int argc, char *argv[])
 		{
 			vector* tokens = lexical_gettokens(source);
 			if (display_tokens_flag) lexical_dump(tokens);
+			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
 		}
 	}
 
@@ -71,6 +73,12 @@ void parse_arguments(int argc, char *argv[])
 				case 't':
 				{
 					display_tokens_flag = true;
+					break;
+				}
+
+				case 'g':
+				{
+					display_grammar_tokens_flag = true;
 					break;
 				}
 
@@ -109,4 +117,5 @@ void display_help()
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
 	printf(" -t - displays tokens.\n");
+	printf(" -g - displays grammar tokens.\n");
 }

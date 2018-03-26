@@ -4,21 +4,26 @@ vector* grammar_load(const char* filename)
 {
 	const char* grammar = file_load(filename);
 
-	vector* grammar_tokens;
-	vector_init(&grammar_tokens);
+	vector* grammar_tokens = (vector*)malloc(sizeof(vector));
+	vector_init(grammar_tokens);
 
 	while (*grammar != '\0')
 	{
 		if (*grammar == '[')
 		{
 			grammar_token* token = grammar_readtoken(grammar);
-			vector_add(&grammar_tokens, token);
+			vector_add(grammar_tokens, token);
 		}
 
 		grammar++;
 	}
 
-	return 0;
+	return grammar_tokens;
+}
+
+void grammar_inittoken(grammar_token *token)
+{
+	token->grammar_token_type = 0;
 }
 
 grammar_token* grammar_readtoken(const char* grammar)
@@ -86,4 +91,23 @@ string* grammar_readargument(const char* grammar)
 	}
 
 	return argument;
+}
+
+void grammar_dump(vector* grammar_tokens)
+{
+	printf("List of loaded grammar tokens:\n");
+	for (int i = 0; i < grammar_tokens->count; i++)
+	{
+		grammar_token* r = grammar_tokens->data[i];
+
+		if (r->grammar_token_type == GT_END_OF_INSTRUCTION)
+		{
+			printf("[%d END_OF_INSTRUCTION]\n", (int)r->grammar_token_type);
+		}
+		else
+		{
+			printf("[%d] ", (int)r->grammar_token_type);
+		}
+	}
+	printf("End of grammar tokens list\n");
 }
