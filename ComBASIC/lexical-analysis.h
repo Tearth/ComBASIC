@@ -29,3 +29,4 @@ token* lexical_readoperator(const char* source, int* length);
 
 void lexical_checklasttoken(vector* tokens_vector);
 void lexical_mergeoperators(vector* tokens_vector);
+void lexical_dump(vector* tokens);

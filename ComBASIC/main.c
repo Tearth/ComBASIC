@@ -11,7 +11,6 @@ char* output_filename = NULL;
 
 void parse_arguments(int argc, char *argv[]);
 void display_help();
-void display_tokens(vector* tokens);
 
 int main(int argc, char *argv[])
 {
@@ -41,7 +40,7 @@ int main(int argc, char *argv[])
 		if (source != NULL)
 		{
 			vector* tokens = lexical_gettokens(source);
-			if (display_tokens_flag) display_tokens(tokens);
+			if (display_tokens_flag) lexical_dump(tokens);
 		}
 	}
 
@@ -110,23 +109,4 @@ void display_help()
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
 	printf(" -t - displays tokens.\n");
-}
-
-void display_tokens(vector* tokens)
-{
-	printf("List of generated tokens:\n");
-	for (int i = 0; i < tokens->count; i++)
-	{
-		token* r = tokens->data[i];
-
-		if (r->token_type == T_END_OF_INSTRUCTION)
-		{
-			printf("[%d END]\n", (int)r->token_type);
-		}
-		else
-		{
-			printf("[%d %s] ", (int)r->token_type, string_get(&r->value));
-		}
-	}
-	printf("End of tokens list\n");
 }

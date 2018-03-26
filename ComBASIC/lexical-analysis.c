@@ -166,3 +166,22 @@ void lexical_mergeoperators(vector* tokens_vector)
 		}
 	}
 }
+
+void lexical_dump(vector* tokens)
+{
+	printf("List of generated tokens:\n");
+	for (int i = 0; i < tokens->count; i++)
+	{
+		token* r = tokens->data[i];
+
+		if (r->token_type == T_END_OF_INSTRUCTION)
+		{
+			printf("[%d END]\n", (int)r->token_type);
+		}
+		else
+		{
+			printf("[%d %s] ", (int)r->token_type, string_get(&r->value));
+		}
+	}
+	printf("End of tokens list\n");
+}
