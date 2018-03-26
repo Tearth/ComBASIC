@@ -18,7 +18,6 @@ const char* file_load(const char* filename)
 
 	buffer = (char*)calloc(length, sizeof(char));
 	fread(buffer, sizeof(char), length, source);
-	buffer[length] = '\0';
 
 	fclose(source);
 
