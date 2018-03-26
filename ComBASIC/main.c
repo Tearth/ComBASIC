@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 		{
 			//vector* tokens = lexical_gettokens(source);
 			//if (display_tokens_flag) lexical_dump(tokens);
-			//if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
+			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
 
 			grammar_free(grammar_tokens);
 

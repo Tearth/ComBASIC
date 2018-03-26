@@ -25,7 +25,7 @@ typedef struct grammar_token
 vector* grammar_load(const char* filename);
 void grammar_inittoken(grammar_token *token);
 grammar_token* grammar_readtoken(const char* grammar);
-string* grammar_readargument(const char* grammar);
+void grammar_readargument(const char* grammar, string* str);
 
 void grammar_dump(vector* grammar_tokens);
 void grammar_free(vector* grammar_tokens);

@@ -43,15 +43,16 @@ grammar_token* grammar_readtoken(const char* grammar)
 	}
 
 	grammar_token* read_token = (grammar_token*)malloc(sizeof(grammar_token));
+	string_init(&read_token->value);
 	
 	if (strcmp(string_get(&token), "KEYWORD") == 0)
 	{
-		read_token->value = *grammar_readargument(grammar);
+		grammar_readargument(grammar, &read_token->value);
 		read_token->grammar_token_type = GT_KEYWORD;
 	}
 	else if (strcmp(string_get(&token), "OPERATOR") == 0)
 	{
-		read_token->value = *grammar_readargument(grammar);
+		grammar_readargument(grammar, &read_token->value);
 		read_token->grammar_token_type = GT_OPERATOR;
 	}
 	else if (strcmp(string_get(&token), "*") == 0)
@@ -83,19 +84,14 @@ grammar_token* grammar_readtoken(const char* grammar)
 	return read_token;
 }
 
-string* grammar_readargument(const char* grammar)
+void grammar_readargument(const char* grammar, string* str)
 {
-	string* argument = (string*)malloc(sizeof(string));
-	string_init(argument);
-
 	grammar++;
 	while (*grammar != ']')
 	{
-		string_append_c(argument, *grammar);
+		string_append_c(str, *grammar);
 		grammar++;
 	}
-
-	return argument;
 }
 
 void grammar_dump(vector* grammar_tokens)
