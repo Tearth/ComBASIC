@@ -21,6 +21,12 @@
     <Filter Include="Source Files\Compilation">
       <UniqueIdentifier>{a5558c29-a3f3-4417-b64c-64a413290d76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Compilation\Parsers">
+      <UniqueIdentifier>{af34232c-68f8-4b45-8e3c-28d839d9992b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Compilation\Parsers">
+      <UniqueIdentifier>{8ffdc205-8e4a-4cc7-9dc0-513220057761}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -38,6 +44,12 @@
     <ClCompile Include="file-loader.c">
       <Filter>Source Files\Compilation</Filter>
     </ClCompile>
+    <ClCompile Include="ast-builder.c">
+      <Filter>Source Files\Compilation</Filter>
+    </ClCompile>
+    <ClCompile Include="parser-linenumber.c">
+      <Filter>Source Files\Compilation\Parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -51,6 +63,12 @@
     </ClInclude>
     <ClInclude Include="file-loader.h">
       <Filter>Header Files\Compilation</Filter>
+    </ClInclude>
+    <ClInclude Include="ast-builder.h">
+      <Filter>Header Files\Compilation</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-linenumber.h">
+      <Filter>Header Files\Compilation\Parsers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

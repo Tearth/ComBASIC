@@ -7,10 +7,11 @@
 #include <stdbool.h>
 #include "file-loader.h"
 #include "lexical-analysis.h"
+#include "ast-builder.h"
 
 bool compile_flag = false;
 bool display_tokens_flag = false;
-bool display_grammar_tokens_flag = false;
+bool display_ast_flag = false;
 char* input_filename = NULL;
 char* output_filename = NULL;
 
@@ -37,6 +38,9 @@ int main(int argc, char *argv[])
 		{
 			vector* tokens = lexical_gettokens(source);
 			if (display_tokens_flag) lexical_dump(tokens);
+
+			node* ast = ast_build(tokens);
+			if (display_ast_flag) ast_dump(ast);
 
 			lexical_clean(tokens);
 
@@ -79,9 +83,9 @@ void parse_arguments(int argc, char *argv[])
 					break;
 				}
 
-				case 'g':
+				case 'a':
 				{
-					display_grammar_tokens_flag = true;
+					display_ast_flag = true;
 					break;
 				}
 
@@ -120,5 +124,5 @@ void display_help()
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
 	printf(" -t - displays tokens.\n");
-	printf(" -g - displays grammar tokens.\n");
+	printf(" -a - displays AST.\n");
 }

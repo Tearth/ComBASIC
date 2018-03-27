@@ -115,15 +115,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ast-builder.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="file-loader.c" />
+    <ClCompile Include="parser-linenumber.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="vector.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ast-builder.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="file-loader.h" />
+    <ClInclude Include="parser-linenumber.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
