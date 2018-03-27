@@ -123,6 +123,7 @@
     <ClCompile Include="parser-cls.c" />
     <ClCompile Include="parser-keyword.c" />
     <ClCompile Include="parser-linenumber.c" />
+    <ClCompile Include="parser-rem.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="vector.c" />
   </ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="parser-cls.h" />
     <ClInclude Include="parser-keyword.h" />
     <ClInclude Include="parser-linenumber.h" />
+    <ClInclude Include="parser-rem.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>

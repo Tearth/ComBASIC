@@ -24,6 +24,7 @@ void ast_parsearguments(vector* tokens, node* keyword, int* index)
 	switch (keyword->node_type)
 	{
 		case N_CLS: { parser_cls_build(tokens, keyword, index); break; }
+		case N_REM: { parser_rem_build(tokens, keyword, index); break; }
 	}
 }
 
