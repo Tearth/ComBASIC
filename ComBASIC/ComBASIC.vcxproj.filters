@@ -62,6 +62,9 @@
     <ClCompile Include="parser-rem.c">
       <Filter>Source Files\Compilation\Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="parser-print.c">
+      <Filter>Source Files\Compilation\Parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -92,6 +95,9 @@
       <Filter>Header Files\Compilation\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-rem.h">
+      <Filter>Header Files\Compilation\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-print.h">
       <Filter>Header Files\Compilation\Parsers</Filter>
     </ClInclude>
   </ItemGroup>

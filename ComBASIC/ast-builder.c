@@ -21,10 +21,12 @@ node* ast_build(vector* tokens)
 
 void ast_parsearguments(vector* tokens, node* keyword, int* index)
 {
+	bool result = true;
 	switch (keyword->node_type)
 	{
-		case N_CLS: { parser_cls_build(tokens, keyword, index); break; }
-		case N_REM: { parser_rem_build(tokens, keyword, index); break; }
+		case N_CLS: { result = parser_cls_build(tokens, keyword, index); break; }
+		case N_REM: { result = parser_rem_build(tokens, keyword, index); break; }
+		case N_PRINT: { result = parser_print_build(tokens, keyword, index); break; }
 	}
 }
 

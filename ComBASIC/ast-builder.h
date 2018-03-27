@@ -5,6 +5,8 @@
 #include "parser-linenumber.h"
 #include "parser-keyword.h"
 #include "parser-cls.h"
+#include "parser-print.h"
+#include "parser-rem.h"
 
 node* ast_build(vector* tokens);
 
