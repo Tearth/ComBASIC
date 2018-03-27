@@ -8,7 +8,7 @@ vector* grammar_load(const char* filename)
 	vector* grammar_tokens = (vector*)malloc(sizeof(vector));
 	vector_init(grammar_tokens);
 
-	while (*grammar_ptr != '\0')
+	while (*grammar_ptr != 0)
 	{
 		if (*grammar_ptr == '[')
 		{
@@ -27,6 +27,7 @@ vector* grammar_load(const char* filename)
 void grammar_inittoken(grammar_token *token)
 {
 	token->grammar_token_type = 0;
+	string_init(&token->value);
 }
 
 grammar_token* grammar_readtoken(const char* grammar)
@@ -43,7 +44,7 @@ grammar_token* grammar_readtoken(const char* grammar)
 	}
 
 	grammar_token* read_token = (grammar_token*)malloc(sizeof(grammar_token));
-	string_init(&read_token->value);
+	grammar_inittoken(read_token);
 	
 	if (strcmp(token.data, "KEYWORD") == 0)
 	{
@@ -80,7 +81,7 @@ grammar_token* grammar_readtoken(const char* grammar)
 		read_token->grammar_token_type = GT_LINE_NUMBER;
 	}
 
-	string_free(&token);
+	string_clean(&token);
 	return read_token;
 }
 
@@ -113,17 +114,17 @@ void grammar_dump(vector* grammar_tokens)
 	printf("End of grammar tokens list\n");
 }
 
-void grammar_free(vector* grammar_tokens)
+void grammar_clean(vector* grammar_tokens)
 {
 	while(grammar_tokens->count > 0)
 	{
 		grammar_token* token = grammar_tokens->data[0];
 
-		string_free(&token->value);
+		string_clean(&token->value);
 		free(token);
 
 		vector_remove(grammar_tokens, 0);
 	}
 
-	vector_free(grammar_tokens);
+	vector_clean(grammar_tokens);
 }

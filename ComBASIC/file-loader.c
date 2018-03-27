@@ -6,7 +6,7 @@ const char* file_load(const char* filename)
 	int length = 0;
 
 	FILE* source = fopen(filename, "r");
-	if (source == NULL)
+	if (!source)
 	{
 		printf("Unable to load file.\n");
 		return NULL;

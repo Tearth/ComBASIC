@@ -8,7 +8,7 @@ vector* lexical_gettokens(const char* source)
 	vector* tokens_vector = (vector*)malloc(sizeof(vector));
 	vector_init(tokens_vector);
 
-	while (*source != '\0')
+	while (*source != 0)
 	{
 		token* token = NULL;
 		int length = 0;
@@ -30,7 +30,7 @@ vector* lexical_gettokens(const char* source)
 			source++;
 		}
 
-		if (token != NULL)
+		if (token)
 		{
 			vector_add(tokens_vector, token);
 			source += length;
@@ -62,7 +62,7 @@ token* lexical_readword(const char* source, int* length)
 
 	for (int i = 0; i < MAX_KEYWORDS_TOKENS_COUNT; i++)
 	{
-		if (keywords[i] != NULL && strcmp(read_token->value.data, keywords[i]) == 0)
+		if (keywords[i] && strcmp(read_token->value.data, keywords[i]) == 0)
 		{
 			read_token->token_type = T_KEYWORD;
 			break;
@@ -152,10 +152,10 @@ void lexical_mergeoperators(vector* tokens_vector)
 
 			for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
 			{
-				if (operators[op] != NULL && strcmp(merged_operator->data, operators[op]) == 0)
+				if (operators[op] && strcmp(merged_operator->data, operators[op]) == 0)
 				{
-					string_free(&first->value);
-					string_free(&second->value);
+					string_clean(&first->value);
+					string_clean(&second->value);
 
 					first->value = *merged_operator;
 					vector_remove(tokens_vector, i + 1);
@@ -186,17 +186,17 @@ void lexical_dump(vector* tokens)
 	printf("End of tokens list\n");
 }
 
-void lexical_free(vector* tokens)
+void lexical_clean(vector* tokens)
 {
 	while (tokens->count > 0)
 	{
 		token* token = tokens->data[0];
 
-		string_free(&token->value);
+		string_clean(&token->value);
 		free(token);
 
 		vector_remove(tokens, 0);
 	}
 
-	vector_free(tokens);
+	vector_clean(tokens);
 }

@@ -28,4 +28,4 @@ grammar_token* grammar_readtoken(const char* grammar);
 void grammar_readargument(const char* grammar, string* str);
 
 void grammar_dump(vector* grammar_tokens);
-void grammar_free(vector* grammar_tokens);
+void grammar_clean(vector* grammar_tokens);

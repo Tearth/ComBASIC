@@ -13,4 +13,4 @@ void string_init(string* string);
 void string_append_c(string* string, char c);
 void string_append_s(string* string, const char* str);
 void string_removelast(string* string);
-void string_free(string* string);
+void string_clean(string* string);

@@ -20,18 +20,11 @@ void display_help();
 
 int main(int argc, char *argv[])
 {
-	if (argc == 1)
-	{
-		display_help();
-	}
-	else
-	{
-		parse_arguments(argc, argv);
-	}
+	argc == 1 ? display_help() : parse_arguments(argc, argv);
 
 	if (compile_flag)
 	{
-		if (input_filename == NULL || output_filename == NULL)
+		if (!input_filename || !output_filename)
 		{
 			printf("Invalid -c usage, type -h for more information.");
 			return;
@@ -41,16 +34,16 @@ int main(int argc, char *argv[])
 		printf("--------------------------------------------------------------\n");
 
 		const char* source = file_load(input_filename);
-		vector* grammar_tokens = grammar_load("grammar.txt");
-
-		if (source != NULL)
+		if (source)
 		{
-			vector* tokens = lexical_gettokens(source);
-			if (display_tokens_flag) lexical_dump(tokens);
+			vector* grammar_tokens = grammar_load("grammar.txt");
 			if (display_grammar_tokens_flag) grammar_dump(grammar_tokens);
 
-			grammar_free(grammar_tokens);
-			lexical_free(tokens);
+			vector* tokens = lexical_gettokens(source);
+			if (display_tokens_flag) lexical_dump(tokens);
+
+			grammar_clean(grammar_tokens);
+			lexical_clean(tokens);
 
 			free(grammar_tokens);
 			free(tokens);

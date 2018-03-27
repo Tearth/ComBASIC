@@ -40,12 +40,12 @@ void vector_remove(vector* vector, int index)
 	vector->count--;
 }
 
-void vector_free(vector* vector)
+void vector_clean(vector* vector)
 {
 	if (vector->size > 0)
 	{
+		free(vector->data);
 		vector->size = 0;
 		vector->count = 0;
-		free(vector->data);
 	}
 }

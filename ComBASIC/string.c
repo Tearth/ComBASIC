@@ -22,13 +22,13 @@ void string_append_c(string* string, char c)
 	}
 
 	string->data[string->count] = c;
-	string->data[string->count + 1] = '\0';
+	string->data[string->count + 1] = 0;
 	string->count++;
 }
 
 void string_append_s(string* string, const char* str)
 {
-	while (*str != '\0')
+	while (*str != 0)
 	{
 		string_append_c(string, *str);
 		str++;
@@ -37,16 +37,16 @@ void string_append_s(string* string, const char* str)
 
 void string_removelast(string* string)
 {
-	string->data[string->count - 1] = '\0';
+	string->data[string->count - 1] = 0;
 	string->count--;
 }
 
-void string_free(string* string)
+void string_clean(string* string)
 {
 	if (string->size > 0)
 	{
+		free(string->data);
 		string->size = 0;
 		string->count = 0;
-		free(string->data);
 	}
 }
