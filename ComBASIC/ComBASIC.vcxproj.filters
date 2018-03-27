@@ -56,6 +56,9 @@
     <ClCompile Include="ast-node.c">
       <Filter>Source Files\Compilation</Filter>
     </ClCompile>
+    <ClCompile Include="parser-cls.c">
+      <Filter>Source Files\Compilation\Parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -81,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="ast-node.h">
       <Filter>Header Files\Compilation</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-cls.h">
+      <Filter>Header Files\Compilation\Parsers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

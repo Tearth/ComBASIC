@@ -10,9 +10,21 @@ node* ast_build(vector* tokens)
 	{
 		node* line_number = parser_linenumber_build(tokens, &i);
 		node* keyword = parser_keyword_build(tokens, &i);
+
+		ast_parsearguments(tokens, keyword, &i);
+		vector_add(&line_number->children, keyword);
+		vector_add(&root->children, line_number);
 	}
 
 	return root;
+}
+
+void ast_parsearguments(vector* tokens, node* keyword, int* index)
+{
+	switch (keyword->node_type)
+	{
+		case N_CLS: { parser_cls_build(tokens, keyword, index); break; }
+	}
 }
 
 void ast_dump(node* node)
