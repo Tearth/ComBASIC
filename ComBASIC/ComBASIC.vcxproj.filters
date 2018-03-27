@@ -50,6 +50,12 @@
     <ClCompile Include="parser-linenumber.c">
       <Filter>Source Files\Compilation\Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="parser-keyword.c">
+      <Filter>Source Files\Compilation\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ast-node.c">
+      <Filter>Source Files\Compilation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -69,6 +75,12 @@
     </ClInclude>
     <ClInclude Include="parser-linenumber.h">
       <Filter>Header Files\Compilation\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-keyword.h">
+      <Filter>Header Files\Compilation\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ast-node.h">
+      <Filter>Header Files\Compilation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

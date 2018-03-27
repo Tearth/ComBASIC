@@ -3,21 +3,16 @@
 node* ast_build(vector* tokens)
 {
 	node* root = (node*)malloc(sizeof(node));
-	ast_initnode(root);
+	astnode_init(root);
 	root->node_type = N_ROOT;
 	
 	for (int i = 0; i < tokens->count; i++)
 	{
 		node* line_number = parser_linenumber_build(tokens, &i);
+		node* keyword = parser_keyword_build(tokens, &i);
 	}
 
 	return root;
-}
-
-void ast_initnode(node* node)
-{
-	string_init(&node->node_value);
-	vector_init(&node->children);
 }
 
 void ast_dump(node* node)
