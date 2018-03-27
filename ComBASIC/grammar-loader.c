@@ -108,7 +108,14 @@ void grammar_dump(vector* grammar_tokens)
 		}
 		else
 		{
-			printf("[%d] ", (int)r->grammar_token_type);
+			if (r->value.count > 0)
+			{
+				printf("[%d %s] ", (int)r->grammar_token_type, r->value.data);
+			}
+			else
+			{
+				printf("[%d] ", (int)r->grammar_token_type);
+			}
 		}
 	}
 	printf("End of grammar tokens list\n");
