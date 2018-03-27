@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{1abb87ff-22f0-4ef0-8084-16abd703b265}</UniqueIdentifier>
     </Filter>
@@ -24,12 +20,6 @@
     </Filter>
     <Filter Include="Source Files\Compilation">
       <UniqueIdentifier>{a5558c29-a3f3-4417-b64c-64a413290d76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Grammar">
-      <UniqueIdentifier>{bb30217d-1e99-4e20-81f9-48ddc22a7d5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Grammar">
-      <UniqueIdentifier>{f6164437-654c-4cb9-be5a-4a4ff2a85902}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,9 +38,6 @@
     <ClCompile Include="file-loader.c">
       <Filter>Source Files\Compilation</Filter>
     </ClCompile>
-    <ClCompile Include="grammar-loader.c">
-      <Filter>Source Files\Grammar</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -65,13 +52,5 @@
     <ClInclude Include="file-loader.h">
       <Filter>Header Files\Compilation</Filter>
     </ClInclude>
-    <ClInclude Include="grammar-loader.h">
-      <Filter>Header Files\Grammar</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="grammar.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>
