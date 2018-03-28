@@ -1,6 +1,6 @@
 #include "parser-print.h"
 
-bool parser_print_build(vector* tokens, node* keyword, int* index)
+bool parser_print_build(vector* tokens, node* keyword, int* index, vector* symbol_table)
 {
 	token* end_of_instruction_token;
 	token* token = tokens->data[*index];

@@ -1,6 +1,6 @@
 #include "ast-builder.h"
 
-node* ast_build(vector* tokens)
+node* ast_build(vector* tokens, vector* symbol_table)
 {
 	node* root = (node*)malloc(sizeof(node));
 	astnode_init(root);
@@ -11,7 +11,7 @@ node* ast_build(vector* tokens)
 		node* line_number = parser_linenumber_build(tokens, &i);
 		node* keyword = parser_keyword_build(tokens, &i);
 
-		ast_parsearguments(tokens, keyword, &i);
+		ast_parsearguments(tokens, keyword, &i, symbol_table);
 		vector_add(&line_number->children, keyword);
 		vector_add(&root->children, line_number);
 	}
@@ -19,14 +19,14 @@ node* ast_build(vector* tokens)
 	return root;
 }
 
-void ast_parsearguments(vector* tokens, node* keyword, int* index)
+void ast_parsearguments(vector* tokens, node* keyword, int* index, vector* symbol_table)
 {
 	bool result = true;
 	switch (keyword->node_type)
 	{
-		case N_CLS: { result = parser_cls_build(tokens, keyword, index); break; }
-		case N_REM: { result = parser_rem_build(tokens, keyword, index); break; }
-		case N_PRINT: { result = parser_print_build(tokens, keyword, index); break; }
+		case N_CLS: { result = parser_cls_build(tokens, keyword, index, symbol_table); break; }
+		case N_REM: { result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
+		case N_PRINT: { result = parser_print_build(tokens, keyword, index, symbol_table); break; }
 	}
 }
 

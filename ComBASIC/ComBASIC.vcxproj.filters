@@ -65,6 +65,9 @@
     <ClCompile Include="parser-print.c">
       <Filter>Source Files\Compilation\Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="symbol-table.c">
+      <Filter>Source Files\Compilation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -99,6 +102,9 @@
     </ClInclude>
     <ClInclude Include="parser-print.h">
       <Filter>Header Files\Compilation\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="symbol-table.h">
+      <Filter>Header Files\Compilation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

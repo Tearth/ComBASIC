@@ -126,6 +126,7 @@
     <ClCompile Include="parser-print.c" />
     <ClCompile Include="parser-rem.c" />
     <ClCompile Include="string.c" />
+    <ClCompile Include="symbol-table.c" />
     <ClCompile Include="vector.c" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="parser-print.h" />
     <ClInclude Include="parser-rem.h" />
     <ClInclude Include="string.h" />
+    <ClInclude Include="symbol-table.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

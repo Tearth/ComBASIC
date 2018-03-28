@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "file-loader.h"
+#include "symbol-table.h"
 #include "lexical-analysis.h"
 #include "ast-builder.h"
 
@@ -36,10 +37,13 @@ int main(int argc, char *argv[])
 		const char* source = file_load(input_filename);
 		if (source)
 		{
+			vector symbol_table;
+			vector_init(&symbol_table);
+
 			vector* tokens = lexical_gettokens(source);
 			if (display_tokens_flag) lexical_dump(tokens);
 
-			node* ast = ast_build(tokens);
+			node* ast = ast_build(tokens, &symbol_table);
 			if (display_ast_flag) ast_dump(ast);
 
 			ast_clean(ast);
