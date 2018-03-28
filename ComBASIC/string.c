@@ -7,6 +7,15 @@ void string_init(string* string)
 	string->count = 0;
 }
 
+string* string_clone(string* original)
+{
+	string* clone = (string*)malloc(sizeof(string));
+	string_init(clone);
+
+	string_append_s(clone, original->data);
+	return clone;
+}
+
 void string_append_c(string* string, char c)
 {
 	if (string->size == 0)
