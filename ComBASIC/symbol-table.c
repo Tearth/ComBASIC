@@ -32,7 +32,7 @@ void symboltable_dump(vector* symbol_table)
 	for (int i = 0; i < symbol_table->count; i++)
 	{
 		symbol* symbol_to_print = symbol_table->data[i];
-		printf("%d %s %s", symbol_to_print->type, symbol_to_print->name.data, symbol_to_print->value.data);
+		printf("%d %s %s\n", symbol_to_print->type, symbol_to_print->name.data, symbol_to_print->value.data);
 	}
-	printf("End of symbol table.\n");
+	printf("End of symbol table\n");
 }

@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 
 			node* ast = ast_build(tokens, &symbol_table);
 			if (display_debug_info) ast_dump(ast);
+			if (display_debug_info) symboltable_dump(&symbol_table);
 
 			ast_clean(ast);
 			lexical_clean(tokens);

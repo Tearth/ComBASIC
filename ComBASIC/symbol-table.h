@@ -4,8 +4,8 @@
 
 typedef enum symbol_type
 {
-	INTEGER,
-	STRING
+	S_INTEGER,
+	S_STRING
 } symbol_type;
 
 typedef struct symbol

@@ -6,7 +6,7 @@ typedef enum node_type
 {
 	N_ROOT,
 	N_LINENUMBER,
-	N_STRING,
+	N_VARIABLE,
 	N_CLS,
 	N_PRINT,
 	N_REM
