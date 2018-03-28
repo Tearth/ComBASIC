@@ -9,7 +9,7 @@ node* parser_linenumber_build(vector* tokens, int* index)
 	astnode_init(linenumber_node);
 
 	linenumber_node->node_type = N_LINENUMBER;
-	linenumber_node->node_value = token->value;
+	string_append_s(&linenumber_node->node_value, token->value.data);
 
 	(*index)++;
 	return linenumber_node;

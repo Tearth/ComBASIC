@@ -42,8 +42,10 @@ int main(int argc, char *argv[])
 			node* ast = ast_build(tokens);
 			if (display_ast_flag) ast_dump(ast);
 
+			ast_clean(ast);
 			lexical_clean(tokens);
 
+			free(ast);
 			free(tokens);
 			free((char*)source);
 		}

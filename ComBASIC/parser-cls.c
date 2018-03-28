@@ -2,5 +2,5 @@
 
 bool parser_cls_build(vector* tokens, node* keyword, int* index)
 {
-	return tokens->data[*index] == T_END_OF_INSTRUCTION;
+	return ((node*)tokens->data[*index])->node_type == T_END_OF_INSTRUCTION;
 }
