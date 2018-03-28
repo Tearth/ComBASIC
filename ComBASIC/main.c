@@ -11,8 +11,7 @@
 #include "ast-builder.h"
 
 bool compile_flag = false;
-bool display_tokens_flag = false;
-bool display_ast_flag = false;
+bool display_debug_info = false;
 char* input_filename = NULL;
 char* output_filename = NULL;
 
@@ -41,10 +40,10 @@ int main(int argc, char *argv[])
 			vector_init(&symbol_table);
 
 			vector* tokens = lexical_gettokens(source);
-			if (display_tokens_flag) lexical_dump(tokens);
+			if (display_debug_info) lexical_dump(tokens);
 
 			node* ast = ast_build(tokens, &symbol_table);
-			if (display_ast_flag) ast_dump(ast);
+			if (display_debug_info) ast_dump(ast);
 
 			ast_clean(ast);
 			lexical_clean(tokens);
@@ -83,15 +82,9 @@ void parse_arguments(int argc, char *argv[])
 					break;
 				}
 
-				case 't':
+				case 'd':
 				{
-					display_tokens_flag = true;
-					break;
-				}
-
-				case 'a':
-				{
-					display_ast_flag = true;
+					display_debug_info = true;
 					break;
 				}
 
@@ -129,6 +122,5 @@ void display_help()
 	printf("Available options:\n");
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
-	printf(" -t - displays tokens.\n");
-	printf(" -a - displays AST.\n");
+	printf(" -d - display debug info.\n");
 }
