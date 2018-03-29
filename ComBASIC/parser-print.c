@@ -11,16 +11,15 @@ bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	astnode_init(string_node);
 
 	string_node->type = N_VARIABLE;
-	string_append_s(&string_node->value, "test");
 	vector_add(&keyword->children, string_node);
 
 	symbol_node* string_symbol = (symbol_node*)malloc(sizeof(symbol_node));
 	symbolnode_init(string_symbol);
-	string_append_s(&string_symbol->name, "test");
 	string_symbol->type = S_STRING;
 	string_append_s(&string_symbol->value, token->value.data);
 	symboltable_add(symbol_table, string_symbol);
 
+	string_append_s(&string_node->value, string_symbol->name.data);
 	(*index)++;
 
 	end_of_instruction_token = tokens->data[*index];

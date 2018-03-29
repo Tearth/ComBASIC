@@ -1,12 +1,14 @@
 #include "symbol-table.h"
 
-void symboltable_add(vector* symbol_table, symbol_node* new_symbol)
+int anonymous_variables_count = 0;
+
+void symboltable_add(vector* symbol_table, symbol_node* symbol)
 {
 	bool found = false;
 	for (int i = 0; i < symbol_table->count; i++)
 	{
 		symbol_node* current = symbol_table->data[i];
-		if (strcmp(current->name.data, new_symbol->name.data) == 0)
+		if (symbol->name.count > 0 && strcmp(current->name.data, symbol->name.data) == 0)
 		{
 			found = true;
 			break;
@@ -15,7 +17,17 @@ void symboltable_add(vector* symbol_table, symbol_node* new_symbol)
 
 	if (!found)
 	{
-		vector_add(symbol_table, new_symbol);
+		if (symbol->name.count == 0)
+		{
+			char variable_name[64];
+
+			sprintf(variable_name, "%s%d", "var", anonymous_variables_count);
+			string_append_s(&symbol->name, variable_name);
+
+			anonymous_variables_count++;
+		}
+
+		vector_add(symbol_table, symbol);
 	}
 }
 

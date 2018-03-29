@@ -1,8 +1,10 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "symbol-node.h"
 #include "vector.h"
 #include "string.h"
 
-void symboltable_add(vector* symbol_table, symbol_node* new_symbol);
+void symboltable_add(vector* symbol_table, symbol_node* symbol);
 void symboltable_dump(vector* symbol_table);
 void symboltable_clean(vector* symbol_table);
