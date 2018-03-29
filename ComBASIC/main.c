@@ -42,11 +42,12 @@ int main(int argc, char *argv[])
 			vector* tokens = lexical_gettokens(source);
 			if (display_debug_info) lexical_dump(tokens);
 
-			node* ast = ast_build(tokens, &symbol_table);
+			ast_node* ast = ast_build(tokens, &symbol_table);
 			if (display_debug_info) ast_dump(ast);
 			if (display_debug_info) symboltable_dump(&symbol_table);
 
 			ast_clean(ast);
+			symboltable_clean(&symbol_table);
 			lexical_clean(tokens);
 
 			free(ast);

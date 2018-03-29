@@ -2,7 +2,7 @@
 #include "string.h"
 #include "vector.h"
 
-typedef enum node_type
+typedef enum ast_node_type
 {
 	N_ROOT,
 	N_LINENUMBER,
@@ -10,13 +10,14 @@ typedef enum node_type
 	N_CLS,
 	N_PRINT,
 	N_REM
-} node_type;
+} ast_node_type;
 
-typedef struct node
+typedef struct ast_node
 {
-	node_type node_type;
-	string node_value;
+	ast_node_type type;
+	string value;
 	vector children;
-} node;
+} ast_node;
 
-void astnode_init(node* node);
+void astnode_init(ast_node* node);
+void astnode_clean(ast_node* node);

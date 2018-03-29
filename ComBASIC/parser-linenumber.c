@@ -1,15 +1,15 @@
 #include "parser-linenumber.h"
 
-node* parser_linenumber_build(vector* tokens, int* index)
+ast_node* parser_linenumber_build(vector* tokens, int* index)
 {
 	token* token = tokens->data[*index];
 	if (token->token_type != T_NUMBER) return NULL;
 
-	node* linenumber_node = (node*)malloc(sizeof(node));
+	ast_node* linenumber_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(linenumber_node);
 
-	linenumber_node->node_type = N_LINENUMBER;
-	string_append_s(&linenumber_node->node_value, token->value.data);
+	linenumber_node->type = N_LINENUMBER;
+	string_append_s(&linenumber_node->value, token->value.data);
 
 	(*index)++;
 	return linenumber_node;

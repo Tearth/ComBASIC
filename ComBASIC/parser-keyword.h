@@ -2,4 +2,4 @@
 #include "ast-node.h"
 #include "lexical-analysis.h"
 
-node* parser_keyword_build(vector* tokens, int* index);
+ast_node* parser_keyword_build(vector* tokens, int* index);
