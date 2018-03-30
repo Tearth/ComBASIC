@@ -44,12 +44,12 @@ void symboltable_dump(vector* symbol_table)
 
 void symboltable_clean(vector* symbol_table)
 {
-	for (int i = 0; i < symbol_table->count; i++)
+	while(symbol_table->count > 0)
 	{
-		symbol_node* s = symbol_table->data[i];
+		symbol_node* s = symbol_table->data[0];
 		symbolnode_clean(s);
 
-		vector_remove(symbol_table, i);
+		vector_remove(symbol_table, 0);
 		free(s);
 	}
 
