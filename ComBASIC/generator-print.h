@@ -1,5 +1,4 @@
 #pragma once
-
 #include "string.h"
 #include "vector.h"
 #include "ast-node.h"

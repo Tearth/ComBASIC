@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string.h>
 #include "symbol-node.h"
 #include "vector.h"
 #include "string.h"
