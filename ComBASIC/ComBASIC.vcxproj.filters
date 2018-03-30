@@ -42,6 +42,12 @@
     <Filter Include="Assembler">
       <UniqueIdentifier>{05e63ca2-9320-4903-a5f3-c6cc8aeaad72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Compilation\CodeGeneration">
+      <UniqueIdentifier>{0c335a60-431e-4415-9b90-edfd2ce989da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Compilation\CodeGeneration">
+      <UniqueIdentifier>{0d0d5c3b-cc30-426d-abb5-2fd4be385d7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -86,6 +92,9 @@
     <ClCompile Include="symbol-node.c">
       <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
     </ClCompile>
+    <ClCompile Include="generator.c">
+      <Filter>Source Files\Compilation\CodeGeneration</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -126,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="symbol-node.h">
       <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="generator.h">
+      <Filter>Header Files\Compilation\CodeGeneration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

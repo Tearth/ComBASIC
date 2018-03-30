@@ -9,6 +9,7 @@
 #include "symbol-table.h"
 #include "lexical-analysis.h"
 #include "ast-builder.h"
+#include "generator.h"
 
 bool compile_flag = false;
 bool display_debug_info = false;
@@ -46,10 +47,14 @@ int main(int argc, char *argv[])
 			if (display_debug_info) ast_dump(ast);
 			if (display_debug_info) symboltable_dump(&symbol_table);
 
+			string* asm_code = generator_build(ast);
+
+			string_clean(asm_code);
 			ast_clean(ast);
 			symboltable_clean(&symbol_table);
 			lexical_clean(tokens);
 
+			free(asm_code);
 			free(ast);
 			free(tokens);
 			free((char*)source);
