@@ -74,9 +74,6 @@
     <ClCompile Include="parser-print.c">
       <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClCompile>
-    <ClCompile Include="file-loader.c">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="lexical-analysis.c">
       <Filter>Source Files\Compilation\LexicalAnalysis</Filter>
     </ClCompile>
@@ -94,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="generator.c">
       <Filter>Source Files\Compilation\CodeGeneration</Filter>
+    </ClCompile>
+    <ClCompile Include="file-manager.c">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,9 +118,6 @@
     <ClInclude Include="parser-print.h">
       <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClInclude>
-    <ClInclude Include="file-loader.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="lexical-analysis.h">
       <Filter>Header Files\Compilation\LexicalAnalysis</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="generator.h">
       <Filter>Header Files\Compilation\CodeGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="file-manager.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

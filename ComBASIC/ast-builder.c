@@ -11,7 +11,12 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 		ast_node* line_number = parser_linenumber_build(tokens, &i);
 		ast_node* keyword = parser_keyword_build(tokens, &i);
 
-		ast_parsearguments(tokens, keyword, &i, symbol_table);
+		if (!ast_parsearguments(tokens, keyword, &i, symbol_table))
+		{
+			printf("Error at line %s\n", line_number->value);
+			return NULL;
+		}
+
 		vector_add(&line_number->children, keyword);
 		vector_add(&root->children, line_number);
 	}
@@ -19,7 +24,7 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 	return root;
 }
 
-void ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	bool result = true;
 	switch (keyword->type)
@@ -28,6 +33,8 @@ void ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* s
 		case N_REM: { result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
 		case N_PRINT: { result = parser_print_build(tokens, keyword, index, symbol_table); break; }
 	}
+
+	return result;
 }
 
 void ast_dump(ast_node* node)

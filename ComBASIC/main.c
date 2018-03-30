@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "file-loader.h"
+#include "file-manager.h"
 #include "symbol-table.h"
 #include "lexical-analysis.h"
 #include "ast-builder.h"
@@ -47,7 +47,8 @@ int main(int argc, char *argv[])
 			if (display_debug_info) ast_dump(ast);
 			if (display_debug_info) symboltable_dump(&symbol_table);
 
-			string* asm_code = generator_build(ast);
+			string* asm_code = generator_build(ast, &symbol_table);
+			file_save(output_filename, asm_code->data, asm_code->count);
 
 			string_clean(asm_code);
 			ast_clean(ast);

@@ -1,4 +1,4 @@
-#include "file-loader.h"
+#include "file-manager.h"
 
 const char* file_load(const char* filename)
 {
@@ -22,4 +22,17 @@ const char* file_load(const char* filename)
 	fclose(source);
 
 	return buffer;
+}
+
+void file_save(const char* filename, const char* content, int length)
+{
+	FILE* file = fopen(filename, "w");
+	if (!file)
+	{
+		printf("Unable to save file.\n");
+		return NULL;
+	}
+
+	fwrite(content, sizeof(char), length, file);
+	fclose(file);
 }
