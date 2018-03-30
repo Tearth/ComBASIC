@@ -36,7 +36,7 @@ _printchar:
     
     mov     esp, ebp
     pop     ebp
-    ret
+    ret		4
     
 ; message
 ; length
