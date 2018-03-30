@@ -130,6 +130,7 @@
     <ClCompile Include="parser-linenumber.c" />
     <ClCompile Include="parser-print.c" />
     <ClCompile Include="parser-rem.c" />
+    <ClCompile Include="parser-string.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="symbol-node.c" />
     <ClCompile Include="symbol-table.c" />
@@ -150,6 +151,7 @@
     <ClInclude Include="parser-linenumber.h" />
     <ClInclude Include="parser-print.h" />
     <ClInclude Include="parser-rem.h" />
+    <ClInclude Include="parser-string.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="symbol-node.h" />
     <ClInclude Include="symbol-table.h" />
