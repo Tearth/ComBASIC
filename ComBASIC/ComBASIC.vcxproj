@@ -117,7 +117,7 @@
   <ItemGroup>
     <ClCompile Include="ast-builder.c" />
     <ClCompile Include="ast-node.c" />
-    <ClCompile Include="generator.c" />
+    <ClCompile Include="code-builder.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="file-manager.c" />
@@ -135,7 +135,7 @@
     <ClInclude Include="ast-builder.h" />
     <ClInclude Include="ast-node.h" />
     <ClInclude Include="file-manager.h" />
-    <ClInclude Include="generator.h" />
+    <ClInclude Include="code-builder.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="parser-cls.h" />
     <ClInclude Include="parser-keyword.h" />

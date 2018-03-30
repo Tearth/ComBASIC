@@ -48,6 +48,12 @@
     <Filter Include="Source Files\Compilation\CodeGeneration">
       <UniqueIdentifier>{0d0d5c3b-cc30-426d-abb5-2fd4be385d7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Compilation\CodeGeneration\Generators">
+      <UniqueIdentifier>{b02e417e-b017-4c60-b717-53c7188a783c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Compilation\CodeGeneration\Generators">
+      <UniqueIdentifier>{72de325a-d6d7-4fd6-9fb4-8cc29d7ac459}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -89,11 +95,11 @@
     <ClCompile Include="symbol-node.c">
       <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
     </ClCompile>
-    <ClCompile Include="generator.c">
-      <Filter>Source Files\Compilation\CodeGeneration</Filter>
-    </ClCompile>
     <ClCompile Include="file-manager.c">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="code-builder.c">
+      <Filter>Source Files\Compilation\CodeGeneration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,11 +139,11 @@
     <ClInclude Include="symbol-node.h">
       <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
     </ClInclude>
-    <ClInclude Include="generator.h">
-      <Filter>Header Files\Compilation\CodeGeneration</Filter>
-    </ClInclude>
     <ClInclude Include="file-manager.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="code-builder.h">
+      <Filter>Header Files\Compilation\CodeGeneration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
