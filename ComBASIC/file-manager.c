@@ -26,7 +26,7 @@ const char* file_load(const char* filename)
 
 void file_save(const char* filename, const char* content, int length)
 {
-	FILE* file = fopen(filename, "w");
+	FILE* file = fopen(filename, "w+");
 	if (!file)
 	{
 		printf("Unable to save file.\n");
