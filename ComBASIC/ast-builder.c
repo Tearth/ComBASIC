@@ -9,12 +9,29 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 	for (int i = 0; i < tokens->count; i++)
 	{
 		ast_node* line_number = parser_linenumber_build(tokens, &i);
-		ast_node* keyword = parser_keyword_build(tokens, &i);
+		if (line_number == NULL)
+		{
+			token* current_token = tokens->data[i];
 
+			printf("ERROR: Line number not found: %s\n", current_token->value.data);
+			exit(-1);
+		}
+
+		ast_node* keyword = parser_keyword_build(tokens, &i);
+		if (keyword == NULL)
+		{
+			token* current_token = tokens->data[i];
+
+			printf("ERROR: Keyword not found: %s\n", current_token->value.data);
+			exit(-1);
+		}
+		
 		if (!ast_parsearguments(tokens, keyword, &i, symbol_table))
 		{
-			printf("Error at line %s\n", line_number->value);
-			return NULL;
+			token* current_token = tokens->data[i];
+
+			printf("ERROR: Invalid arguments: %s\n", current_token->value.data);
+			exit(-1);
 		}
 
 		vector_add(&line_number->children, keyword);
@@ -29,9 +46,9 @@ bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* s
 	bool result = true;
 	switch (keyword->type)
 	{
-		case N_CLS: { result = parser_cls_build(tokens, keyword, index, symbol_table); break; }
-		case N_REM: { result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
-		case N_PRINT: { result = parser_print_build(tokens, keyword, index, symbol_table); break; }
+		case N_CLS:		{ result = parser_cls_build(tokens, keyword, index, symbol_table); break; }
+		case N_REM:		{ result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
+		case N_PRINT:	{ result = parser_print_build(tokens, keyword, index, symbol_table); break; }
 	}
 
 	return result;
