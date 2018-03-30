@@ -104,6 +104,12 @@
     <ClCompile Include="generator-linenumber.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
+    <ClCompile Include="generator-rem.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
+    <ClCompile Include="generator-print.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -149,6 +155,12 @@
       <Filter>Header Files\Compilation\CodeGeneration</Filter>
     </ClInclude>
     <ClInclude Include="generator-linenumber.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-rem.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-print.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>

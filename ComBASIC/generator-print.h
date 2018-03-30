@@ -5,4 +5,4 @@
 #include "vector.h"
 #include "ast-node.h"
 
-void generator_linenumber_build(string* code, ast_node* root, vector* symbol_table);
+void generator_print_build(string* code, ast_node* root, vector* symbol_table);

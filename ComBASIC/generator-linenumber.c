@@ -1,6 +1,6 @@
 #include "generator-linenumber.h"
 
-string* generator_linenumber_build(string* code, ast_node* root, vector* symbol_table)
+void generator_linenumber_build(string* code, ast_node* root, vector* symbol_table)
 {
 	char buffer[128];
 
