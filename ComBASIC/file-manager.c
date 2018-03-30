@@ -2,11 +2,11 @@
 
 const char* file_load(const char* filename)
 {
+	FILE* source = NULL;
 	char* buffer = NULL;
 	int length = 0;
 
-	FILE* source = fopen(filename, "r");
-	if (!source)
+	if (fopen_s(&source, filename, "r") != 0)
 	{
 		printf("Unable to load file.\n");
 		return NULL;
@@ -26,8 +26,8 @@ const char* file_load(const char* filename)
 
 void file_save(const char* filename, const char* content, int length)
 {
-	FILE* file = fopen(filename, "w+");
-	if (!file)
+	FILE* file = NULL;
+	if (fopen_s(&file, filename, "w+") != 0)
 	{
 		printf("Unable to save file.\n");
 		return NULL;

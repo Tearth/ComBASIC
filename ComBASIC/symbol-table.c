@@ -21,7 +21,7 @@ void symboltable_add(vector* symbol_table, symbol_node* symbol)
 		{
 			char variable_name[64];
 
-			sprintf(variable_name, "%s%d", "var", anonymous_variables_count);
+			sprintf_s(variable_name, 64, "%s%d", "var", anonymous_variables_count);
 			string_append_s(&symbol->name, variable_name);
 
 			anonymous_variables_count++;

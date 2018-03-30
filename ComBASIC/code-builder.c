@@ -26,7 +26,13 @@ void code_datasection(string* code, ast_node* root, vector* symbol_table)
 			{
 				char buffer[128];
 
-				sprintf(buffer, "%s:\n\tdb\t'%s'\n%s_end:\n", symbol->name.data, symbol->value.data, symbol->name.data);
+				sprintf_s(buffer, 128, "%s:\n", symbol->name.data);
+				string_append_s(code, buffer);
+
+				sprintf_s(buffer, 128, "\tdb\t'%s'\n", symbol->value.data);
+				string_append_s(code, buffer);
+
+				sprintf_s(buffer, 128, "%s_end:\n", symbol->name.data);
 				string_append_s(code, buffer);
 
 				break;

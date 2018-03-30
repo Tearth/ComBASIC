@@ -4,6 +4,6 @@ void generator_linenumber_build(string* code, ast_node* root, vector* symbol_tab
 {
 	char buffer[128];
 
-	sprintf(buffer, "_%s:\n", root->value.data);
+	sprintf_s(buffer, 128, "_%s:\n", root->value.data);
 	string_append_s(code, buffer);
 }
