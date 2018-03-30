@@ -101,6 +101,9 @@
     <ClCompile Include="code-builder.c">
       <Filter>Source Files\Compilation\CodeGeneration</Filter>
     </ClCompile>
+    <ClCompile Include="generator-linenumber.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="code-builder.h">
       <Filter>Header Files\Compilation\CodeGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-linenumber.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

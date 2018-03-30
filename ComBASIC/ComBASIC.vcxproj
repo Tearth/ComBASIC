@@ -118,6 +118,7 @@
     <ClCompile Include="ast-builder.c" />
     <ClCompile Include="ast-node.c" />
     <ClCompile Include="code-builder.c" />
+    <ClCompile Include="generator-linenumber.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="file-manager.c" />
@@ -136,6 +137,7 @@
     <ClInclude Include="ast-node.h" />
     <ClInclude Include="file-manager.h" />
     <ClInclude Include="code-builder.h" />
+    <ClInclude Include="generator-linenumber.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="parser-cls.h" />
     <ClInclude Include="parser-keyword.h" />
