@@ -30,7 +30,7 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 		{
 			token* current_token = tokens->data[i];
 
-			printf("ERROR: Invalid arguments: %s\n", current_token->value.data);
+			printf("ERROR: Invalid argument: %s\n", current_token->value.data);
 			exit(-1);
 		}
 

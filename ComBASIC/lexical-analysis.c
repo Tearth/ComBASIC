@@ -102,6 +102,10 @@ token* lexical_readoperator(const char* source, int* length)
 	{
 		read_token->token_type = T_END_OF_INSTRUCTION;
 	}
+	else if (strcmp(read_token->value.data, ";") == 0)
+	{
+		read_token->token_type = T_NO_NEWLINE;
+	}
 	else if(strcmp(read_token->value.data, "\"") == 0)
 	{
 		string_removelast(&read_token->value);

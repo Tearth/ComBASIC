@@ -12,6 +12,7 @@ typedef enum token_type
 	T_IDENTIFIER,
 	T_NUMBER,
 	T_STRING,
+	T_NO_NEWLINE,
 	T_OPERATOR,
 	T_END_OF_INSTRUCTION
 } token_type;
