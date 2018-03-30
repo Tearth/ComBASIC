@@ -118,6 +118,7 @@
     <ClCompile Include="ast-builder.c" />
     <ClCompile Include="ast-node.c" />
     <ClCompile Include="code-builder.c" />
+    <ClCompile Include="generator-cls.c" />
     <ClCompile Include="generator-linenumber.c" />
     <ClCompile Include="generator-print.c" />
     <ClCompile Include="generator-rem.c" />
@@ -139,6 +140,7 @@
     <ClInclude Include="ast-node.h" />
     <ClInclude Include="file-manager.h" />
     <ClInclude Include="code-builder.h" />
+    <ClInclude Include="generator-cls.h" />
     <ClInclude Include="generator-linenumber.h" />
     <ClInclude Include="generator-print.h" />
     <ClInclude Include="generator-rem.h" />
