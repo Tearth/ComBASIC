@@ -11,7 +11,12 @@ typedef enum ast_node_type
 	N_PRINT,
 	N_REM,
 	N_NONEWLINE,
-	N_EXPRESSION
+	N_EXPRESSION,
+	N_ADD,
+	N_SUB,
+	N_MUL,
+	N_DIV,
+	N_NUMBER
 } ast_node_type;
 
 typedef struct ast_node

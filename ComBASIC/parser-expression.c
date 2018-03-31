@@ -7,6 +7,7 @@ ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index,
 	expression_node->type = N_EXPRESSION;
 
 	vector* rpn = parser_expression_buildrpn(tokens, keyword, index, symbol_table);
+	vector* rpn_nodes = parser_expression_buildrpnnodes(rpn, symbol_table);
 
 	return expression_node;
 }
@@ -100,6 +101,60 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 	printf("\n");
 
 	return rpn;
+}
+
+vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
+{
+	vector* rpn_nodes = (vector*)malloc(sizeof(vector));
+	vector_init(rpn_nodes);
+
+	for (int i = 0; i < rpn->count; i++)
+	{
+		token* current_token = rpn->data[i];
+
+		ast_node* node = (ast_node*)malloc(sizeof(ast_node));
+		astnode_init(node);
+
+		switch (current_token->token_type)
+		{
+			case T_NUMBER:
+			{
+				node->type = N_NUMBER;
+				break;
+			}
+
+			case T_IDENTIFIER:
+			{
+				symbol_node* variable_symbol = (symbol_node*)malloc(sizeof(symbol_node));
+				symbolnode_init(variable_symbol);
+
+				variable_symbol->type = S_INTEGER;
+				string_append_s(&variable_symbol->name, current_token->value.data);
+				string_append_s(&variable_symbol->value, "0");
+
+				symboltable_add(symbol_table, variable_symbol);
+
+				node->type = N_VARIABLE;
+				string_append_s(&node->value, current_token->value.data);
+
+				break;
+			}
+
+			case T_OPERATOR:
+			{
+				if (strcmp("+", current_token->value.data) == 0)	node->type = N_ADD;
+				if (strcmp("-", current_token->value.data) == 0)	node->type = N_SUB;
+				if (strcmp("*", current_token->value.data) == 0)	node->type = N_MUL;
+				if (strcmp("/", current_token->value.data) == 0)	node->type = N_DIV;
+
+				break;
+			}
+		}
+
+		vector_add(rpn_nodes, node);
+	}
+
+	return rpn_nodes;
 }
 
 bool parser_expression_istokenvalid(token* token)
