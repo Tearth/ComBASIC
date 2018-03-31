@@ -47,17 +47,17 @@ int main(int argc, char *argv[])
 			if (display_debug_info) ast_dump(ast);
 			if (display_debug_info) symboltable_dump(&symbol_table);
 
-			string* asm_code = code_build(ast, &symbol_table);
+			/*string* asm_code = code_build(ast, &symbol_table);
 			file_save(output_filename, asm_code->data, asm_code->count);
 
 			printf("Compilation done!\n");
 
-			string_clean(asm_code);
+			string_clean(asm_code);*/
 			ast_clean(ast);
 			symboltable_clean(&symbol_table);
 			lexical_clean(tokens);
 
-			free(asm_code);
+			//free(asm_code);
 			free(ast);
 			free(tokens);
 			free((char*)source);

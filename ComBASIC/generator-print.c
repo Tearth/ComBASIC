@@ -19,9 +19,7 @@ void generator_print_build(string* code, ast_node* root, vector* symbol_table)
 
 	if (root->children.count != 2)
 	{
-		sprintf_s(buffer, 128, "\tpush\t%d\n", 10);
-		string_append_s(code, buffer);
-
+		string_append_s(code, "\tpush\t10\n");
 		string_append_s(code, "\tcall\t_printchar\n");
 	}
 }

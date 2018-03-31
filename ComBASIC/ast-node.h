@@ -10,7 +10,8 @@ typedef enum ast_node_type
 	N_CLS,
 	N_PRINT,
 	N_REM,
-	N_NONEWLINE
+	N_NONEWLINE,
+	N_EXPRESSION
 } ast_node_type;
 
 typedef struct ast_node
