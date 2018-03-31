@@ -18,7 +18,7 @@ bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* s
 			(*index)++;
 		}
 	}
-	else if (current_token->token_type == T_NUMBER || current_token->token_type == T_IDENTIFIER || current_token->token_type == T_OPERATOR)
+	else if (parser_expression_istokenvalid(current_token))
 	{
 		ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
 		vector_add(&keyword->children, expression_node);
