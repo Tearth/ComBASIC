@@ -58,7 +58,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 					token* last_operator_on_stack = stack->data[stack->count - 1];
 					int current_token_priority = parser_expression_getpriority(current_token);
 
-					while (current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
+					while (stack->count > 0 && current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
 					{
 						vector_add(rpn, last_operator_on_stack);
 						vector_remove(stack, stack->count - 1);
@@ -75,13 +75,16 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 		current_token = tokens->data[*index];
 	}
 
-	token* last_operator_on_stack = stack->data[stack->count - 1];
-	while (stack->count > 0 && !parser_expression_isparenthesis(last_operator_on_stack))
+	if (stack->count > 0)
 	{
-		vector_add(rpn, last_operator_on_stack);
-		vector_remove(stack, stack->count - 1);
+		token* last_operator_on_stack = stack->data[stack->count - 1];
+		while (stack->count > 0 && !parser_expression_isparenthesis(last_operator_on_stack))
+		{
+			vector_add(rpn, last_operator_on_stack);
+			vector_remove(stack, stack->count - 1);
 
-		last_operator_on_stack = stack->data[stack->count - 1];
+			last_operator_on_stack = stack->data[stack->count - 1];
+		}
 	}
 
 	if (stack->count > 0)
@@ -185,6 +188,12 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 
 			vector_add(stack, current_node);
 		}
+	}
+
+	if (stack->count != 1)
+	{
+		printf("ERROR: Invalid expression (too many numbers or operators).");
+		exit(-1);
 	}
 
 	vector_add(&expression_root->children, stack->data[0]);
