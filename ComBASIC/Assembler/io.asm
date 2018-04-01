@@ -36,7 +36,45 @@ _printchar:
     
     mov     esp, ebp
     pop     ebp
-    ret		4
+    ret
+    
+; number
+_printnumber:
+    push    ebp
+    mov     ebp, esp
+    
+    call    _getstdhandle
+    mov     ebx, eax    
+    
+    mov     eax, [ebp+8]
+    xor     ecx, ecx
+    xor     esi, esi
+_numtostr_loop:
+    xor     edx, edx
+    
+    mov     ecx, 10
+    idiv    ecx
+    push    edx
+    
+    inc     esi
+    
+    cmp     eax, 0
+    jnz     _numtostr_loop
+    
+_printdigit_loop:
+    pop     eax
+    add     eax, '0'
+    push    eax
+    call    _printchar
+    
+    pop     eax
+    dec     esi
+    cmp     esi, 0
+    jnz     _printdigit_loop
+    
+    mov     esp, ebp
+    pop     ebp
+    ret
     
 ; message
 ; length
