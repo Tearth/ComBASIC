@@ -96,14 +96,6 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 	vector_clean(stack);
 	free(stack);
 
-	printf("\n");
-	for (int i = 0; i < rpn->count; i++)
-	{
-		printf("%s ", ((token*)rpn->data[i])->value);
-	}
-	printf("\n");
-	printf("\n");
-
 	return rpn;
 }
 

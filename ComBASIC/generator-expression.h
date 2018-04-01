@@ -4,4 +4,4 @@
 #include "ast-node.h"
 #include "generator-expression.h"
 
-void generator_print_build(string* code, ast_node* root, vector* symbol_table);
+void generator_expression_build(string* code, ast_node* root, vector* symbol_table);
