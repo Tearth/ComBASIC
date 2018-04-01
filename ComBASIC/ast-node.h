@@ -16,7 +16,8 @@ typedef enum ast_node_type
 	N_SUB,
 	N_MUL,
 	N_DIV,
-	N_NUMBER
+	N_NUMBER,
+	N_LET
 } ast_node_type;
 
 typedef struct ast_node
