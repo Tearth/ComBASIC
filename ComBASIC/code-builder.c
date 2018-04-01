@@ -19,13 +19,19 @@ void code_datasection(string* code, ast_node* root, vector* symbol_table)
 	for (int i = 0; i < symbol_table->count; i++)
 	{
 		symbol_node* symbol = symbol_table->data[i];
+		char buffer[128];
+
 		switch (symbol->type)
 		{
-			case S_INTEGER: break;
+			case S_INTEGER:
+			{
+				sprintf_s(buffer, 128, "\t%s\tDD\t%s\n", symbol->name.data, "0");
+				string_append_s(code, buffer);
+
+				break;
+			}
 			case S_STRING:
 			{
-				char buffer[128];
-
 				sprintf_s(buffer, 128, "%s:\n", symbol->name.data);
 				string_append_s(code, buffer);
 
