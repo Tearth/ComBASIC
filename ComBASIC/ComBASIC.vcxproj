@@ -120,6 +120,7 @@
     <ClCompile Include="code-builder.c" />
     <ClCompile Include="generator-cls.c" />
     <ClCompile Include="generator-expression.c" />
+    <ClCompile Include="generator-let.c" />
     <ClCompile Include="generator-linenumber.c" />
     <ClCompile Include="generator-print.c" />
     <ClCompile Include="generator-rem.c" />
@@ -146,6 +147,7 @@
     <ClInclude Include="code-builder.h" />
     <ClInclude Include="generator-cls.h" />
     <ClInclude Include="generator-expression.h" />
+    <ClInclude Include="generator-let.h" />
     <ClInclude Include="generator-linenumber.h" />
     <ClInclude Include="generator-print.h" />
     <ClInclude Include="generator-rem.h" />

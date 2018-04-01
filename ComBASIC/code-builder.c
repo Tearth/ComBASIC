@@ -69,6 +69,7 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 			case N_CLS: { generator_cls_build(code, keyword_node, symbol_table); break; }
 			case N_PRINT: { generator_print_build(code, keyword_node, symbol_table); break; }
 			case N_REM: { generator_rem_build(code, keyword_node, symbol_table); break; }
+			case N_LET: { generator_let_build(code, keyword_node, symbol_table); break; }
 		}
 	}
 }
