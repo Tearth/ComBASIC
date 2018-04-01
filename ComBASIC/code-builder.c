@@ -50,6 +50,7 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 	string_append_s(code, "\t%include\t'io.asm'\n");
 	string_append_s(code, "\n");
 	string_append_s(code, "_main:\n");
+	string_append_s(code, "\tmov \tebp, esp\n");
 
 	for (int i = 0; i < root->children.count; i++)
 	{
