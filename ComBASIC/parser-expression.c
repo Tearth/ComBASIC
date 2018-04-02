@@ -126,11 +126,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 				symbol_node* variable_symbol = (symbol_node*)malloc(sizeof(symbol_node));
 				symbolnode_init(variable_symbol);
 
-				variable_symbol->type = S_INTEGER;
-				string_append_s(&variable_symbol->name, current_token->value.data);
-				string_append_s(&variable_symbol->value, "0");
-
-				symboltable_add(symbol_table, variable_symbol);
+				symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
 				node->type = N_VARIABLE;
 				string_append_s(&node->value, current_token->value.data);

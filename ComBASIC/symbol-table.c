@@ -2,33 +2,36 @@
 
 int anonymous_variables_count = 0;
 
-void symboltable_add(vector* symbol_table, symbol_node* symbol)
+symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char* name, const char* value)
 {
 	bool found = false;
 	for (int i = 0; i < symbol_table->count; i++)
 	{
 		symbol_node* current = symbol_table->data[i];
-		if (symbol->name.count > 0 && strcmp(current->name.data, symbol->name.data) == 0)
+		if (strcmp(current->name.data, name) == 0)
 		{
-			found = true;
-			break;
+			return current;
 		}
 	}
 
-	if (!found)
+	symbol_node* symbol = (symbol_node*)malloc(sizeof(symbol_node));
+	symbolnode_init(symbol);
+
+	symbol->type = S_INTEGER;
+	string_append_s(&symbol->name, name);
+	string_append_s(&symbol->value, value);
+
+	if (symbol->name.count == 0)
 	{
-		if (symbol->name.count == 0)
-		{
-			char variable_name[64];
+		char variable_name[64];
 
-			sprintf_s(variable_name, 64, "%s%d", "var", anonymous_variables_count);
-			string_append_s(&symbol->name, variable_name);
+		sprintf_s(variable_name, 64, "%s%d", "var", anonymous_variables_count);
+		string_append_s(&symbol->name, variable_name);
 
-			anonymous_variables_count++;
-		}
-
-		vector_add(symbol_table, symbol);
+		anonymous_variables_count++;
 	}
+
+	vector_add(symbol_table, symbol);
 }
 
 void symboltable_dump(vector* symbol_table)

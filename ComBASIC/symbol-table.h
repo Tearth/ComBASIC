@@ -4,6 +4,6 @@
 #include "vector.h"
 #include "string.h"
 
-void symboltable_add(vector* symbol_table, symbol_node* symbol);
+symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char* name, const char* value);
 void symboltable_dump(vector* symbol_table);
 void symboltable_clean(vector* symbol_table);

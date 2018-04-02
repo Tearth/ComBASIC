@@ -13,7 +13,7 @@ ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector
 	ast_node* variable_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(variable_node);
 
-	variable_node->type = N_LINENUMBER;
+	variable_node->type = N_VARIABLE;
 	string_append_s(&variable_node->value, current_token->value.data);
 	
 	vector_add(&keyword->children, variable_node);
@@ -21,11 +21,7 @@ ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector
 	symbol_node* variable_symbol = (symbol_node*)malloc(sizeof(symbol_node));
 	symbolnode_init(variable_symbol);
 
-	variable_symbol->type = S_INTEGER;
-	string_append_s(&variable_symbol->name, current_token->value.data);
-	string_append_s(&variable_symbol->value, "0");
-
-	symboltable_add(symbol_table, variable_symbol);
+	symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
 	(*index)++;
 	current_token = tokens->data[*index];

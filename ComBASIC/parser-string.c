@@ -12,12 +12,7 @@ bool parser_string_build(vector* tokens, ast_node* keyword, int* index, vector* 
 	string_node->type = N_VARIABLE;
 	vector_add(&keyword->children, string_node);
 
-	symbol_node* string_symbol = (symbol_node*)malloc(sizeof(symbol_node));
-	symbolnode_init(string_symbol);
-	string_symbol->type = S_STRING;
-	string_append_s(&string_symbol->value, token->value.data);
-	symboltable_add(symbol_table, string_symbol);
-
+	symbol_node* string_symbol = symboltable_add(symbol_table, S_STRING, "", token->value.data);
 	string_append_s(&string_node->value, string_symbol->name.data);
 	(*index)++;
 
