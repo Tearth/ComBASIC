@@ -3,8 +3,7 @@
 ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	ast_node* expression_root = (ast_node*)malloc(sizeof(ast_node));
-	astnode_init(expression_root);
-	expression_root->type = N_EXPRESSION;
+	astnode_init(expression_root, N_EXPRESSION, "");
 
 	vector* rpn = parser_expression_buildrpn(tokens, keyword, index, symbol_table);
 	vector* rpn_nodes = parser_expression_buildrpnnodes(rpn, symbol_table);
@@ -109,7 +108,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 		token* current_token = rpn->data[i];
 
 		ast_node* node = (ast_node*)malloc(sizeof(ast_node));
-		astnode_init(node);
+		astnode_init(node, -1, "");
 
 		switch (current_token->token_type)
 		{

@@ -11,10 +11,7 @@ ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector
 	}
 
 	ast_node* variable_node = (ast_node*)malloc(sizeof(ast_node));
-	astnode_init(variable_node);
-
-	variable_node->type = N_VARIABLE;
-	string_append_s(&variable_node->value, current_token->value.data);
+	astnode_init(variable_node, N_VARIABLE, current_token->value.data);
 	
 	vector_add(&keyword->children, variable_node);
 

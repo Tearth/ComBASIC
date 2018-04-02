@@ -27,5 +27,5 @@ typedef struct ast_node
 	vector children;
 } ast_node;
 
-void astnode_init(ast_node* node);
+void astnode_init(ast_node* node, ast_node_type type, const char* value);
 void astnode_clean(ast_node* node);

@@ -11,8 +11,7 @@ bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* s
 		if (current_token->token_type == T_NO_NEWLINE)
 		{
 			ast_node* nonewline_node = (ast_node*)malloc(sizeof(ast_node));
-			astnode_init(nonewline_node);
-			nonewline_node->type = N_NONEWLINE;
+			astnode_init(nonewline_node, N_NONEWLINE, "");
 
 			vector_add(&keyword->children, nonewline_node);
 			(*index)++;

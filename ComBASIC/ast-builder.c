@@ -3,8 +3,7 @@
 ast_node* ast_build(vector* tokens, vector* symbol_table)
 {
 	ast_node* root = (ast_node*)malloc(sizeof(ast_node));
-	astnode_init(root);
-	root->type = N_ROOT;
+	astnode_init(root, N_ROOT, "");
 	
 	for (int i = 0; i < tokens->count; i++)
 	{
