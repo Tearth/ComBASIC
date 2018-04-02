@@ -123,9 +123,6 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 
 			case T_IDENTIFIER:
 			{
-				symbol_node* variable_symbol = (symbol_node*)malloc(sizeof(symbol_node));
-				symbolnode_init(variable_symbol);
-
 				symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
 				node->type = N_VARIABLE;

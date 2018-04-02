@@ -21,9 +21,7 @@ void generator_print_build(string* code, ast_node* root, vector* symbol_table)
 		{
 			generator_expression_build(code, argument_to_display, symbol_table);
 
-			sprintf_s(buffer, 128, "\tpush\teax\n");
-			string_append_s(code, buffer);
-
+			string_append_s(code, "\tpush\teax\n");
 			string_append_s(code, "\tcall\t_printnumber\n");
 		}
 	}

@@ -12,6 +12,8 @@ void generator_expression_build(string* code, ast_node* root, vector* symbol_tab
 
 void generator_expression_build_r(string* code, ast_node* root, int* stack_pointer, vector* symbol_table)
 {
+	char buffer[128];
+
 	if (root->children.count > 0)
 	{
 		ast_node* first = root->children.data[1];
@@ -26,9 +28,6 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 		string_append_s(code, "\tpush\teax\n");
 		int second_stack_pointer = *stack_pointer;
 		(*stack_pointer) += 4;
-
-
-		char buffer[128];
 
 		sprintf_s(buffer, 128, "\tmov \teax, [ebp-%d]\n", first_stack_pointer);
 		string_append_s(code, buffer);
@@ -52,17 +51,14 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 
 			case N_MUL:
 			{
-				sprintf_s(buffer, 128, "\timul\tebx\n");
-				string_append_s(code, buffer);
+				string_append_s(code, "\timul\tebx\n");
 				break;
 			}
 
 			case N_DIV:
 			{
 				string_append_s(code, "\txor \tedx, edx\n");
-
-				sprintf_s(buffer, 128, "\tidiv\tebx\n");
-				string_append_s(code, buffer);
+				string_append_s(code, "\tidiv\tebx\n");
 				break;
 			}
 		}

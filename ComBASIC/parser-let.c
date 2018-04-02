@@ -18,9 +18,6 @@ ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector
 	
 	vector_add(&keyword->children, variable_node);
 
-	symbol_node* variable_symbol = (symbol_node*)malloc(sizeof(symbol_node));
-	symbolnode_init(variable_symbol);
-
 	symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
 	(*index)++;

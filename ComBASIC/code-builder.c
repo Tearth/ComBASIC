@@ -66,15 +66,16 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 		ast_node* keyword_node = linenumber_node->children.data[0];
 		switch (keyword_node->type)
 		{
-			case N_CLS: { generator_cls_build(code, keyword_node, symbol_table); break; }
-			case N_PRINT: { generator_print_build(code, keyword_node, symbol_table); break; }
-			case N_REM: { generator_rem_build(code, keyword_node, symbol_table); break; }
-			case N_LET: { generator_let_build(code, keyword_node, symbol_table); break; }
+			case N_CLS:		{ generator_cls_build(code, keyword_node, symbol_table); break; }
+			case N_PRINT:	{ generator_print_build(code, keyword_node, symbol_table); break; }
+			case N_REM:		{ generator_rem_build(code, keyword_node, symbol_table); break; }
+			case N_LET:		{ generator_let_build(code, keyword_node, symbol_table); break; }
 		}
 	}
 }
 
 void code_endsection(string* code, ast_node* root, vector* symbol_table)
 {
+	string_append_s(code, "\n");
 	string_append_s(code, "\tcall\tExitProcess\n");
 }

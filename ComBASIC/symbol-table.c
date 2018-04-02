@@ -15,11 +15,7 @@ symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char*
 	}
 
 	symbol_node* symbol = (symbol_node*)malloc(sizeof(symbol_node));
-	symbolnode_init(symbol);
-
-	symbol->type = S_INTEGER;
-	string_append_s(&symbol->name, name);
-	string_append_s(&symbol->value, value);
+	symbolnode_init(symbol, type, name, value);
 
 	if (symbol->name.count == 0)
 	{
@@ -32,6 +28,7 @@ symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char*
 	}
 
 	vector_add(symbol_table, symbol);
+	return symbol;
 }
 
 void symboltable_dump(vector* symbol_table)
