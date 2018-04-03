@@ -48,8 +48,7 @@ lexical_token* lexical_readword(const char* source, int* length)
 	bool firstLetter = true;
 
 	lexical_token* read_token = (lexical_token*)malloc(sizeof(lexical_token));
-	read_token->token_type = T_IDENTIFIER;
-	string_init(&read_token->value);
+	lexicaltoken_init(read_token, T_IDENTIFIER, "");
 
 	while (isalpha(*source) != 0 || (!firstLetter && isdigit(*source)) != 0)
 	{
@@ -75,8 +74,7 @@ lexical_token* lexical_readword(const char* source, int* length)
 lexical_token* lexical_readnumber(const char* source, int* length)
 {
 	lexical_token* read_token = (lexical_token*)malloc(sizeof(lexical_token));
-	read_token->token_type = T_NUMBER;
-	string_init(&read_token->value);
+	lexicaltoken_init(read_token, T_NUMBER, "");
 
 	while (isdigit(*source) != 0)
 	{
@@ -91,10 +89,9 @@ lexical_token* lexical_readnumber(const char* source, int* length)
 lexical_token* lexical_readoperator(const char* source, int* length)
 {
 	lexical_token* read_token = (lexical_token*)malloc(sizeof(lexical_token));
-	read_token->token_type = T_OPERATOR;
-	string_init(&read_token->value);
-
+	lexicaltoken_init(read_token, T_OPERATOR, "");
 	string_append_c(&read_token->value, *source);
+
 	(*length) = 1;
 	source++;
 
@@ -138,10 +135,7 @@ void lexical_checklasttoken(vector* tokens_vector)
 	if (last_token->token_type != T_END_OF_INSTRUCTION)
 	{
 		lexical_token* end_of_instruction_token = (lexical_token*)malloc(sizeof(lexical_token));
-		string_init(&end_of_instruction_token->value);
-
-		end_of_instruction_token->token_type = T_END_OF_INSTRUCTION;
-		string_append_c(&end_of_instruction_token->value, '\n');
+		lexicaltoken_init(end_of_instruction_token, T_END_OF_INSTRUCTION, "\n");
 
 		vector_add(tokens_vector, end_of_instruction_token);
 	}
@@ -215,10 +209,9 @@ void lexical_clean(vector* tokens)
 	while (tokens->count > 0)
 	{
 		lexical_token* token = tokens->data[0];
+		lexicaltoken_clean(token);
 
-		string_clean(&token->value);
 		free(token);
-
 		vector_remove(tokens, 0);
 	}
 
