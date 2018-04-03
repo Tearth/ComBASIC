@@ -140,7 +140,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 				if (strcmp("-", current_token->value.data) == 0)	node->type = N_SUB;
 				if (strcmp("*", current_token->value.data) == 0)	node->type = N_MUL;
 				if (strcmp("/", current_token->value.data) == 0)	node->type = N_DIV;
-				if (strcmp("%", current_token->value.data) == 0)	node->type = N_MOD;
+				if (strcmp("MOD", current_token->value.data) == 0)	node->type = N_MOD;
 				if (strcmp("=", current_token->value.data) == 0)	node->type = N_EQUAL;
 
 				break;
