@@ -1,7 +1,7 @@
 #include "lexical-analysis.h"
 
 const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM" };
-const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "%" };
+const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "%", "=" };
 
 vector* lexical_gettokens(const char* source)
 {

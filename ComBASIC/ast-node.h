@@ -17,6 +17,7 @@ typedef enum ast_node_type
 	N_MUL,
 	N_DIV,
 	N_MOD,
+	N_EQUAL,
 	N_NUMBER,
 	N_LET
 } ast_node_type;

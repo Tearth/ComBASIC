@@ -141,6 +141,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 				if (strcmp("*", current_token->value.data) == 0)	node->type = N_MUL;
 				if (strcmp("/", current_token->value.data) == 0)	node->type = N_DIV;
 				if (strcmp("%", current_token->value.data) == 0)	node->type = N_MOD;
+				if (strcmp("=", current_token->value.data) == 0)	node->type = N_EQUAL;
 
 				break;
 			}
@@ -201,13 +202,14 @@ bool parser_expression_isparenthesis(lexical_token* token)
 
 int parser_expression_getpriority(lexical_token* token)
 {
-	if (strcmp("(", token->value.data) == 0)	return 0;
-	if (strcmp(")", token->value.data) == 0)	return 0;
-	if (strcmp("+", token->value.data) == 0)	return 1;
-	if (strcmp("-", token->value.data) == 0)	return 1;
-	if (strcmp("%", token->value.data) == 0)	return 3;
-	if (strcmp("*", token->value.data) == 0)	return 3;
-	if (strcmp("/", token->value.data) == 0)	return 3;
+	if (strcmp("=", token->value.data) == 0)	return 0;
+	if (strcmp("(", token->value.data) == 0)	return 10;
+	if (strcmp(")", token->value.data) == 0)	return 10;
+	if (strcmp("+", token->value.data) == 0)	return 20;
+	if (strcmp("-", token->value.data) == 0)	return 20;
+	if (strcmp("%", token->value.data) == 0)	return 30;
+	if (strcmp("*", token->value.data) == 0)	return 40;
+	if (strcmp("/", token->value.data) == 0)	return 40;
 
 	printf("ERROR: Unrecognised symbol: %s", token->value.data);
 	exit(-1);

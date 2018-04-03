@@ -1,5 +1,7 @@
 #include "generator-expression.h"
 
+int expression_labels_count = 0;
+
 void generator_expression_build(string* code, ast_node* root, vector* symbol_table)
 {
 	if (root->type == N_EXPRESSION) root = root->children.data[0];
@@ -67,6 +69,23 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 				string_append_s(code, "\tcdq\n");
 				string_append_s(code, "\tidiv\tebx\n");
 				string_append_s(code, "\tmov \teax, edx\n");
+				break;
+			}
+
+			case N_EQUAL:
+			{
+				string_append_s(code, "\tcmp \teax, ebx\n");
+				string_append_s(code, "\tmov \teax, 0\n");
+
+				sprintf_s(buffer, 128, "\tjne  \t_expression_label%d\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				string_append_s(code, "\tmov \teax, 1\n");
+
+				sprintf_s(buffer, 128, "_expression_label%d:\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				expression_labels_count++;
 				break;
 			}
 
