@@ -140,6 +140,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 				if (strcmp("-", current_token->value.data) == 0)	node->type = N_SUB;
 				if (strcmp("*", current_token->value.data) == 0)	node->type = N_MUL;
 				if (strcmp("/", current_token->value.data) == 0)	node->type = N_DIV;
+				if (strcmp("%", current_token->value.data) == 0)	node->type = N_MOD;
 
 				break;
 			}
@@ -204,8 +205,9 @@ int parser_expression_getpriority(lexical_token* token)
 	if (strcmp(")", token->value.data) == 0)	return 0;
 	if (strcmp("+", token->value.data) == 0)	return 1;
 	if (strcmp("-", token->value.data) == 0)	return 1;
-	if (strcmp("*", token->value.data) == 0)	return 2;
-	if (strcmp("/", token->value.data) == 0)	return 2;
+	if (strcmp("%", token->value.data) == 0)	return 3;
+	if (strcmp("*", token->value.data) == 0)	return 3;
+	if (strcmp("/", token->value.data) == 0)	return 3;
 
 	printf("ERROR: Unrecognised symbol: %s", token->value.data);
 	exit(-1);

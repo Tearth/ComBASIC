@@ -61,6 +61,20 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 				string_append_s(code, "\tidiv\tebx\n");
 				break;
 			}
+
+			case N_MOD:
+			{
+				string_append_s(code, "\tcdq\n");
+				string_append_s(code, "\tidiv\tebx\n");
+				string_append_s(code, "\tmov \teax, edx\n");
+				break;
+			}
+
+			default:
+			{
+				printf("ERROR: invalid operator");
+				exit(-1);
+			}
 		}
 	}
 	else
