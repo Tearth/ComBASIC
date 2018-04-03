@@ -29,6 +29,7 @@ token* lexical_readnumber(const char* source, int* length);
 token* lexical_readoperator(const char* source, int* length);
 
 void lexical_checklasttoken(vector* tokens_vector);
+bool lexical_operatorexists(const char* operator);
 void lexical_mergeoperators(vector* tokens_vector);
 void lexical_dump(vector* tokens);
 void lexical_clean(vector* tokens);

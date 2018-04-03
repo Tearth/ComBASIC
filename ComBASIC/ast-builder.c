@@ -33,8 +33,8 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 			exit(-1);
 		}
 
-		vector_add(&line_number->children, keyword);
 		vector_add(&root->children, line_number);
+		vector_add(&line_number->children, keyword);
 	}
 
 	return root;

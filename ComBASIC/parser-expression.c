@@ -9,6 +9,12 @@ ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index,
 	vector* rpn_nodes = parser_expression_buildrpnnodes(rpn, symbol_table);
 	parser_expression_buildrpntree(rpn_nodes, expression_root);
 
+	vector_clean(rpn_nodes);
+	vector_clean(rpn);
+
+	free(rpn_nodes);
+	free(rpn);
+
 	return expression_root;
 }
 
@@ -17,8 +23,8 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 	vector* rpn = (vector*)malloc(sizeof(vector));
 	vector_init(rpn);
 
-	vector* stack = (vector*)malloc(sizeof(vector));
-	vector_init(stack);
+	vector stack;
+	vector_init(&stack);
 
 	token* current_token = tokens->data[*index];
 	while (parser_expression_istokenvalid(current_token))
@@ -29,43 +35,43 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 		}
 		else
 		{
-			if (strcmp("(", current_token->value.data) == 0) vector_add(stack, current_token);
+			if (strcmp("(", current_token->value.data) == 0) vector_add(&stack, current_token);
 			else if (strcmp(")", current_token->value.data) == 0)
 			{
-				token* last_operator_on_stack = stack->data[stack->count - 1];
-				while (stack->count > 0 && strcmp("(", last_operator_on_stack->value.data) != 0)
+				token* last_operator_on_stack = stack.data[stack.count - 1];
+				while (stack.count > 0 && strcmp("(", last_operator_on_stack->value.data) != 0)
 				{
 					vector_add(rpn, last_operator_on_stack);
-					vector_remove(stack, stack->count - 1);
+					vector_remove(&stack, stack.count - 1);
 
-					last_operator_on_stack = stack->data[stack->count - 1];
+					last_operator_on_stack = stack.data[stack.count - 1];
 				}
 
-				if (stack->count == 0)
+				if (stack.count == 0)
 				{
 					printf("ERROR: Invalid expression (right parenthesis).\n");
 					exit(-1);
 				}
 
-				vector_remove(stack, stack->count - 1);
+				vector_remove(&stack, stack.count - 1);
 			}
 			else
 			{
-				if (stack->count == 0) vector_add(stack, current_token);
+				if (stack.count == 0) vector_add(&stack, current_token);
 				else
 				{
-					token* last_operator_on_stack = stack->data[stack->count - 1];
+					token* last_operator_on_stack = stack.data[stack.count - 1];
 					int current_token_priority = parser_expression_getpriority(current_token);
 
-					while (stack->count > 0 && current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
+					while (stack.count > 0 && current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
 					{
 						vector_add(rpn, last_operator_on_stack);
-						vector_remove(stack, stack->count - 1);
+						vector_remove(&stack, stack.count - 1);
 
-						last_operator_on_stack = stack->data[stack->count - 1];
+						last_operator_on_stack = stack.data[stack.count - 1];
 					}
 
-					vector_add(stack, current_token);
+					vector_add(&stack, current_token);
 				}
 			}
 		}
@@ -74,27 +80,25 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 		current_token = tokens->data[*index];
 	}
 
-	if (stack->count > 0)
+	if (stack.count > 0)
 	{
-		token* last_operator_on_stack = stack->data[stack->count - 1];
-		while (stack->count > 0 && !parser_expression_isparenthesis(last_operator_on_stack))
+		token* last_operator_on_stack = stack.data[stack.count - 1];
+		while (stack.count > 0 && !parser_expression_isparenthesis(last_operator_on_stack))
 		{
 			vector_add(rpn, last_operator_on_stack);
-			vector_remove(stack, stack->count - 1);
+			vector_remove(&stack, stack.count - 1);
 
-			last_operator_on_stack = stack->data[stack->count - 1];
+			last_operator_on_stack = stack.data[stack.count - 1];
 		}
 	}
 
-	if (stack->count > 0)
+	if (stack.count > 0)
 	{
 		printf("ERROR: Invalid expression (redundant parenthesis).\n");
 		exit(-1);
 	}
 
-	vector_clean(stack);
-	free(stack);
-
+	vector_clean(&stack);
 	return rpn;
 }
 
@@ -149,38 +153,39 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 
 void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root)
 {
-	vector* stack = (vector*)malloc(sizeof(vector));
-	vector_init(stack);
+	vector stack;
+	vector_init(&stack);
 
 	for (int i = 0; i < rpn_nodes->count; i++)
 	{
 		ast_node* current_node = rpn_nodes->data[i];
 		if (current_node->type == N_VARIABLE || current_node->type == N_NUMBER)
 		{
-			vector_add(stack, current_node);
+			vector_add(&stack, current_node);
 		}
 		else
 		{
-			ast_node* first = stack->data[stack->count - 1];
-			ast_node* second = stack->data[stack->count - 2];
+			ast_node* first = stack.data[stack.count - 1];
+			ast_node* second = stack.data[stack.count - 2];
 
 			vector_add(&current_node->children, first);
 			vector_add(&current_node->children, second);
 
-			vector_remove(stack, stack->count - 1);
-			vector_remove(stack, stack->count - 1);
+			vector_remove(&stack, stack.count - 1);
+			vector_remove(&stack, stack.count - 1);
 
-			vector_add(stack, current_node);
+			vector_add(&stack, current_node);
 		}
 	}
 
-	if (stack->count != 1)
+	if (stack.count != 1)
 	{
 		printf("ERROR: Invalid expression (too many numbers or operators).");
 		exit(-1);
 	}
 
-	vector_add(&expression_root->children, stack->data[0]);
+	vector_add(&expression_root->children, stack.data[0]);
+	vector_clean(&stack);
 }
 
 bool parser_expression_istokenvalid(token* token)

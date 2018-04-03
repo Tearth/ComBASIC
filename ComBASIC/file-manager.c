@@ -13,7 +13,7 @@ const char* file_load(const char* filename)
 	}
 
 	fseek(source, 0, SEEK_END);
-	length = ftell(source);
+	length = ftell(source) + 1;
 	fseek(source, 0, SEEK_SET);
 
 	buffer = (char*)calloc(length, sizeof(char));

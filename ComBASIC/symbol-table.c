@@ -4,7 +4,6 @@ int anonymous_variables_count = 0;
 
 symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char* name, const char* value)
 {
-	bool found = false;
 	for (int i = 0; i < symbol_table->count; i++)
 	{
 		symbol_node* current = symbol_table->data[i];
@@ -46,11 +45,11 @@ void symboltable_clean(vector* symbol_table)
 {
 	while(symbol_table->count > 0)
 	{
-		symbol_node* s = symbol_table->data[0];
-		symbolnode_clean(s);
+		symbol_node* symbol = symbol_table->data[0];
+		symbolnode_clean(symbol);
 
 		vector_remove(symbol_table, 0);
-		free(s);
+		free(symbol);
 	}
 
 	vector_clean(symbol_table);

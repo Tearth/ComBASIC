@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 			file_save(output_filename, asm_code->data, asm_code->count);
 
 			printf("Compilation done!\n");
-
+			
 			string_clean(asm_code);
 			ast_clean(ast);
 			symboltable_clean(&symbol_table);

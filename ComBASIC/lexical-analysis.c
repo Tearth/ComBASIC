@@ -1,7 +1,7 @@
 #include "lexical-analysis.h"
 
 const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM" };
-const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", ">=", "<=" };
+const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")" };
 
 vector* lexical_gettokens(const char* source)
 {
@@ -120,6 +120,14 @@ token* lexical_readoperator(const char* source, int* length)
 		(*length)++;
 		read_token->token_type = T_STRING;
 	}
+	else
+	{
+		if (!lexical_operatorexists(read_token->value.data))
+		{
+			printf("ERROR: unknown operator %s\n", read_token->value.data);
+			exit(-1);
+		}
+	}
 
 	return read_token;
 }
@@ -139,6 +147,19 @@ void lexical_checklasttoken(vector* tokens_vector)
 	}
 }
 
+bool lexical_operatorexists(const char* operator)
+{
+	for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
+	{
+		if (operators[op] && strcmp(operator, operators[op]) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void lexical_mergeoperators(vector* tokens_vector)
 {
 	for (int i = 0; i < tokens_vector->count - 1; i++)
@@ -148,25 +169,24 @@ void lexical_mergeoperators(vector* tokens_vector)
 
 		if (first->token_type == T_OPERATOR && second->token_type == T_OPERATOR)
 		{
-			string* merged_operator = (string*)malloc(sizeof(string));
-			string_init(merged_operator);
+			string merged_operator;
+			string_init(&merged_operator);
 
-			string_append_s(merged_operator, first->value.data);
-			string_append_s(merged_operator, second->value.data);
+			string_append_s(&merged_operator, first->value.data);
+			string_append_s(&merged_operator, second->value.data);
 
-			for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
+			if (lexical_operatorexists(merged_operator.data))
 			{
-				if (operators[op] && strcmp(merged_operator->data, operators[op]) == 0)
-				{
-					string_clean(&first->value);
-					string_clean(&second->value);
+				string_clean(&first->value);
+				string_clean(&second->value);
 
-					first->value = *merged_operator;
-					vector_remove(tokens_vector, i + 1);
+				string_append_s(&first->value, merged_operator.data);
 
-					break;
-				}
+				vector_remove(tokens_vector, i + 1);
+				free(second);
 			}
+
+			string_clean(&merged_operator);
 		}
 	}
 }
