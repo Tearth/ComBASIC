@@ -26,7 +26,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 	vector stack;
 	vector_init(&stack);
 
-	token* current_token = tokens->data[*index];
+	lexical_token* current_token = tokens->data[*index];
 	while (parser_expression_istokenvalid(current_token))
 	{
 		if (current_token->token_type == T_NUMBER || current_token->token_type == T_IDENTIFIER)
@@ -38,7 +38,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 			if (strcmp("(", current_token->value.data) == 0) vector_add(&stack, current_token);
 			else if (strcmp(")", current_token->value.data) == 0)
 			{
-				token* last_operator_on_stack = stack.data[stack.count - 1];
+				lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
 				while (stack.count > 0 && strcmp("(", last_operator_on_stack->value.data) != 0)
 				{
 					vector_add(rpn, last_operator_on_stack);
@@ -60,7 +60,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 				if (stack.count == 0) vector_add(&stack, current_token);
 				else
 				{
-					token* last_operator_on_stack = stack.data[stack.count - 1];
+					lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
 					int current_token_priority = parser_expression_getpriority(current_token);
 
 					while (stack.count > 0 && current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
@@ -82,7 +82,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 
 	if (stack.count > 0)
 	{
-		token* last_operator_on_stack = stack.data[stack.count - 1];
+		lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
 		while (stack.count > 0 && !parser_expression_isparenthesis(last_operator_on_stack))
 		{
 			vector_add(rpn, last_operator_on_stack);
@@ -109,7 +109,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 
 	for (int i = 0; i < rpn->count; i++)
 	{
-		token* current_token = rpn->data[i];
+		lexical_token* current_token = rpn->data[i];
 
 		ast_node* node = (ast_node*)malloc(sizeof(ast_node));
 		astnode_init(node, -1, "");
@@ -188,17 +188,17 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 	vector_clean(&stack);
 }
 
-bool parser_expression_istokenvalid(token* token)
+bool parser_expression_istokenvalid(lexical_token* token)
 {
 	return token->token_type == T_NUMBER || token->token_type == T_IDENTIFIER || token->token_type == T_OPERATOR;
 }
 
-bool parser_expression_isparenthesis(token* token)
+bool parser_expression_isparenthesis(lexical_token* token)
 {
 	return strcmp("(", token->value.data) == 0 || strcmp(")", token->value.data) == 0;
 }
 
-int parser_expression_getpriority(token* token)
+int parser_expression_getpriority(lexical_token* token)
 {
 	if (strcmp("(", token->value.data) == 0)	return 0;
 	if (strcmp(")", token->value.data) == 0)	return 0;

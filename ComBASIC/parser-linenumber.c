@@ -2,7 +2,7 @@
 
 ast_node* parser_linenumber_build(vector* tokens, int* index)
 {
-	token* token = tokens->data[*index];
+	lexical_token* token = tokens->data[*index];
 	if (token->token_type != T_NUMBER) return NULL;
 
 	ast_node* linenumber_node = (ast_node*)malloc(sizeof(ast_node));

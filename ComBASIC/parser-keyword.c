@@ -2,7 +2,7 @@
 
 ast_node* parser_keyword_build(vector* tokens, int* index)
 {
-	token* token = tokens->data[*index];
+	lexical_token* token = tokens->data[*index];
 	if (token->token_type != T_KEYWORD) return NULL;
 
 	ast_node* keyword_token = (ast_node*)malloc(sizeof(ast_node));

@@ -2,7 +2,7 @@
 
 int anonymous_variables_count = 0;
 
-symbol_node* symboltable_add(vector* symbol_table, symbol_type type, const char* name, const char* value)
+symbol_node* symboltable_add(vector* symbol_table, symbol_node_type type, const char* name, const char* value)
 {
 	for (int i = 0; i < symbol_table->count; i++)
 	{

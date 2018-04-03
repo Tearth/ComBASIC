@@ -2,7 +2,7 @@
 
 bool parser_string_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
-	token* token = tokens->data[*index];
+	lexical_token* token = tokens->data[*index];
 
 	if (token->token_type != T_STRING) return false;
 

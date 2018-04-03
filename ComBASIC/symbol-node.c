@@ -1,6 +1,6 @@
 #include "symbol-node.h"
 
-void symbolnode_init(symbol_node* symbol, symbol_type type, const char* name, const char* value)
+void symbolnode_init(symbol_node* symbol, symbol_node_type type, const char* name, const char* value)
 {
 	string_init(&symbol->name);
 	string_init(&symbol->value);

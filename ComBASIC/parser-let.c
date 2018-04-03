@@ -2,7 +2,7 @@
 
 ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
-	token* current_token = tokens->data[*index];
+	lexical_token* current_token = tokens->data[*index];
 
 	if (current_token->token_type != T_IDENTIFIER)
 	{

@@ -10,7 +10,7 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 		ast_node* line_number = parser_linenumber_build(tokens, &i);
 		if (line_number == NULL)
 		{
-			token* current_token = tokens->data[i];
+			lexical_token* current_token = tokens->data[i];
 
 			printf("ERROR: Line number not found: %s\n", current_token->value.data);
 			exit(-1);
@@ -19,7 +19,7 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 		ast_node* keyword = parser_keyword_build(tokens, &i);
 		if (keyword == NULL)
 		{
-			token* current_token = tokens->data[i];
+			lexical_token* current_token = tokens->data[i];
 
 			printf("ERROR: Keyword not found: %s\n", current_token->value.data);
 			exit(-1);
@@ -27,7 +27,7 @@ ast_node* ast_build(vector* tokens, vector* symbol_table)
 		
 		if (!ast_parsearguments(tokens, keyword, &i, symbol_table))
 		{
-			token* current_token = tokens->data[i];
+			lexical_token* current_token = tokens->data[i];
 
 			printf("ERROR: Invalid argument: %s\n", current_token->value.data);
 			exit(-1);
