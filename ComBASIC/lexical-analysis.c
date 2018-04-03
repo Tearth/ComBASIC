@@ -39,6 +39,7 @@ vector* lexical_gettokens(const char* source)
 
 	lexical_checklasttoken(tokens_vector);
 	lexical_mergeoperators(tokens_vector);
+	lexical_fixunaryoperators(tokens_vector);
 
 	return tokens_vector;
 }
@@ -181,6 +182,64 @@ void lexical_mergeoperators(vector* tokens_vector)
 			}
 
 			string_clean(&merged_operator);
+		}
+	}
+}
+
+void lexical_fixunaryoperators(vector* tokens_vector)
+{
+	for (int i = 1; i < tokens_vector->count - 1; i++)
+	{
+		lexical_token* current_token = tokens_vector->data[i];
+		if (current_token->token_type == T_OPERATOR && strcmp("-", current_token->value.data) == 0)
+		{
+			lexical_token* left_token = tokens_vector->data[i - 1];
+			lexical_token* right_token = tokens_vector->data[i + 1];
+
+			if (left_token->token_type == T_OPERATOR && strcmp(")", left_token->value.data) != 0)
+			{
+				lexical_token* left_parenthesis_token = (lexical_token*)malloc(sizeof(lexical_token));
+				lexicaltoken_init(left_parenthesis_token, T_OPERATOR, "(");
+
+				lexical_token* zero_token = (lexical_token*)malloc(sizeof(lexical_token));
+				lexicaltoken_init(zero_token, T_NUMBER, "0");
+
+				lexical_token* right_parenthesis_token = (lexical_token*)malloc(sizeof(lexical_token));
+				lexicaltoken_init(right_parenthesis_token, T_OPERATOR, ")");
+
+				vector_insert(tokens_vector, left_parenthesis_token, i++);
+				vector_insert(tokens_vector, zero_token, i++);
+
+				if (right_token->token_type == T_NUMBER)
+				{
+					vector_insert(tokens_vector, right_parenthesis_token, i + 2);
+				}
+				else if (right_token->token_type == T_OPERATOR && strcmp("(", right_token->value.data) == 0)
+				{
+					int parenthesis_balance = 1;
+					int current_search_index = i + 2;
+
+					while (parenthesis_balance > 0)
+					{
+						lexical_token* current_search_token = tokens_vector->data[current_search_index];
+						if (current_search_token->token_type == T_END_OF_INSTRUCTION)
+						{
+							printf("ERROR: invalid parenthesis");
+							exit(-1);
+						}
+
+						if (current_search_token->token_type == T_OPERATOR)
+						{
+							if (strcmp("(", current_search_token->value.data) == 0) parenthesis_balance++;
+							if (strcmp(")", current_search_token->value.data) == 0) parenthesis_balance--;
+						}
+
+						current_search_index++;
+					}
+
+					vector_insert(tokens_vector, right_parenthesis_token, current_search_index);
+				}
+			}
 		}
 	}
 }
