@@ -25,6 +25,7 @@ typedef enum ast_node_type
 	N_EQUAL_LESSTHAN,
 	N_NUMBER,
 	N_LET,
+	N_IF,
 	N_END
 } ast_node_type;
 
