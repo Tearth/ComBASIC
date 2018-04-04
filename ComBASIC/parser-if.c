@@ -11,27 +11,93 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	current_token = tokens->data[++(*index)];
 	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
 
-	current_token = tokens->data[++(*index)];
-
-	vector block_tokens;
-	vector_init(&block_tokens);
-
-	while (!(current_token->token_type == T_KEYWORD && strcmp("END IF", current_token->value.data) == 0))
-	{
-		vector_add(&block_tokens, current_token);
-		current_token = tokens->data[++(*index)];
-	}
-
-	vector_remove(&block_tokens, block_tokens.count - 1);
+	vector* body_tokens = parser_if_buildbody(tokens, index);
 
 	ast_node* true_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(true_node, N_ROOT, "");
 
-	parser_block_build(&block_tokens, true_node, symbol_table);
+	parser_block_build(body_tokens, true_node, symbol_table);
 	vector_add(&keyword->children, true_node);
+
+	current_token = tokens->data[*index];
+
+	if (current_token->token_type == T_KEYWORD && strcmp("ELSE", current_token->value.data) == 0)
+	{
+		current_token = tokens->data[++(*index)];
+		if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
+
+		vector* else_tokens = parser_if_buildelse(tokens, index);
+
+		ast_node* true_node = (ast_node*)malloc(sizeof(ast_node));
+		astnode_init(true_node, N_ROOT, "");
+
+		parser_block_build(else_tokens, true_node, symbol_table);
+		vector_add(&keyword->children, true_node);
+	}
 
 	current_token = tokens->data[++(*index)];
 	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
 
 	return true;
+}
+
+vector* parser_if_buildbody(vector* tokens, int* index)
+{
+	vector* block_tokens = (vector*)malloc(sizeof(vector));
+	vector_init(block_tokens);
+
+	int if_balance = 1;
+	lexical_token* current_token = tokens->data[++(*index)];
+
+	while (if_balance > 0 && *index < tokens->count)
+	{
+		vector_add(block_tokens, current_token);
+		current_token = tokens->data[++(*index)];
+
+		if (current_token->token_type == T_KEYWORD)
+		{
+			if (strcmp("IF", current_token->value.data) == 0)		if_balance++;
+			if (strcmp("END IF", current_token->value.data) == 0)	if_balance--;
+			if (strcmp("ELSE", current_token->value.data) == 0)		if_balance--;
+		}
+	}
+
+	if (if_balance != 0)
+	{
+		printf("ERROR: Invalid IF statement");
+		exit(-1);
+	}
+
+	vector_remove(block_tokens, block_tokens->count - 1);
+	return block_tokens;
+}
+
+vector* parser_if_buildelse(vector* tokens, int* index)
+{
+	vector* block_tokens = (vector*)malloc(sizeof(vector));
+	vector_init(block_tokens);
+
+	int if_balance = 1;
+	lexical_token* current_token = tokens->data[++(*index)];
+
+	while (if_balance > 0 && *index < tokens->count)
+	{
+		vector_add(block_tokens, current_token);
+		current_token = tokens->data[++(*index)];
+
+		if (current_token->token_type == T_KEYWORD)
+		{
+			if (strcmp("IF", current_token->value.data) == 0)		if_balance++;
+			if (strcmp("END IF", current_token->value.data) == 0)	if_balance--;
+		}
+	}
+
+	if (if_balance != 0)
+	{
+		printf("ERROR: Invalid IF statement");
+		exit(-1);
+	}
+
+	vector_remove(block_tokens, block_tokens->count - 1);
+	return block_tokens;
 }
