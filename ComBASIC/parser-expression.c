@@ -207,7 +207,7 @@ int parser_expression_getpriority(lexical_token* token)
 	if (strcmp(")", token->value.data) == 0)	return 10;
 	if (strcmp("+", token->value.data) == 0)	return 20;
 	if (strcmp("-", token->value.data) == 0)	return 20;
-	if (strcmp("%", token->value.data) == 0)	return 30;
+	if (strcmp("MOD", token->value.data) == 0)	return 30;
 	if (strcmp("*", token->value.data) == 0)	return 40;
 	if (strcmp("/", token->value.data) == 0)	return 40;
 

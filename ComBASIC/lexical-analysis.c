@@ -1,7 +1,8 @@
 #include "lexical-analysis.h"
 
 const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM" };
-const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=" };
+const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "NOT" };
+const char* unary_operators[MAX_KEYWORDS_TOKENS_COUNT] = { "-", "NOT" };
 
 vector* lexical_gettokens(const char* source)
 {
@@ -160,6 +161,19 @@ bool lexical_operatorexists(const char* operator)
 	return false;
 }
 
+bool lexical_isunaryoperator(const char* operator)
+{
+	for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
+	{
+		if (unary_operators[op] && strcmp(operator, unary_operators[op]) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void lexical_mergeoperators(vector* tokens_vector)
 {
 	for (int i = 0; i < tokens_vector->count - 1; i++)
@@ -196,12 +210,12 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 	for (int i = 1; i < tokens_vector->count - 1; i++)
 	{
 		lexical_token* current_token = tokens_vector->data[i];
-		if (current_token->token_type == T_OPERATOR && strcmp("-", current_token->value.data) == 0)
+		if (current_token->token_type == T_OPERATOR && lexical_isunaryoperator(current_token->value.data))
 		{
 			lexical_token* left_token = tokens_vector->data[i - 1];
 			lexical_token* right_token = tokens_vector->data[i + 1];
 
-			if (left_token->token_type == T_OPERATOR && strcmp(")", left_token->value.data) != 0)
+			if (left_token->token_type != T_NUMBER && strcmp(")", left_token->value.data) != 0)
 			{
 				lexical_token* left_parenthesis_token = (lexical_token*)malloc(sizeof(lexical_token));
 				lexicaltoken_init(left_parenthesis_token, T_OPERATOR, "(");
