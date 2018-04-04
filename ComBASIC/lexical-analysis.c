@@ -1,7 +1,7 @@
 #include "lexical-analysis.h"
 
 const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM" };
-const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "<", ">", "<>", "NOT" };
+const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "<", ">", "<=", ">=", "<>", "NOT" };
 const char* unary_operators[MAX_KEYWORDS_TOKENS_COUNT] = { "-", "NOT" };
 
 vector* lexical_gettokens(const char* source)
@@ -217,6 +217,12 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 
 			if (left_token->token_type != T_NUMBER && strcmp(")", left_token->value.data) != 0)
 			{
+				if (strcmp("NOT", current_token->value.data) == 0)
+				{
+					string_removeall(&current_token->value);
+					string_append_s(&current_token->value, "=");
+				}
+
 				lexical_token* left_parenthesis_token = (lexical_token*)malloc(sizeof(lexical_token));
 				lexicaltoken_init(left_parenthesis_token, T_OPERATOR, "(");
 
