@@ -19,6 +19,10 @@ typedef enum ast_node_type
 	N_MOD,
 	N_EQUAL,
 	N_NOTEQUAL,
+	N_GREATERTHAN,
+	N_EQUAL_GREATERTHAN,
+	N_LESSTHAN,
+	N_EQUAL_LESSTHAN,
 	N_NUMBER,
 	N_LET
 } ast_node_type;
