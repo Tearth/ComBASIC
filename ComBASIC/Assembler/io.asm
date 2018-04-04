@@ -1,3 +1,5 @@
+; ComBASIC input/output functions
+
 extern GetStdHandle
 extern WriteFile
 extern ExitProcess
@@ -36,7 +38,7 @@ _printchar:
     
     mov     esp, ebp
     pop     ebp
-    ret
+    ret     4
     
 ; number
 _printnumber:
@@ -44,11 +46,28 @@ _printnumber:
     mov     ebp, esp
     
     call    _getstdhandle
-    mov     ebx, eax    
+    mov     ebx, eax
+    
+    ; check if the specified number is negative
+    mov     eax, [ebp+8]
+    and     eax, 0x80000000
+    cmp     eax, 0
+    
+    jz      _init_numtostr
     
     mov     eax, [ebp+8]
+    neg     eax
+    mov     [ebp+8], eax
+    
+    push    '-'
+    call    _printchar
+
+_init_numtostr:
     xor     ecx, ecx
     xor     esi, esi
+
+    mov     eax, [ebp+8]
+    
 _numtostr_loop:
     xor     edx, edx
     
@@ -67,7 +86,6 @@ _printdigit_loop:
     push    eax
     call    _printchar
     
-    pop     eax
     dec     esi
     cmp     esi, 0
     jnz     _printdigit_loop
