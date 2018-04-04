@@ -130,6 +130,7 @@
     <ClCompile Include="lexical-token.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="file-manager.c" />
+    <ClCompile Include="parser-block.c" />
     <ClCompile Include="parser-cls.c" />
     <ClCompile Include="parser-end.c" />
     <ClCompile Include="parser-expression.c" />
@@ -158,6 +159,7 @@
     <ClInclude Include="generator-rem.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="lexical-token.h" />
+    <ClInclude Include="parser-block.h" />
     <ClInclude Include="parser-cls.h" />
     <ClInclude Include="parser-end.h" />
     <ClInclude Include="parser-expression.h" />
