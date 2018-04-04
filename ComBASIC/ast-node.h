@@ -24,7 +24,8 @@ typedef enum ast_node_type
 	N_LESSTHAN,
 	N_EQUAL_LESSTHAN,
 	N_NUMBER,
-	N_LET
+	N_LET,
+	N_END
 } ast_node_type;
 
 typedef struct ast_node

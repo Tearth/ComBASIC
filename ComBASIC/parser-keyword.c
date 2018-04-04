@@ -12,6 +12,7 @@ ast_node* parser_keyword_build(vector* tokens, int* index)
 	else if (strcmp("PRINT", token->value.data) == 0)	keyword_token->type = N_PRINT;
 	else if (strcmp("REM", token->value.data) == 0)		keyword_token->type = N_REM;
 	else if (strcmp("LET", token->value.data) == 0)		keyword_token->type = N_LET;
+	else if (strcmp("END", token->value.data) == 0)		keyword_token->type = N_END;
 
 	(*index)++;
 	return keyword_token;

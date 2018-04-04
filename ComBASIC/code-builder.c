@@ -70,6 +70,7 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 			case N_PRINT:	{ generator_print_build(code, keyword_node, symbol_table); break; }
 			case N_REM:		{ generator_rem_build(code, keyword_node, symbol_table); break; }
 			case N_LET:		{ generator_let_build(code, keyword_node, symbol_table); break; }
+			case N_END:		{ generator_end_build(code, keyword_node, symbol_table); break; }
 		}
 	}
 }
@@ -77,5 +78,5 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 void code_endsection(string* code, ast_node* root, vector* symbol_table)
 {
 	string_append_s(code, "\n");
-	string_append_s(code, "\tcall\tExitProcess\n");
+	string_append_s(code, "\tcall\t_exit\n");
 }

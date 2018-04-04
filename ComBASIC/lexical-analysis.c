@@ -1,6 +1,6 @@
 #include "lexical-analysis.h"
 
-const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM" };
+const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM", "END" };
 const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "<", ">", "<=", ">=", "<>", "NOT" };
 const char* unary_operators[MAX_KEYWORDS_TOKENS_COUNT] = { "-", "NOT" };
 

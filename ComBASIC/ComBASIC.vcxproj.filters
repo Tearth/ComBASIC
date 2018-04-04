@@ -131,6 +131,12 @@
     <ClCompile Include="lexical-token.c">
       <Filter>Source Files\Compilation\LexicalAnalysis</Filter>
     </ClCompile>
+    <ClCompile Include="parser-end.c">
+      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="generator-end.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -204,6 +210,12 @@
     </ClInclude>
     <ClInclude Include="lexical-token.h">
       <Filter>Header Files\Compilation\LexicalAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-end.h">
+      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-end.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
