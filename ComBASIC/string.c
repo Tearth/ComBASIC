@@ -50,6 +50,12 @@ void string_removelast(string* string)
 	string->count--;
 }
 
+void string_removeall(string* string)
+{
+	string->data[0] = 0;
+	string->count = 0;
+}
+
 void string_clean(string* string)
 {
 	if (string->size > 0)
