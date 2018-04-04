@@ -1,6 +1,6 @@
 #include "lexical-analysis.h"
 
-const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM", "END" };
+const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM", "END", "IF", "THEN", "END IF" };
 const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "<", ">", "<=", ">=", "<>", "NOT" };
 const char* unary_operators[MAX_KEYWORDS_TOKENS_COUNT] = { "-", "NOT" };
 
@@ -39,6 +39,7 @@ vector* lexical_gettokens(const char* source)
 	}
 
 	lexical_checklasttoken(tokens_vector);
+	lexical_mergekeywords(tokens_vector);
 	lexical_mergeoperators(tokens_vector);
 	lexical_fixunaryoperators(tokens_vector);
 
@@ -148,6 +149,19 @@ void lexical_checklasttoken(vector* tokens_vector)
 	}
 }
 
+bool lexical_keywordexists(const char* keyword)
+{
+	for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
+	{
+		if (keywords[op] && strcmp(keyword, keywords[op]) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool lexical_operatorexists(const char* operator)
 {
 	for (int op = 0; op < MAX_KEYWORDS_TOKENS_COUNT; op++)
@@ -172,6 +186,38 @@ bool lexical_isunaryoperator(const char* operator)
 	}
 
 	return false;
+}
+
+void lexical_mergekeywords(vector* tokens_vector)
+{
+	for (int i = 0; i < tokens_vector->count - 1; i++)
+	{
+		lexical_token* first = tokens_vector->data[i];
+		lexical_token* second = tokens_vector->data[i + 1];
+
+		if (first->token_type == T_KEYWORD && second->token_type == T_KEYWORD)
+		{
+			string merged_keyword;
+			string_init(&merged_keyword);
+
+			string_append_s(&merged_keyword, first->value.data);
+			string_append_c(&merged_keyword, ' ');
+			string_append_s(&merged_keyword, second->value.data);
+
+			if (lexical_keywordexists(merged_keyword.data))
+			{
+				string_clean(&first->value);
+				string_clean(&second->value);
+
+				string_append_s(&first->value, merged_keyword.data);
+
+				vector_remove(tokens_vector, i + 1);
+				free(second);
+			}
+
+			string_clean(&merged_keyword);
+		}
+	}
 }
 
 void lexical_mergeoperators(vector* tokens_vector)

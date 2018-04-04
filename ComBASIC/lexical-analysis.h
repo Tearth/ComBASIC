@@ -13,8 +13,10 @@ lexical_token* lexical_readnumber(const char* source, int* length);
 lexical_token* lexical_readoperator(const char* source, int* length);
 
 void lexical_checklasttoken(vector* tokens_vector);
+bool lexical_keywordexists(const char* keyword);
 bool lexical_operatorexists(const char* operator);
 bool lexical_isunaryoperator(const char* operator);
+void lexical_mergekeywords(vector* tokens_vector);
 void lexical_mergeoperators(vector* tokens_vector);
 void lexical_fixunaryoperators(vector* tokens_vector);
 void lexical_dump(vector* tokens);
