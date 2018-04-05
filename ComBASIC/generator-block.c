@@ -16,6 +16,12 @@ void generator_block_build(string* code, ast_node* root, vector* symbol_table)
 			case N_LET: { generator_let_build(code, keyword_node, symbol_table); break; }
 			case N_END: { generator_end_build(code, keyword_node, symbol_table); break; }
 			case N_IF: { generator_if_build(code, keyword_node, symbol_table); break; }
+			default:
+			{
+				printf("ERROR: Invalid keyword.\n");
+				exit(-1);
+
+			}
 		}
 	}
 }

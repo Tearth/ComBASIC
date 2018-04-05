@@ -26,6 +26,8 @@ typedef enum ast_node_type
 	N_NUMBER,
 	N_LET,
 	N_IF,
+	N_ELSE,
+	N_ENDIF,
 	N_END
 } ast_node_type;
 
