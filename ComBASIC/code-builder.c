@@ -58,21 +58,7 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 	string_append_s(code, "_main:\n");
 	string_append_s(code, "\tmov \tebp, esp\n");
 
-	for (int i = 0; i < root->children.count; i++)
-	{
-		ast_node* linenumber_node = root->children.data[i];
-		generator_linenumber_build(code, linenumber_node, symbol_table);
-
-		ast_node* keyword_node = linenumber_node->children.data[0];
-		switch (keyword_node->type)
-		{
-			case N_CLS:		{ generator_cls_build(code, keyword_node, symbol_table); break; }
-			case N_PRINT:	{ generator_print_build(code, keyword_node, symbol_table); break; }
-			case N_REM:		{ generator_rem_build(code, keyword_node, symbol_table); break; }
-			case N_LET:		{ generator_let_build(code, keyword_node, symbol_table); break; }
-			case N_END:		{ generator_end_build(code, keyword_node, symbol_table); break; }
-		}
-	}
+	generator_block_build(code, root, symbol_table);
 }
 
 void code_endsection(string* code, ast_node* root, vector* symbol_table)
