@@ -146,6 +146,9 @@
     <ClCompile Include="generator-block.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
+    <ClCompile Include="generator-if.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -233,6 +236,9 @@
       <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-block.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-if.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>
