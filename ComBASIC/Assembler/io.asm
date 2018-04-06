@@ -92,7 +92,7 @@ _printdigit_loop:
     
     mov     esp, ebp
     pop     ebp
-    ret
+    ret		4
     
 ; message
 ; length
