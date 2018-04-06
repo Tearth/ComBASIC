@@ -13,11 +13,11 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 
 	vector* body_tokens = parser_if_buildbody(tokens, index);
 
-	ast_node* true_node = (ast_node*)malloc(sizeof(ast_node));
-	astnode_init(true_node, N_ROOT, "");
+	ast_node* ifbody_node = (ast_node*)malloc(sizeof(ast_node));
+	astnode_init(ifbody_node, N_ROOT, "");
 
-	parser_block_build(body_tokens, true_node, symbol_table);
-	vector_add(&keyword->children, true_node);
+	parser_block_build(body_tokens, ifbody_node, symbol_table);
+	vector_add(&keyword->children, ifbody_node);
 
 	current_token = tokens->data[*index];
 
@@ -28,11 +28,11 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 
 		vector* else_tokens = parser_if_buildelse(tokens, index);
 
-		ast_node* true_node = (ast_node*)malloc(sizeof(ast_node));
-		astnode_init(true_node, N_ROOT, "");
+		ast_node* elsebody_node = (ast_node*)malloc(sizeof(ast_node));
+		astnode_init(elsebody_node, N_ROOT, "");
 
-		parser_block_build(else_tokens, true_node, symbol_table);
-		vector_add(&keyword->children, true_node);
+		parser_block_build(else_tokens, elsebody_node, symbol_table);
+		vector_add(&keyword->children, elsebody_node);
 	}
 
 	current_token = tokens->data[++(*index)];

@@ -29,7 +29,9 @@ typedef enum ast_node_type
 	N_ELSE,
 	N_ENDIF,
 	N_END,
-	N_GOTO
+	N_GOTO,
+	N_WHILE,
+	N_WEND
 } ast_node_type;
 
 typedef struct ast_node
