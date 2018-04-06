@@ -261,7 +261,7 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 			lexical_token* left_token = tokens_vector->data[i - 1];
 			lexical_token* right_token = tokens_vector->data[i + 1];
 
-			if (left_token->token_type != T_NUMBER && strcmp(")", left_token->value.data) != 0)
+			if (left_token->token_type != T_NUMBER && left_token->token_type != T_IDENTIFIER && strcmp(")", left_token->value.data) != 0)
 			{
 				if (strcmp("NOT", current_token->value.data) == 0)
 				{
