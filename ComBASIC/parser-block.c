@@ -46,6 +46,7 @@ bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* s
 		case N_LET: { result = parser_let_build(tokens, keyword, index, symbol_table); break; }
 		case N_END: { result = parser_end_build(tokens, keyword, index, symbol_table); break; }
 		case N_IF: { result = parser_if_build(tokens, keyword, index, symbol_table); break; }
+		case N_GOTO: { result = parser_goto_build(tokens, keyword, index, symbol_table); break; }
 	}
 
 	return result;
