@@ -1,13 +1,31 @@
 ; ComBASIC input/output functions
 
+section .data
+    iobuffer:    DB    128
+
+section .text
+
 extern GetStdHandle
 extern WriteFile
 extern ExitProcess
 extern SetConsoleCursorPosition
 extern GetConsoleScreenBufferInfo
 extern FillConsoleOutputCharacterA
+extern ReadConsoleA
 
-_getstdhandle:
+_getstdinputhandle:
+    push    ebp
+    mov     ebp, esp
+
+    ; HANDLE GetStdHandle(STD_INPUT_HANDLE)
+    push    -10
+    call    GetStdHandle
+   
+    mov     esp, ebp
+    pop     ebp
+    ret
+    
+_getstdoutputhandle:
     push    ebp
     mov     ebp, esp
 
@@ -24,7 +42,7 @@ _printchar:
     push    ebp
     mov     ebp, esp
     
-    call    _getstdhandle
+    call    _getstdoutputhandle
     mov     ebx, eax    
 
     ; BOOL WriteFile(hstdOut, message, length, 0, 0);
@@ -45,7 +63,7 @@ _printnumber:
     push    ebp
     mov     ebp, esp
     
-    call    _getstdhandle
+    call    _getstdoutputhandle
     mov     ebx, eax
     
     ; check if the specified number is negative
@@ -92,7 +110,7 @@ _printdigit_loop:
     
     mov     esp, ebp
     pop     ebp
-    ret		4
+    ret     4
     
 ; message
 ; length
@@ -100,7 +118,7 @@ _printstring:
     push    ebp
     mov     ebp, esp
 
-    call    _getstdhandle
+    call    _getstdoutputhandle
     mov     ebx, eax    
 
     ; BOOL WriteFile(hstdOut, message, length, 0, 0);
@@ -117,13 +135,54 @@ _printstring:
     pop     ebp
     ret     8
 
+_readnumber:
+    push    ebp
+    mov     ebp, esp
+
+    sub     esp, 4
+    
+    call    _getstdinputhandle
+    mov     ebx, eax
+    
+    ;BOOL WINAPI ReadConsole(hConsoleInput, lpBuffer, nNumberOfCharsToRead, lpNumberOfCharsRead, pInputControl)
+    push    0
+    lea     eax, [ebp-4]
+    push    eax
+    push    128
+    push    iobuffer
+    push    ebx
+    call    ReadConsoleA
+    
+    ; pop digits count and sub end line chars
+    pop     esi
+    sub     esi, 3
+    
+    mov     ebx, iobuffer
+    
+    xor     eax, eax
+_readnumber_loop:
+    imul    eax, 10
+    xor     ecx, ecx
+    mov     cl, [ebx]
+    sub     ecx, '0'
+    add     eax, ecx
+    inc     ebx
+    dec     esi
+    
+    cmp     esi, 0
+    jge     _readnumber_loop
+    
+    mov     esp, ebp
+    pop     ebp
+    ret
+    
 ; x
 ; y
 _setcursorposition:
     push    ebp
     mov     ebp, esp
     
-    call    _getstdhandle
+    call    _getstdoutputhandle
     mov     ebx, eax 
     
     mov     ax, [ebp+8]
@@ -143,7 +202,7 @@ _clear:
     push    ebp
     mov     ebp, esp
     
-    call    _getstdhandle
+    call    _getstdoutputhandle
     mov     ebx, eax
     
     sub     esp, 28
