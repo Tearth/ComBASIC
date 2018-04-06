@@ -5,11 +5,18 @@ string* code_build(ast_node* root, vector* symbol_table)
 	string* code = (string*)malloc(sizeof(string));
 	string_init(code);
 
+	code_includesection(code, root, symbol_table);
 	code_datasection(code, root, symbol_table);
 	code_textsection(code, root, symbol_table);
 	code_endsection(code, root, symbol_table);
 
 	return code;
+}
+
+void code_includesection(string* code, ast_node* root, vector* symbol_table)
+{
+	string_append_s(code, "%include 'io.asm'\n");
+	string_append_s(code, "\n");
 }
 
 void code_datasection(string* code, ast_node* root, vector* symbol_table)
@@ -53,7 +60,6 @@ void code_textsection(string* code, ast_node* root, vector* symbol_table)
 {
 	string_append_s(code, "section .text\n");
 	string_append_s(code, "\tglobal\t_main\n");
-	string_append_s(code, "\t%include\t'io.asm'\n");
 	string_append_s(code, "\n");
 	string_append_s(code, "_main:\n");
 	string_append_s(code, "\tmov \tebp, esp\n");
