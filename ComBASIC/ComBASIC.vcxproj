@@ -129,6 +129,7 @@
     <ClCompile Include="generator-linenumber.c" />
     <ClCompile Include="generator-print.c" />
     <ClCompile Include="generator-rem.c" />
+    <ClCompile Include="generator-while.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="lexical-token.c" />
     <ClCompile Include="main.c" />
@@ -166,6 +167,7 @@
     <ClInclude Include="generator-linenumber.h" />
     <ClInclude Include="generator-print.h" />
     <ClInclude Include="generator-rem.h" />
+    <ClInclude Include="generator-while.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="lexical-token.h" />
     <ClInclude Include="parser-block.h" />

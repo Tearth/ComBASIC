@@ -10,7 +10,6 @@ void generator_if_build(string* code, ast_node* root, vector* symbol_table)
 	generator_expression_build(code, root->children.data[0], symbol_table);
 	string_append_s(code, "\tcmp \teax, 0\n");
 
-
 	sprintf_s(buffer, 128, "\tjz  \t_elsebody_label%d\n", current_if_labels_count);
 	string_append_s(code, buffer);
 
