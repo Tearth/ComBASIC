@@ -20,6 +20,7 @@ ast_node* parser_keyword_build(vector* tokens, int* index)
 	else if (strcmp("WHILE", token->value.data) == 0)	keyword_token->type = N_WHILE;
 	else if (strcmp("WEND", token->value.data) == 0)	keyword_token->type = N_WEND;
 	else if (strcmp("INPUT", token->value.data) == 0)	keyword_token->type = N_INPUT;
+	else if (strcmp("FOR", token->value.data) == 0)		keyword_token->type = N_FOR;
 
 	(*index)++;
 	return keyword_token;
