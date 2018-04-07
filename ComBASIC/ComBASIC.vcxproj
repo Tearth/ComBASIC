@@ -123,6 +123,7 @@
     <ClCompile Include="generator-cls.c" />
     <ClCompile Include="generator-end.c" />
     <ClCompile Include="generator-expression.c" />
+    <ClCompile Include="generator-for.c" />
     <ClCompile Include="generator-goto.c" />
     <ClCompile Include="generator-if.c" />
     <ClCompile Include="generator-input.c" />
@@ -164,6 +165,7 @@
     <ClInclude Include="generator-cls.h" />
     <ClInclude Include="generator-end.h" />
     <ClInclude Include="generator-expression.h" />
+    <ClInclude Include="generator-for.h" />
     <ClInclude Include="generator-goto.h" />
     <ClInclude Include="generator-if.h" />
     <ClInclude Include="generator-input.h" />

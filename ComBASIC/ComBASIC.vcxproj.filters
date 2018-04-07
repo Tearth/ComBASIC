@@ -170,6 +170,9 @@
     <ClCompile Include="parser-for.c">
       <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="generator-for.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -282,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="parser-for.h">
       <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-for.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

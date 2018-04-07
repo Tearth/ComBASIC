@@ -13,10 +13,10 @@ ast_node* parser_for_build(vector* tokens, ast_node* keyword, int* index, vector
 		exit(-1);
 	}
 
-	ast_node* variable_node = (ast_node*)malloc(sizeof(ast_node));
-	astnode_init(variable_node, N_VARIABLE, current_token->value.data);
+	ast_node* index_variable_node = (ast_node*)malloc(sizeof(ast_node));
+	astnode_init(index_variable_node, N_VARIABLE, current_token->value.data);
 
-	vector_add(&initial_expression_root->children, variable_node);
+	vector_add(&initial_expression_root->children, index_variable_node);
 
 	symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
