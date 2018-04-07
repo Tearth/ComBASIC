@@ -10,10 +10,11 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	current_token = tokens->data[*index];
 	if (current_token->token_type == T_NO_NEWLINE || current_token->token_type == T_COMMA)
 	{
-		ast_node* nonewline_node = (ast_node*)malloc(sizeof(ast_node));
-		astnode_init(nonewline_node, current_token->token_type, "");
+		ast_node* separator_node = (ast_node*)malloc(sizeof(ast_node));
+		astnode_init(separator_node, -1, "");
 
-		vector_add(&keyword->children, nonewline_node);
+		separator_node->type = current_token->token_type == T_NO_NEWLINE ? N_NONEWLINE : N_COMMA;
+		vector_add(&keyword->children, separator_node);
 	}
 	else
 	{
