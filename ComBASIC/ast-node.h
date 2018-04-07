@@ -31,7 +31,8 @@ typedef enum ast_node_type
 	N_END,
 	N_GOTO,
 	N_WHILE,
-	N_WEND
+	N_WEND,
+	N_INPUT
 } ast_node_type;
 
 typedef struct ast_node

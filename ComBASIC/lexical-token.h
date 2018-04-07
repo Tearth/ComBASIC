@@ -9,6 +9,7 @@ typedef enum lexical_token_type
 	T_STRING,
 	T_NO_NEWLINE,
 	T_OPERATOR,
+	T_COMMA,
 	T_END_OF_INSTRUCTION
 } lexical_token_type;
 

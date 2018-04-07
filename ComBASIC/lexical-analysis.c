@@ -1,6 +1,6 @@
 #include "lexical-analysis.h"
 
-const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM", "END", "IF", "THEN", "ELSE", "ELSEIF", "END IF", "GOTO", "WHILE", "WEND" };
+const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] = { "CLS", "LET", "PRINT", "REM", "END", "IF", "THEN", "ELSE", "ELSEIF", "END IF", "GOTO", "WHILE", "WEND", "INPUT" };
 const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = { "=", "+", "-", "*", "/", "(", ")", "MOD", "=", "<", ">", "<=", ">=", "<>", "NOT" };
 const char* unary_operators[MAX_KEYWORDS_TOKENS_COUNT] = { "-", "NOT" };
 
@@ -103,14 +103,9 @@ lexical_token* lexical_readoperator(const char* source, int* length)
 	(*length) = 1;
 	source++;
 
-	if (strcmp(read_token->value.data, "\n") == 0)
-	{
-		read_token->token_type = T_END_OF_INSTRUCTION;
-	}
-	else if (strcmp(read_token->value.data, ";") == 0)
-	{
-		read_token->token_type = T_NO_NEWLINE;
-	}
+	if (strcmp(read_token->value.data, "\n") == 0) read_token->token_type = T_END_OF_INSTRUCTION;
+	else if (strcmp(read_token->value.data, ";") == 0) read_token->token_type = T_NO_NEWLINE;
+	else if (strcmp(read_token->value.data, ",") == 0) read_token->token_type = T_COMMA;
 	else if(strcmp(read_token->value.data, "\"") == 0)
 	{
 		string_removelast(&read_token->value);

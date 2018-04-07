@@ -140,6 +140,7 @@
     <ClCompile Include="parser-expression.c" />
     <ClCompile Include="parser-if.c" />
     <ClCompile Include="parser-goto.c" />
+    <ClCompile Include="parser-input.c" />
     <ClCompile Include="parser-keyword.c" />
     <ClCompile Include="parser-let.c" />
     <ClCompile Include="parser-linenumber.c" />
@@ -176,6 +177,7 @@
     <ClInclude Include="parser-expression.h" />
     <ClInclude Include="parser-if.h" />
     <ClInclude Include="parser-goto.h" />
+    <ClInclude Include="parser-input.h" />
     <ClInclude Include="parser-keyword.h" />
     <ClInclude Include="parser-let.h" />
     <ClInclude Include="parser-linenumber.h" />
