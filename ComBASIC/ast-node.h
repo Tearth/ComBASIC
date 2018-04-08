@@ -34,7 +34,9 @@ typedef enum ast_node_type
 	N_WEND,
 	N_INPUT,
 	N_COMMA,
-	N_FOR
+	N_FOR,
+	N_AND,
+	N_OR
 } ast_node_type;
 
 typedef struct ast_node

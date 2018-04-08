@@ -174,6 +174,40 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 				break;
 			}
 
+			case N_AND:
+			{
+				string_append_s(code, "\tand \teax, ebx\n");
+				string_append_s(code, "\tmov \teax, 1\n");
+
+				sprintf_s(buffer, 128, "\tjnz \t_expression_label%d\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				string_append_s(code, "\tmov \teax, 0\n");
+
+				sprintf_s(buffer, 128, "_expression_label%d:\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				expression_labels_count++;
+				break;
+			}
+
+			case N_OR:
+			{
+				string_append_s(code, "\tor  \teax, ebx\n");
+				string_append_s(code, "\tmov \teax, 1\n");
+
+				sprintf_s(buffer, 128, "\tjnz \t_expression_label%d\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				string_append_s(code, "\tmov \teax, 0\n");
+
+				sprintf_s(buffer, 128, "_expression_label%d:\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				expression_labels_count++;
+				break;
+			}
+
 			default:
 			{
 				printf("ERROR: invalid operator");
