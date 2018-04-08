@@ -2,7 +2,7 @@
 
 const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] =
 {
-	"CLS"
+	"CLS",
 	"ELSE",
 	"ELSEIF",
 	"END IF",
