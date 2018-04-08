@@ -68,7 +68,6 @@ int main(int argc, char *argv[])
 	_CrtDumpMemoryLeaks();
 #endif
 
-	system("pause");
 	return 0;
 }
 
