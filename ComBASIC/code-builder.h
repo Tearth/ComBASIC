@@ -4,11 +4,7 @@
 #include "ast-node.h"
 #include "symbol-node.h"
 
-#include "generator-cls.h"
-#include "generator-linenumber.h"
-#include "generator-print.h"
-#include "generator-rem.h"
-#include "generator-let.h"
+#include "generator-block.h"
 
 string* code_build(ast_node* root, vector* symbol_table);
 void code_includesection(string* code, ast_node* root, vector* symbol_table);

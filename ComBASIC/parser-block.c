@@ -33,6 +33,8 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table)
 		vector_add(&root->children, line_number);
 		vector_add(&line_number->children, keyword);
 	}
+
+	return true;
 }
 
 bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
@@ -41,15 +43,15 @@ bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* s
 	switch (keyword->type)
 	{
 		case N_CLS:		{ result = parser_cls_build(tokens, keyword, index, symbol_table); break; }
-		case N_REM:		{ result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
-		case N_PRINT:	{ result = parser_print_build(tokens, keyword, index, symbol_table); break; }
-		case N_LET:		{ result = parser_let_build(tokens, keyword, index, symbol_table); break; }
 		case N_END:		{ result = parser_end_build(tokens, keyword, index, symbol_table); break; }
-		case N_IF:		{ result = parser_if_build(tokens, keyword, index, symbol_table); break; }
-		case N_GOTO:	{ result = parser_goto_build(tokens, keyword, index, symbol_table); break; }
-		case N_WHILE:	{ result = parser_while_build(tokens, keyword, index, symbol_table); break; }
-		case N_INPUT:	{ result = parser_input_build(tokens, keyword, index, symbol_table); break; }
 		case N_FOR:		{ result = parser_for_build(tokens, keyword, index, symbol_table); break; }
+		case N_GOTO:	{ result = parser_goto_build(tokens, keyword, index, symbol_table); break; }
+		case N_IF:		{ result = parser_if_build(tokens, keyword, index, symbol_table); break; }
+		case N_INPUT:	{ result = parser_input_build(tokens, keyword, index, symbol_table); break; }
+		case N_LET:		{ result = parser_let_build(tokens, keyword, index, symbol_table); break; }
+		case N_PRINT:	{ result = parser_print_build(tokens, keyword, index, symbol_table); break; }
+		case N_REM:		{ result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
+		case N_WHILE:	{ result = parser_while_build(tokens, keyword, index, symbol_table); break; }
 	}
 
 	return result;

@@ -5,4 +5,4 @@
 #include "symbol-table.h"
 #include "parser-expression.h"
 
-ast_node* parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);

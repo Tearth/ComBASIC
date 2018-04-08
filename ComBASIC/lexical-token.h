@@ -20,3 +20,4 @@ typedef struct lexical_token
 } lexical_token;
 
 void lexicaltoken_init(lexical_token* token, lexical_token_type type, const char* value);
+void lexicaltoken_clean(lexical_token* token);

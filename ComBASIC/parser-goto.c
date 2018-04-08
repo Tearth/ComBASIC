@@ -3,7 +3,7 @@
 bool parser_goto_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
-	if (current_token->token_type != T_NUMBER) return NULL;
+	if (current_token->token_type != T_NUMBER) return false;
 
 	ast_node* linenumber_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(linenumber_node, N_VARIABLE, current_token->value.data);

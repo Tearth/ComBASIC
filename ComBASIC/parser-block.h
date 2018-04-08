@@ -7,6 +7,13 @@
 #include "parser-cls.h"
 #include "parser-print.h"
 #include "parser-rem.h"
+#include "parser-for.h"
+#include "parser-goto.h"
+#include "parser-if.h"
+#include "parser-input.h"
+#include "parser-let.h"
+#include "parser-while.h"
+#include "parser-end.h"
 
 bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table);
 bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);

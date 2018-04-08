@@ -1,6 +1,6 @@
 #include "parser-for.h"
 
-ast_node* parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
 
