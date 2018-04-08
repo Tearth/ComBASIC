@@ -75,6 +75,9 @@ ast_node* parser_for_build(vector* tokens, ast_node* keyword, int* index, vector
 	parser_block_build(body_tokens, forbody_node, symbol_table);
 	vector_add(&keyword->children, forbody_node);
 
+	vector_clean(body_tokens);
+	free(body_tokens);
+
 	current_token = tokens->data[++(*index)];
 	return current_token->token_type == T_END_OF_INSTRUCTION;
 }

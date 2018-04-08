@@ -19,6 +19,9 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	parser_block_build(body_tokens, ifbody_node, symbol_table);
 	vector_add(&keyword->children, ifbody_node);
 
+	vector_clean(body_tokens);
+	free(body_tokens);
+
 	current_token = tokens->data[*index];
 
 	if (current_token->token_type == T_KEYWORD && strcmp("ELSE", current_token->value.data) == 0)
@@ -33,6 +36,9 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 
 		parser_block_build(else_tokens, elsebody_node, symbol_table);
 		vector_add(&keyword->children, elsebody_node);
+
+		vector_clean(else_tokens);
+		free(else_tokens);
 	}
 
 	current_token = tokens->data[++(*index)];

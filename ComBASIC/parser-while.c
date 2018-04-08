@@ -16,6 +16,9 @@ bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	parser_block_build(body_tokens, whilebody_node, symbol_table);
 	vector_add(&keyword->children, whilebody_node);
 
+	vector_clean(body_tokens);
+	free(body_tokens);
+
 	current_token = tokens->data[++(*index)];
 	return current_token->token_type == T_END_OF_INSTRUCTION;
 }
