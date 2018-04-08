@@ -1,7 +1,7 @@
 ; ComBASIC input/output functions
 
-section .data
-    iobuffer:    DB    128
+section .bss
+    iobuffer:    resb    128
 
 section .text
 
