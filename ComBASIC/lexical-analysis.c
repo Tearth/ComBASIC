@@ -166,7 +166,7 @@ lexical_token* lexical_readoperator(const char* source, int* length)
 	{
 		if (!lexical_operatorexists(read_token->value.data))
 		{
-			printf("ERROR: unknown operator %s\n", read_token->value.data);
+			printf("ERROR: unknown operator %s.\n", read_token->value.data);
 			exit(-1);
 		}
 	}
@@ -332,7 +332,7 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 						lexical_token* current_search_token = tokens_vector->data[current_search_index];
 						if (current_search_token->token_type == T_END_OF_INSTRUCTION)
 						{
-							printf("ERROR: invalid parenthesis");
+							printf("ERROR: invalid parenthesis.\n");
 							exit(-1);
 						}
 

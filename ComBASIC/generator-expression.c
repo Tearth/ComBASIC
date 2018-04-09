@@ -210,7 +210,7 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 
 			default:
 			{
-				printf("ERROR: invalid operator");
+				printf("ERROR: invalid operator.\n");
 				exit(-1);
 			}
 		}

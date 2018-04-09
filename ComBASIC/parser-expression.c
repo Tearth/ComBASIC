@@ -189,7 +189,7 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 
 	if (stack.count != 1)
 	{
-		printf("ERROR: Invalid expression (too many numbers or operators).");
+		printf("ERROR: Invalid expression (too many numbers or operators).\n");
 		exit(-1);
 	}
 
@@ -225,6 +225,6 @@ int parser_expression_getpriority(lexical_token* token)
 	if (strcmp("AND", token->value.data) == 0)	return 20;
 	if (strcmp("OR", token->value.data) == 0)	return 15;
 
-	printf("ERROR: Unrecognised symbol: %s", token->value.data);
+	printf("ERROR: Unrecognised symbol: %s.\n", token->value.data);
 	exit(-1);
 }

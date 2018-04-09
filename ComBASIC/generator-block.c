@@ -22,7 +22,7 @@ void generator_block_build(string* code, ast_node* root, vector* symbol_table)
 			case N_FOR:		{ generator_for_build(code, keyword_node, symbol_table); break; }
 			default:
 			{
-				printf("ERROR: Invalid keyword.\n");
+				printf("ERROR: Invalid keyword in block generator.\n");
 				exit(-1);
 			}
 		}

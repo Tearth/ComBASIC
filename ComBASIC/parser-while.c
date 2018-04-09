@@ -31,10 +31,10 @@ vector* parser_while_buildbody(vector* tokens, int* index)
 	int while_balance = 1;
 	lexical_token* current_token = tokens->data[++(*index)];
 
-	while (while_balance > 0 && *index < tokens->count)
+	while (while_balance > 0 && ++(*index) < tokens->count)
 	{
 		vector_add(block_tokens, current_token);
-		current_token = tokens->data[++(*index)];
+		current_token = tokens->data[*index];
 
 		if (current_token->token_type == T_KEYWORD)
 		{
@@ -45,7 +45,7 @@ vector* parser_while_buildbody(vector* tokens, int* index)
 
 	if (while_balance != 0)
 	{
-		printf("ERROR: Invalid WHILE statement");
+		printf("ERROR: Invalid WHILE statement.\n");
 		exit(-1);
 	}
 

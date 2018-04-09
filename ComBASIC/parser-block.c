@@ -9,7 +9,7 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table)
 		{
 			lexical_token* current_token = tokens->data[i];
 
-			printf("ERROR: Line number not found: %s\n", current_token->value.data);
+			printf("ERROR: Line number not found: %s.\n", current_token->value.data);
 			exit(-1);
 		}
 
@@ -18,7 +18,7 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table)
 		{
 			lexical_token* current_token = tokens->data[i];
 
-			printf("ERROR: Keyword not found: %s\n", current_token->value.data);
+			printf("ERROR: Keyword not found: %s.\n", current_token->value.data);
 			exit(-1);
 		}
 
@@ -26,7 +26,7 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table)
 		{
 			lexical_token* current_token = tokens->data[i];
 
-			printf("ERROR: Invalid argument: %s\n", current_token->value.data);
+			printf("ERROR: Invalid argument: %s.\n", current_token->value.data);
 			exit(-1);
 		}
 

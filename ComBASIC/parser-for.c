@@ -9,7 +9,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	if (current_token->token_type != T_IDENTIFIER)
 	{
-		printf("ERROR: No variable with LET.");
+		printf("ERROR: No variable with LET.\n");
 		exit(-1);
 	}
 
@@ -24,7 +24,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	if (current_token->token_type != T_OPERATOR || strcmp("=", current_token->value.data) != 0)
 	{
-		printf("ERROR: No equal operator with LET.");
+		printf("ERROR: No equal operator with LET.\n");
 		exit(-1);
 	}
 
@@ -37,7 +37,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	}
 	else
 	{
-		printf("ERROR: Invalid expression.");
+		printf("ERROR: Invalid expression.\n");
 		exit(-1);
 	}
 
@@ -47,7 +47,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	if (current_token->token_type != T_KEYWORD || strcmp("TO", current_token->value.data) != 0)
 	{
-		printf("ERROR: No TO keyword in FOR statement.");
+		printf("ERROR: No TO keyword in FOR statement.\n");
 		exit(-1);
 	}
 
@@ -60,7 +60,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	}
 	else
 	{
-		printf("ERROR: Invalid expression.");
+		printf("ERROR: Invalid expression.\n");
 		exit(-1);
 	}
 
@@ -90,10 +90,10 @@ vector* parser_for_buildbody(vector* tokens, int* index)
 	int for_balance = 1;
 	lexical_token* current_token = tokens->data[++(*index)];
 
-	while (for_balance > 0 && *index < tokens->count)
+	while (for_balance > 0 && ++(*index) < tokens->count)
 	{
 		vector_add(block_tokens, current_token);
-		current_token = tokens->data[++(*index)];
+		current_token = tokens->data[*index];
 
 		if (current_token->token_type == T_KEYWORD)
 		{
@@ -104,7 +104,7 @@ vector* parser_for_buildbody(vector* tokens, int* index)
 
 	if (for_balance != 0)
 	{
-		printf("ERROR: Invalid FOR statement");
+		printf("ERROR: Invalid FOR statement.\n");
 		exit(-1);
 	}
 

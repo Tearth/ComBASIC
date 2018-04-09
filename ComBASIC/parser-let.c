@@ -6,7 +6,7 @@ bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	if (current_token->token_type != T_IDENTIFIER)
 	{
-		printf("ERROR: No variable with LET.");
+		printf("ERROR: No variable with LET.\n");
 		exit(-1);
 	}
 
@@ -22,7 +22,7 @@ bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	if (current_token->token_type != T_OPERATOR || strcmp("=", current_token->value.data) != 0)
 	{
-		printf("ERROR: No equal operator with LET.");
+		printf("ERROR: No equal operator with LET.\n");
 		exit(-1);
 	}
 
@@ -36,7 +36,7 @@ bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	}
 	else
 	{
-		printf("ERROR: Invalid expression.");
+		printf("ERROR: Invalid expression.\n");
 		exit(-1);
 	}
 
