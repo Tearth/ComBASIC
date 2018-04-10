@@ -209,8 +209,6 @@ bool parser_expression_isparenthesis(lexical_token* token)
 
 int parser_expression_getpriority(lexical_token* token)
 {
-	if (strcmp("(", token->value.data) == 0)	return 99;
-	if (strcmp(")", token->value.data) == 0)	return 99;
 	if (strcmp("*", token->value.data) == 0)	return 80;
 	if (strcmp("/", token->value.data) == 0)	return 80;
 	if (strcmp("MOD", token->value.data) == 0)	return 60;
@@ -224,6 +222,8 @@ int parser_expression_getpriority(lexical_token* token)
 	if (strcmp("=", token->value.data) == 0)	return 30;
 	if (strcmp("AND", token->value.data) == 0)	return 20;
 	if (strcmp("OR", token->value.data) == 0)	return 15;
+	if (strcmp("(", token->value.data) == 0)	return 10;
+	if (strcmp(")", token->value.data) == 0)	return 10;
 
 	printf("ERROR: Unrecognised symbol: %s.\n", token->value.data);
 	exit(-1);
