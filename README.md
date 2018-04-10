@@ -1,6 +1,23 @@
 # ComBASIC
 
-The simple BASIC compiler written in plain C without any external libraries.
+The simple BASIC compiler written in plain C without any external libraries. It takes BASIC file as input and generates Assembly output code which can be assembled by the NASM/MASM and linked by the GoLink or some similar software to exe.
+
+# Example usage
+
+```bat
+ComBASIC -c -d -i helloworld.bas -o helloworld.asm
+nasm -f win32 helloworld.asm -o helloworld.obj
+golink /console /entry _main helloworld.obj kernel32.dll user32.dll
+helloworld.exe
+pause
+```
+
+**Available options:**
+  * -h - displays help
+  * -c - runs compilation (requires -i and -o)
+  * -d - displys debug info during compilation (like tokens list, AST tree, ...)
+  * -i - specifies input BASIC file
+  * -o - specifies output ASM file
 
 # Compilation process overview
 
@@ -18,18 +35,18 @@ The simple BASIC compiler written in plain C without any external libraries.
 | FOR ... TO ... NEXT          | FOR variable = value TO expression<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>NEXT  |
 | IF ... THEN ... ELSE ... END IF          | IF expression THEN<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>ELSE<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>END IF |
 | GOTO          | GOTO line_number  |
-| PRINT          | PRINT „String with new line”<br>PRINT „String without new line”;<br>PRINT expression<br>PRINT expression; |
-| INPUT          | INPUT „Prompt message”; variable<br>INPUT „Prompt message”, variable |
+| PRINT          | PRINT "String with new line"<br>PRINT "String without new line";<br>PRINT expression<br>PRINT expression; |
+| INPUT          | INPUT "Prompt message"; variable<br>INPUT "Prompt message", variable |
 
 # Operators
 
 | Symbols        | Priority |
 | ------------- | ---- |
-| (, )          | 80  |
-| *, /          | 60  |
-| MOD          | 50  |
-| +, -         | 30  |
-| <>, <, <=, >, >=, =         | 20  |
-| AND          | 15  |
-| OR         | 10  |
+| *, /          | 80  |
+| MOD        | 60  |
+| +, -          | 50  |
+| <>, <, <=, >, >=, =        | 30  |
+| AND         | 20  |
+| OR          | 15  |
+| (, )         | 10  |
 
