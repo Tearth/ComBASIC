@@ -15,7 +15,7 @@ pause
 **Available options:**
   * -h - displays help
   * -c - runs compilation (requires -i and -o)
-  * -d - displys debug info during compilation (like tokens list, AST tree, ...)
+  * -d - displays debug info during compilation (like tokens list, AST tree, ...)
   * -i - specifies input BASIC file
   * -o - specifies output ASM file
 

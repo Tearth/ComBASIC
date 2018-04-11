@@ -127,7 +127,7 @@ void parse_arguments(int argc, char *argv[])
 
 void display_help()
 {
-	printf("ComBASIC - a BASIC compiler based on Altair dialect\n");
+	printf("ComBASIC - a BASIC compiler\n");
 	printf("Available options:\n");
 	printf(" -h - display help.\n");
 	printf(" -c [-i input_filename -o output_filename] - compile a source file to the specified output.\n");
