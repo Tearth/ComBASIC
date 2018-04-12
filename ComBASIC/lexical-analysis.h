@@ -20,4 +20,4 @@ void lexical_mergekeywords(vector* tokens_vector);
 void lexical_mergeoperators(vector* tokens_vector);
 void lexical_fixunaryoperators(vector* tokens_vector);
 void lexical_dump(vector* tokens);
-void lexical_clean(vector* tokens);
+void lexical_clear(vector* tokens);

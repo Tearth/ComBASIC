@@ -28,16 +28,16 @@ void ast_dump_r(ast_node* node, int level)
 	}
 }
 
-void ast_clean(ast_node* root)
+void ast_clear(ast_node* root)
 {
 	while (root->children.count > 0)
 	{
 		ast_node* child = root->children.data[0];
-		ast_clean(child);
+		ast_clear(child);
 
 		vector_remove(&root->children, 0);
 		free(child);
 	}
 
-	astnode_clean(root);
+	astnode_clear(root);
 }

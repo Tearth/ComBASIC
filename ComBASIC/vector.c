@@ -50,7 +50,7 @@ void vector_remove(vector* vector, int index)
 	vector->count--;
 }
 
-void vector_clean(vector* vector)
+void vector_clear(vector* vector)
 {
 	if (vector->size > 0)
 	{

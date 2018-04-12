@@ -9,8 +9,8 @@ void astnode_init(ast_node* node, ast_node_type type, const char* value)
 	string_append_s(&node->value, value);
 }
 
-void astnode_clean(ast_node* node)
+void astnode_clear(ast_node* node)
 {
-	string_clean(&node->value);
-	vector_clean(&node->children);
+	string_clear(&node->value);
+	vector_clear(&node->children);
 }

@@ -8,7 +8,7 @@ void lexicaltoken_init(lexical_token* token, lexical_token_type type, const char
 	string_append_s(&token->value, value);
 }
 
-void lexicaltoken_clean(lexical_token* token)
+void lexicaltoken_clear(lexical_token* token)
 {
-	string_clean(&token->value);
+	string_clear(&token->value);
 }

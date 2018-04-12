@@ -52,10 +52,10 @@ int main(int argc, char *argv[])
 
 			printf("Compilation done!\n");
 			
-			string_clean(asm_code);
-			ast_clean(ast);
-			symboltable_clean(&symbol_table);
-			lexical_clean(tokens);
+			string_clear(asm_code);
+			ast_clear(ast);
+			symboltable_clear(&symbol_table);
+			lexical_clear(tokens);
 
 			free(asm_code);
 			free(ast);

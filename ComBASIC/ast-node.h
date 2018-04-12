@@ -47,4 +47,4 @@ typedef struct ast_node
 } ast_node;
 
 void astnode_init(ast_node* node, ast_node_type type, const char* value);
-void astnode_clean(ast_node* node);
+void astnode_clear(ast_node* node);

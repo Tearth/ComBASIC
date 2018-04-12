@@ -56,7 +56,7 @@ void string_removeall(string* string)
 	string->count = 0;
 }
 
-void string_clean(string* string)
+void string_clear(string* string)
 {
 	if (string->size > 0)
 	{

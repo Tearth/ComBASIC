@@ -243,8 +243,8 @@ void lexical_mergekeywords(vector* tokens_vector)
 
 			if (lexical_keywordexists(merged_keyword.data))
 			{
-				string_clean(&first->value);
-				string_clean(&second->value);
+				string_clear(&first->value);
+				string_clear(&second->value);
 
 				string_append_s(&first->value, merged_keyword.data);
 
@@ -252,7 +252,7 @@ void lexical_mergekeywords(vector* tokens_vector)
 				free(second);
 			}
 
-			string_clean(&merged_keyword);
+			string_clear(&merged_keyword);
 		}
 	}
 }
@@ -274,8 +274,8 @@ void lexical_mergeoperators(vector* tokens_vector)
 
 			if (lexical_operatorexists(merged_operator.data))
 			{
-				string_clean(&first->value);
-				string_clean(&second->value);
+				string_clear(&first->value);
+				string_clear(&second->value);
 
 				string_append_s(&first->value, merged_operator.data);
 
@@ -283,7 +283,7 @@ void lexical_mergeoperators(vector* tokens_vector)
 				free(second);
 			}
 
-			string_clean(&merged_operator);
+			string_clear(&merged_operator);
 		}
 	}
 }
@@ -371,16 +371,16 @@ void lexical_dump(vector* tokens)
 	printf("End of tokens list\n");
 }
 
-void lexical_clean(vector* tokens)
+void lexical_clear(vector* tokens)
 {
 	while (tokens->count > 0)
 	{
 		lexical_token* token = tokens->data[0];
-		lexicaltoken_clean(token);
+		lexicaltoken_clear(token);
 
 		free(token);
 		vector_remove(tokens, 0);
 	}
 
-	vector_clean(tokens);
+	vector_clear(tokens);
 }

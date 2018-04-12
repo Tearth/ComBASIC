@@ -75,7 +75,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	parser_block_build(body_tokens, forbody_node, symbol_table);
 	vector_add(&keyword->children, forbody_node);
 
-	vector_clean(body_tokens);
+	vector_clear(body_tokens);
 	free(body_tokens);
 
 	current_token = tokens->data[++(*index)];

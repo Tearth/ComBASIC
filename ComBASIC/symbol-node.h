@@ -15,4 +15,4 @@ typedef struct symbol_node
 } symbol_node;
 
 void symbolnode_init(symbol_node* symbol, symbol_node_type type, const char* name, const char* value);
-void symbolnode_clean(symbol_node* symbol);
+void symbolnode_clear(symbol_node* symbol);

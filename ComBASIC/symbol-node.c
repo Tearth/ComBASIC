@@ -10,8 +10,8 @@ void symbolnode_init(symbol_node* symbol, symbol_node_type type, const char* nam
 	string_append_s(&symbol->value, value);
 }
 
-void symbolnode_clean(symbol_node* symbol)
+void symbolnode_clear(symbol_node* symbol)
 {
-	string_clean(&symbol->name);
-	string_clean(&symbol->value);
+	string_clear(&symbol->name);
+	string_clear(&symbol->value);
 }

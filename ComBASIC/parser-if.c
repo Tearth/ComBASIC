@@ -19,7 +19,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	parser_block_build(body_tokens, ifbody_node, symbol_table);
 	vector_add(&keyword->children, ifbody_node);
 
-	vector_clean(body_tokens);
+	vector_clear(body_tokens);
 	free(body_tokens);
 
 	current_token = tokens->data[*index];
@@ -37,7 +37,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 		parser_block_build(else_tokens, elsebody_node, symbol_table);
 		vector_add(&keyword->children, elsebody_node);
 
-		vector_clean(else_tokens);
+		vector_clear(else_tokens);
 		free(else_tokens);
 	}
 

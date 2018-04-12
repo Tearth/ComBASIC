@@ -41,16 +41,16 @@ void symboltable_dump(vector* symbol_table)
 	printf("End of symbol table\n");
 }
 
-void symboltable_clean(vector* symbol_table)
+void symboltable_clear(vector* symbol_table)
 {
 	while(symbol_table->count > 0)
 	{
 		symbol_node* symbol = symbol_table->data[0];
-		symbolnode_clean(symbol);
+		symbolnode_clear(symbol);
 
 		vector_remove(symbol_table, 0);
 		free(symbol);
 	}
 
-	vector_clean(symbol_table);
+	vector_clear(symbol_table);
 }

@@ -9,8 +9,8 @@ ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index,
 	vector* rpn_nodes = parser_expression_buildrpnnodes(rpn, symbol_table);
 	parser_expression_buildrpntree(rpn_nodes, expression_root);
 
-	vector_clean(rpn_nodes);
-	vector_clean(rpn);
+	vector_clear(rpn_nodes);
+	vector_clear(rpn);
 
 	free(rpn_nodes);
 	free(rpn);
@@ -98,7 +98,7 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 		exit(-1);
 	}
 
-	vector_clean(&stack);
+	vector_clear(&stack);
 	return rpn;
 }
 
@@ -194,7 +194,7 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 	}
 
 	vector_add(&expression_root->children, stack.data[0]);
-	vector_clean(&stack);
+	vector_clear(&stack);
 }
 
 bool parser_expression_istokenvalid(lexical_token* token)
