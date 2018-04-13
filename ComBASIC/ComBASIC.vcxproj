@@ -150,6 +150,7 @@
     <ClCompile Include="parser-print.c" />
     <ClCompile Include="parser-rem.c" />
     <ClCompile Include="parser-string.c" />
+    <ClCompile Include="parser-utils.c" />
     <ClCompile Include="parser-while.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="symbol-node.c" />
@@ -190,6 +191,7 @@
     <ClInclude Include="parser-print.h" />
     <ClInclude Include="parser-rem.h" />
     <ClInclude Include="parser-string.h" />
+    <ClInclude Include="parser-utils.h" />
     <ClInclude Include="parser-while.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="symbol-node.h" />

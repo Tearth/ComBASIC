@@ -6,10 +6,10 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	vector_add(&keyword->children, expression_node);
 
 	lexical_token* current_token = tokens->data[*index];
-	if (current_token->token_type != T_KEYWORD && strcmp("THEN", current_token->value.data) != 0) return false;
-
+	if (!parser_expect_keyword(current_token, "THEN")) return false;
+	
 	current_token = tokens->data[++(*index)];
-	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
+	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	vector* body_tokens = parser_if_buildbody(tokens, index);
 
@@ -24,10 +24,10 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 
 	current_token = tokens->data[*index];
 
-	if (current_token->token_type == T_KEYWORD && strcmp("ELSE", current_token->value.data) == 0)
+	if (parser_expect_keyword(current_token, "ELSE"))
 	{
 		current_token = tokens->data[++(*index)];
-		if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
+		if (!parser_expect_endofinstruction(current_token)) return false;
 
 		vector* else_tokens = parser_if_buildelse(tokens, index);
 
@@ -42,9 +42,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	}
 
 	current_token = tokens->data[++(*index)];
-	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
-
-	return true;
+	return parser_expect_endofinstruction(current_token);
 }
 
 vector* parser_if_buildbody(vector* tokens, int* index)

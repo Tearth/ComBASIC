@@ -4,11 +4,7 @@ bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 {
 	lexical_token* current_token = tokens->data[*index];
 
-	if (current_token->token_type != T_IDENTIFIER)
-	{
-		printf("ERROR: No variable with LET.\n");
-		exit(-1);
-	}
+	if (!parser_expect_identifier(current_token)) return false;
 
 	ast_node* variable_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(variable_node, N_VARIABLE, current_token->value.data);
@@ -20,26 +16,16 @@ bool parser_let_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	(*index)++;
 	current_token = tokens->data[*index];
 
-	if (current_token->token_type != T_OPERATOR || strcmp("=", current_token->value.data) != 0)
-	{
-		printf("ERROR: No equal operator with LET.\n");
-		exit(-1);
-	}
+	if (!parser_expect_operator(current_token, "=")) return false;
 
 	(*index)++;
 	current_token = tokens->data[*index];
 
-	if (parser_expression_istokenvalid(current_token))
-	{
-		ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
-		vector_add(&keyword->children, expression_node);
-	}
-	else
-	{
-		printf("ERROR: Invalid expression.\n");
-		exit(-1);
-	}
+	if (!parser_expect_expression(current_token)) return false;
+
+	ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
+	vector_add(&keyword->children, expression_node);
 
 	current_token = tokens->data[*index];
-	return current_token->token_type == T_END_OF_INSTRUCTION;
+	return parser_expect_endofinstruction(current_token);
 }

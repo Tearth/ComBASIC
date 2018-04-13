@@ -6,7 +6,7 @@ bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	vector_add(&keyword->children, expression_node);
 
 	lexical_token* current_token = tokens->data[*index];
-	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
+	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	vector* body_tokens = parser_while_buildbody(tokens, index);
 
@@ -20,7 +20,7 @@ bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	free(body_tokens);
 
 	current_token = tokens->data[++(*index)];
-	return current_token->token_type == T_END_OF_INSTRUCTION;
+	return parser_expect_endofinstruction(current_token);
 }
 
 vector* parser_while_buildbody(vector* tokens, int* index)

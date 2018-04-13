@@ -3,17 +3,22 @@
 bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
-	if (current_token->token_type != T_STRING) return false;
+	if (!parser_expect_string(current_token)) return false;
 	
 	parser_string_build(tokens, keyword, index, symbol_table);
 
 	current_token = tokens->data[*index];
-	if (current_token->token_type == T_NO_NEWLINE || current_token->token_type == T_COMMA)
+	if (parser_expect_special(current_token, T_NO_NEWLINE) || parser_expect_special(current_token, T_COMMA))
 	{
 		ast_node* separator_node = (ast_node*)malloc(sizeof(ast_node));
 		astnode_init(separator_node, -1, "");
 
-		separator_node->type = current_token->token_type == T_NO_NEWLINE ? N_NONEWLINE : N_COMMA;
+		switch (current_token->token_type)
+		{
+			case T_NO_NEWLINE:	{ separator_node->type = N_NONEWLINE; break; }
+			case T_COMMA:		{ separator_node->type = N_COMMA; break; }
+		}
+
 		vector_add(&keyword->children, separator_node);
 	}
 	else
@@ -23,7 +28,7 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	}
 
 	current_token = tokens->data[++(*index)];
-	if (current_token->token_type != T_IDENTIFIER) return false;
+	if (!parser_expect_identifier(current_token)) return false;
 
 	ast_node* variable_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(variable_node, current_token->token_type, current_token->value.data);
@@ -32,5 +37,5 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 	
 	current_token = tokens->data[++(*index)];
-	return current_token->token_type == T_END_OF_INSTRUCTION;
+	return parser_expect_endofinstruction(current_token);
 }

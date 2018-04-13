@@ -7,11 +7,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	ast_node* initial_expression_root = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(initial_expression_root, N_ROOT, "");
 
-	if (current_token->token_type != T_IDENTIFIER)
-	{
-		printf("ERROR: No variable with LET.\n");
-		exit(-1);
-	}
+	if (!parser_expect_identifier(current_token)) return false;
 
 	ast_node* index_variable_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(index_variable_node, N_VARIABLE, current_token->value.data);
@@ -22,50 +18,28 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	current_token = tokens->data[++(*index)];
 
-	if (current_token->token_type != T_OPERATOR || strcmp("=", current_token->value.data) != 0)
-	{
-		printf("ERROR: No equal operator with LET.\n");
-		exit(-1);
-	}
+	if (!parser_expect_operator(current_token, "=")) return false;
 
 	current_token = tokens->data[++(*index)];
 
-	if (parser_expression_istokenvalid(current_token))
-	{
-		ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
-		vector_add(&initial_expression_root->children, expression_node);
-	}
-	else
-	{
-		printf("ERROR: Invalid expression.\n");
-		exit(-1);
-	}
+	if (!parser_expect_expression(current_token)) return false;
+
+	vector_add(&initial_expression_root->children, parser_expression_build(tokens, keyword, index, symbol_table));
 
 	vector_add(&keyword->children, initial_expression_root);
 
 	current_token = tokens->data[*index];
 
-	if (current_token->token_type != T_KEYWORD || strcmp("TO", current_token->value.data) != 0)
-	{
-		printf("ERROR: No TO keyword in FOR statement.\n");
-		exit(-1);
-	}
+	if (!parser_expect_keyword(current_token, "TO")) return false;
 
 	current_token = tokens->data[++(*index)];
 
-	if (parser_expression_istokenvalid(current_token))
-	{
-		ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
-		vector_add(&keyword->children, expression_node);
-	}
-	else
-	{
-		printf("ERROR: Invalid expression.\n");
-		exit(-1);
-	}
+	if (!parser_expect_expression(current_token)) return false;
+
+	vector_add(&keyword->children, parser_expression_build(tokens, keyword, index, symbol_table));
 
 	current_token = tokens->data[*index];
-	if (current_token->token_type != T_END_OF_INSTRUCTION) return false;
+	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	vector* body_tokens = parser_for_buildbody(tokens, index);
 
@@ -79,7 +53,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	free(body_tokens);
 
 	current_token = tokens->data[++(*index)];
-	return current_token->token_type == T_END_OF_INSTRUCTION;
+	return parser_expect_endofinstruction(current_token);
 }
 
 vector* parser_for_buildbody(vector* tokens, int* index)
