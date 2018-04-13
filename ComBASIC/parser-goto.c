@@ -2,6 +2,7 @@
 
 bool parser_goto_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
+	// Line number
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_number(current_token)) return false;
 

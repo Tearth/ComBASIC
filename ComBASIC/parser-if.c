@@ -2,15 +2,18 @@
 
 bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
+	// Expression
 	ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
 	vector_add(&keyword->children, expression_node);
 
+	// THEN keyword
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_keyword(current_token, "THEN")) return false;
 	
 	current_token = tokens->data[++(*index)];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
+	// IF body
 	vector* body_tokens = parser_if_buildbody(tokens, index);
 
 	ast_node* ifbody_node = (ast_node*)malloc(sizeof(ast_node));
@@ -24,6 +27,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 
 	current_token = tokens->data[*index];
 
+	// ELSE body
 	if (parser_expect_keyword(current_token, "ELSE"))
 	{
 		current_token = tokens->data[++(*index)];

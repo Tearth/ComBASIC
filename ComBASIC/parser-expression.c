@@ -35,7 +35,10 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 		}
 		else
 		{
-			if (strcmp("(", current_token->value.data) == 0) vector_add(&stack, current_token);
+			if (strcmp("(", current_token->value.data) == 0)
+			{
+				vector_add(&stack, current_token);
+			}
 			else if (strcmp(")", current_token->value.data) == 0)
 			{
 				lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
@@ -57,7 +60,10 @@ vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index
 			}
 			else
 			{
-				if (stack.count == 0) vector_add(&stack, current_token);
+				if (stack.count == 0)
+				{
+					vector_add(&stack, current_token);
+				}
 				else
 				{
 					lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
@@ -136,19 +142,19 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 
 			case T_OPERATOR:
 			{
-				if (strcmp("+", current_token->value.data) == 0)	node->type = N_ADD;
-				if (strcmp("-", current_token->value.data) == 0)	node->type = N_SUB;
-				if (strcmp("*", current_token->value.data) == 0)	node->type = N_MUL;
-				if (strcmp("/", current_token->value.data) == 0)	node->type = N_DIV;
-				if (strcmp("MOD", current_token->value.data) == 0)	node->type = N_MOD;
-				if (strcmp("=", current_token->value.data) == 0)	node->type = N_EQUAL;
-				if (strcmp("<>", current_token->value.data) == 0)	node->type = N_NOTEQUAL;
-				if (strcmp(">", current_token->value.data) == 0)	node->type = N_GREATERTHAN;
-				if (strcmp(">=", current_token->value.data) == 0)	node->type = N_EQUAL_GREATERTHAN;
-				if (strcmp("<", current_token->value.data) == 0)	node->type = N_LESSTHAN;
-				if (strcmp("<=", current_token->value.data) == 0)	node->type = N_EQUAL_LESSTHAN;
-				if (strcmp("AND", current_token->value.data) == 0)	node->type = N_AND;
-				if (strcmp("OR", current_token->value.data) == 0)	node->type = N_OR;
+				if		(parser_expect_operator(current_token, "+"))		node->type = N_ADD;
+				else if (parser_expect_operator(current_token, "-"))		node->type = N_SUB;
+				else if (parser_expect_operator(current_token, "*"))		node->type = N_MUL;
+				else if (parser_expect_operator(current_token, "/"))		node->type = N_DIV;
+				else if (parser_expect_operator(current_token, "MOD"))		node->type = N_MOD;
+				else if (parser_expect_operator(current_token, "="))		node->type = N_EQUAL;
+				else if (parser_expect_operator(current_token, "<>"))		node->type = N_NOTEQUAL;
+				else if (parser_expect_operator(current_token, ">"))		node->type = N_GREATERTHAN;
+				else if (parser_expect_operator(current_token, ">="))		node->type = N_EQUAL_GREATERTHAN;
+				else if (parser_expect_operator(current_token, "<"))		node->type = N_LESSTHAN;
+				else if (parser_expect_operator(current_token, "<="))		node->type = N_EQUAL_LESSTHAN;
+				else if (parser_expect_operator(current_token, "AND"))		node->type = N_AND;
+				else if (parser_expect_operator(current_token, "OR"))		node->type = N_OR;
 
 				break;
 			}
@@ -204,27 +210,27 @@ bool parser_expression_istokenvalid(lexical_token* token)
 
 bool parser_expression_isparenthesis(lexical_token* token)
 {
-	return strcmp("(", token->value.data) == 0 || strcmp(")", token->value.data) == 0;
+	return parser_expect_operator(token, "(") || parser_expect_operator(token, ")");
 }
 
 int parser_expression_getpriority(lexical_token* token)
 {
-	if (strcmp("*", token->value.data) == 0)	return 80;
-	if (strcmp("/", token->value.data) == 0)	return 80;
-	if (strcmp("MOD", token->value.data) == 0)	return 60;
-	if (strcmp("+", token->value.data) == 0)	return 50;
-	if (strcmp("-", token->value.data) == 0)	return 50;
-	if (strcmp("<>", token->value.data) == 0)	return 30;
-	if (strcmp("<", token->value.data) == 0)	return 30;
-	if (strcmp("<=", token->value.data) == 0)	return 30;
-	if (strcmp(">", token->value.data) == 0)	return 30;
-	if (strcmp(">=", token->value.data) == 0)	return 30;
-	if (strcmp("=", token->value.data) == 0)	return 30;
-	if (strcmp("AND", token->value.data) == 0)	return 20;
-	if (strcmp("OR", token->value.data) == 0)	return 15;
-	if (strcmp("(", token->value.data) == 0)	return 10;
-	if (strcmp(")", token->value.data) == 0)	return 10;
+	if		(parser_expect_operator(token, "*"))		return 80;
+	else if (parser_expect_operator(token, "/"))		return 80;
+	else if (parser_expect_operator(token, "MOD"))		return 60;
+	else if (parser_expect_operator(token, "+"))		return 50;
+	else if (parser_expect_operator(token, "-"))		return 50;
+	else if (parser_expect_operator(token, "<>"))		return 30;
+	else if (parser_expect_operator(token, "<"))		return 30;
+	else if (parser_expect_operator(token, "<="))		return 30;
+	else if (parser_expect_operator(token, ">"))		return 30;
+	else if (parser_expect_operator(token, ">="))		return 30;
+	else if (parser_expect_operator(token, "="))		return 30;
+	else if (parser_expect_operator(token, "AND"))		return 20;
+	else if (parser_expect_operator(token, "OR"))		return 15;
+	else if (parser_expect_operator(token, "("))		return 10;
+	else if (parser_expect_operator(token, ")"))		return 10;
 
-	printf("ERROR: Unrecognised symbol: %s.\n", token->value.data);
+	printf("ERROR: Unrecognised symbol: %s.\n");
 	exit(-1);
 }

@@ -4,36 +4,36 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 {
 	lexical_token* current_token = tokens->data[*index];
 
+	// Root for index variable and initial expression
 	ast_node* initial_expression_root = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(initial_expression_root, N_ROOT, "");
 
+	// Index variable
 	if (!parser_expect_identifier(current_token)) return false;
 
 	ast_node* index_variable_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(index_variable_node, N_VARIABLE, current_token->value.data);
-
 	vector_add(&initial_expression_root->children, index_variable_node);
 
 	symboltable_add(symbol_table, S_INTEGER, current_token->value.data, "0");
 
+	// = operator
 	current_token = tokens->data[++(*index)];
-
 	if (!parser_expect_operator(current_token, "=")) return false;
 
+	// Initial index expression
 	current_token = tokens->data[++(*index)];
-
 	if (!parser_expect_expression(current_token)) return false;
 
 	vector_add(&initial_expression_root->children, parser_expression_build(tokens, keyword, index, symbol_table));
-
 	vector_add(&keyword->children, initial_expression_root);
 
+	// TO keyword
 	current_token = tokens->data[*index];
-
 	if (!parser_expect_keyword(current_token, "TO")) return false;
 
+	// End expression
 	current_token = tokens->data[++(*index)];
-
 	if (!parser_expect_expression(current_token)) return false;
 
 	vector_add(&keyword->children, parser_expression_build(tokens, keyword, index, symbol_table));
@@ -41,6 +41,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	current_token = tokens->data[*index];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
+	// FOR body
 	vector* body_tokens = parser_for_buildbody(tokens, index);
 
 	ast_node* forbody_node = (ast_node*)malloc(sizeof(ast_node));

@@ -3,6 +3,7 @@
 #include "lexical-analysis.h"
 #include "symbol-table.h"
 #include "symbol-node.h"
+#include "parser-utils.h"
 
 ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
 vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);

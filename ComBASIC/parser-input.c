@@ -2,11 +2,13 @@
 
 bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
+	// Prompt string
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_string(current_token)) return false;
 	
 	parser_string_build(tokens, keyword, index, symbol_table);
 
+	// Separator
 	current_token = tokens->data[*index];
 	if (parser_expect_special(current_token, T_NO_NEWLINE) || parser_expect_special(current_token, T_COMMA))
 	{
@@ -27,6 +29,7 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 		exit(-1);
 	}
 
+	// Input variable
 	current_token = tokens->data[++(*index)];
 	if (!parser_expect_identifier(current_token)) return false;
 
