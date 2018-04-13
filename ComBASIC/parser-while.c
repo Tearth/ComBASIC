@@ -2,12 +2,14 @@
 
 bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
+	// Expression
 	ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
 	vector_add(&keyword->children, expression_node);
 
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
+	// WHILE body
 	vector* body_tokens = parser_while_buildbody(tokens, index);
 
 	ast_node* whilebody_node = (ast_node*)malloc(sizeof(ast_node));
