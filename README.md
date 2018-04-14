@@ -32,11 +32,12 @@ pause
 | REM          | REM any tokens until the new line chars  |
 | LET          | LET variable = expression  |
 | WHILE ... WEND          | WHILE expression<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>WEND  |
-| FOR ... TO ... NEXT          | FOR variable = value TO expression<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>NEXT  |
-| IF ... THEN ... ELSE ... END IF          | IF expression THEN<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>ELSE<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>END IF |
+| FOR ... TO ... STEP ... NEXT          | FOR variable = value TO expression<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>NEXT<br><br>FOR variable = value TO expression STEP expression<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>NEXT|
+| IF ... THEN ... ELSE ... END IF          | IF expression THEN<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>END IF<br><br>IF expression THEN<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>ELSE<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>END IF |
 | GOTO          | GOTO line_number  |
-| PRINT          | PRINT "String with new line"<br>PRINT "String without new line";<br>PRINT expression<br>PRINT expression; |
-| INPUT          | INPUT "Prompt message"; variable<br>INPUT "Prompt message", variable |
+| GOSUB ... RETURN          | GOSUB line_number<br>&nbsp;&nbsp;&nbsp;&nbsp;instructions block<br>RETURN  |
+| PRINT          | PRINT "Hello "; 1+3*4, variable, " World!"; |
+| INPUT          | INPUT "Prompt message"; variable1, variable2, variable3= |
 
 # Operators
 
