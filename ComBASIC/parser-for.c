@@ -38,6 +38,16 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 
 	vector_add(&keyword->children, parser_expression_build(tokens, keyword, index, symbol_table));
 
+	// STEP keyword
+	current_token = tokens->data[*index];
+	if (parser_expect_keyword(current_token, "STEP"))
+	{
+		current_token = tokens->data[++(*index)];
+		if (!parser_expect_expression(current_token)) return false;
+
+		vector_add(&keyword->children, parser_expression_build(tokens, keyword, index, symbol_table));
+	}
+
 	current_token = tokens->data[*index];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 

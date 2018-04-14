@@ -17,6 +17,7 @@ const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] =
 	"PRINT",
 	"REM",
 	"RETURN",
+	"STEP",
 	"THEN",
 	"TO",
 	"WEND",
