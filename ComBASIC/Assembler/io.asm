@@ -18,7 +18,7 @@ _getstdinputhandle:
     mov     ebp, esp
 
     ; HANDLE GetStdHandle(STD_INPUT_HANDLE)
-    push    -10
+    push    -10             ; STD_INPUT_HANDLE
     call    GetStdHandle
    
     mov     esp, ebp
@@ -30,7 +30,7 @@ _getstdoutputhandle:
     mov     ebp, esp
 
     ; HANDLE GetStdHandle(STD_OUTPUT_HANDLE)
-    push    -11
+    push    -11             ; STD_OUTPUT_HANDLE
     call    GetStdHandle
    
     mov     esp, ebp
@@ -45,13 +45,13 @@ _printchar:
     call    _getstdoutputhandle
     mov     ebx, eax    
 
-    ; BOOL WriteFile(hstdOut, message, length, 0, 0);
-    push    0
-    push    0
-    push    1
+    ; BOOL WriteFile(hstdOut, message, length, bytesWritten, overlapped)
+    push    0               ; overlapped
+    push    0               ; bytesWritten
+    push    1               ; length
     lea     eax, [ebp+8]
-    push    eax
-    push    ebx
+    push    eax             ; message
+    push    ebx             ; hStdOut
     call    WriteFile
     
     mov     esp, ebp
@@ -121,14 +121,14 @@ _printstring:
     call    _getstdoutputhandle
     mov     ebx, eax    
 
-    ; BOOL WriteFile(hstdOut, message, length, 0, 0);
-    push    0
-    push    0
-    mov     eax, [ebp+8]
-    push    eax
+    ; BOOL WriteFile(hStdOut, message, length, bytesWritten, overlapped)
+    push    0               ; overlapped
+    push    0               ; bytesWritten
+    mov     eax, [ebp+8]    
+    push    eax             ; length
     mov     eax, [ebp+12]
-    push    eax
-    push    ebx
+    push    eax             ; message
+    push    ebx             ; hStdOut
     call    WriteFile
     
     mov     esp, ebp
@@ -145,12 +145,12 @@ _readnumber:
     mov     ebx, eax
     
     ;BOOL WINAPI ReadConsole(hConsoleInput, lpBuffer, nNumberOfCharsToRead, lpNumberOfCharsRead, pInputControl)
-    push    0
+    push    0               ; pInputControl
     lea     eax, [ebp-4]
-    push    eax
-    push    128
-    push    iobuffer
-    push    ebx
+    push    eax             ; lpNumberOfCharsRead
+    push    128             ; nNumberOfCharsToRead
+    push    iobuffer        ; lpBuffer
+    push    ebx             ; hConsoleInput
     call    ReadConsoleA
     
     ; pop digits count and sub end line chars
@@ -158,12 +158,22 @@ _readnumber:
     sub     esi, 3
     
     mov     ebx, iobuffer
-    
     xor     eax, eax
+    xor     edx, edx
+    
 _readnumber_loop:
     imul    eax, 10
     xor     ecx, ecx
     mov     cl, [ebx]
+    
+    cmp     ecx, '-'
+    jne     _readnumber_add_number
+    mov     edx, 1
+    inc     ebx
+    dec     esi
+    jmp     _readnumber_loop
+    
+_readnumber_add_number:
     sub     ecx, '0'
     add     eax, ecx
     inc     ebx
@@ -172,6 +182,11 @@ _readnumber_loop:
     cmp     esi, 0
     jge     _readnumber_loop
     
+    cmp     edx, 1
+    jne     _readnumber_end
+    neg     eax
+    
+_readnumber_end: 
     mov     esp, ebp
     pop     ebp
     ret
@@ -190,8 +205,8 @@ _setcursorposition:
     mov     ax, [ebp+12]
     
     ; BOOL SetConsoleCursorPosition(hConsoleOutput, dwCursorPosition)
-    push    eax
-    push    ebx  
+    push    eax                 ; hConsoleOutput
+    push    ebx                 ; dwCursorPosition
     call    SetConsoleCursorPosition
     
     mov     esp, ebp
@@ -209,8 +224,8 @@ _clear:
     
     ; BOOL GetConsoleScreenBufferInfo(hConsoleOutput, lpConsoleScreenBufferInfo)
     lea     eax, [ebp-24]
-    push    eax
-    push    ebx
+    push    eax                 ; hConsoleOutput
+    push    ebx                 ; lpConsoleScreenBufferInfo
     call    GetConsoleScreenBufferInfo
     
     xor     eax, eax
@@ -222,11 +237,11 @@ _clear:
     
     ; BOOL WINAPI FillConsoleOutputCharacter(hConsoleOutput, cCharacter, nLength, dwWriteCoord, lpNumberOfCharsWritten);
     lea     eax, [ebp-28]
-    push    eax
-    push    0
-    push    edx
-    push    ' '
-    push    ebx
+    push    eax                 ; lpNumberOfCharsWritten
+    push    0                   ; dwWriteCoord
+    push    edx                 ; nLength
+    push    ' '                 ; cCharacter
+    push    ebx                 ; hConsoleOutput
     call    FillConsoleOutputCharacterA
     
     push    0
