@@ -5,6 +5,9 @@ void string_init(string* string)
 	string->data = NULL;
 	string->size = 0;
 	string->count = 0;
+
+	string_append_c(string, 0);
+	string->count--;
 }
 
 string* string_clone(string* original)
