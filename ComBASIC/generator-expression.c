@@ -6,10 +6,14 @@ void generator_expression_build(string* code, ast_node* root, vector* symbol_tab
 {
 	if (root->type == N_EXPRESSION) root = root->children.data[0];
 
+	string_append_s(code, "\tpush\tebp\n");
+	string_append_s(code, "\tmov \tebp, esp\n");
+
 	int stack_pointer = 4;
 	generator_expression_build_r(code, root, &stack_pointer, symbol_table);
 
 	string_append_s(code, "\tmov \tesp, ebp\n");
+	string_append_s(code, "\tpop \tebp\n");
 }
 
 void generator_expression_build_r(string* code, ast_node* root, int* stack_pointer, vector* symbol_table)
