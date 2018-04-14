@@ -14,7 +14,7 @@ void generator_input_build(string* code, ast_node* root, vector* symbol_table)
 	string_append_s(code, "\tcall\t_printstring\n");
 
 	ast_node* input_separator = root->children.data[1];
-	if(input_separator->type == N_NONEWLINE)
+	if(input_separator->type == N_SEMICOLON)
 	{
 		string_append_s(code, "\tpush\t'?'\n");
 		string_append_s(code, "\tcall\t_printchar\n");

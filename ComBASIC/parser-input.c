@@ -10,14 +10,14 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 
 	// Separator
 	current_token = tokens->data[*index];
-	if (parser_expect_special(current_token, T_NO_NEWLINE) || parser_expect_special(current_token, T_COMMA))
+	if (parser_expect_special(current_token, T_SEMICOLON) || parser_expect_special(current_token, T_COMMA))
 	{
 		ast_node* separator_node = (ast_node*)malloc(sizeof(ast_node));
 		astnode_init(separator_node, -1, "");
 
 		switch (current_token->token_type)
 		{
-			case T_NO_NEWLINE:	{ separator_node->type = N_NONEWLINE; break; }
+			case T_SEMICOLON:	{ separator_node->type = N_SEMICOLON; break; }
 			case T_COMMA:		{ separator_node->type = N_COMMA; break; }
 		}
 

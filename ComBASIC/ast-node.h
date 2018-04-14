@@ -27,7 +27,7 @@ typedef enum ast_node_type
 	N_LINENUMBER,
 	N_MOD,
 	N_MUL,
-	N_NONEWLINE,
+	N_SEMICOLON,
 	N_NOTEQUAL,
 	N_NUMBER,
 	N_OR,

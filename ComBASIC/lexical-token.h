@@ -7,7 +7,7 @@ typedef enum lexical_token_type
 	T_IDENTIFIER,
 	T_NUMBER,
 	T_STRING,
-	T_NO_NEWLINE,
+	T_SEMICOLON,
 	T_OPERATOR,
 	T_COMMA,
 	T_END_OF_INSTRUCTION
