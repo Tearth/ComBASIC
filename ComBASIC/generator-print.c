@@ -57,7 +57,6 @@ void generator_print_build(string* code, ast_node* root, vector* symbol_table)
 		{
 			string_append_s(code, "\tpush\t10\n");
 			string_append_s(code, "\tcall\t_printchar\n");
-
 		}
 	}
 }
