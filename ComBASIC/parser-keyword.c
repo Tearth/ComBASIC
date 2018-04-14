@@ -14,11 +14,13 @@ ast_node* parser_keyword_build(vector* tokens, int* index)
 	else if (strcmp("END IF", token->value.data) == 0)	keyword_token->type = N_ENDIF;
 	else if (strcmp("FOR", token->value.data) == 0)		keyword_token->type = N_FOR;
 	else if (strcmp("GOTO", token->value.data) == 0)	keyword_token->type = N_GOTO;
+	else if (strcmp("GOSUB", token->value.data) == 0)	keyword_token->type = N_GOSUB;
 	else if (strcmp("IF", token->value.data) == 0)		keyword_token->type = N_IF;
 	else if (strcmp("INPUT", token->value.data) == 0)	keyword_token->type = N_INPUT;
 	else if (strcmp("LET", token->value.data) == 0)		keyword_token->type = N_LET;
 	else if (strcmp("PRINT", token->value.data) == 0)	keyword_token->type = N_PRINT;
 	else if (strcmp("REM", token->value.data) == 0)		keyword_token->type = N_REM;
+	else if (strcmp("RETURN", token->value.data) == 0)	keyword_token->type = N_RETURN;
 	else if (strcmp("WEND", token->value.data) == 0)	keyword_token->type = N_WEND;
 	else if (strcmp("WHILE", token->value.data) == 0)	keyword_token->type = N_WHILE;
 

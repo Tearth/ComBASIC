@@ -141,6 +141,7 @@
     <ClCompile Include="parser-end.c" />
     <ClCompile Include="parser-expression.c" />
     <ClCompile Include="parser-for.c" />
+    <ClCompile Include="parser-gosub.c" />
     <ClCompile Include="parser-if.c" />
     <ClCompile Include="parser-goto.c" />
     <ClCompile Include="parser-input.c" />
@@ -149,6 +150,7 @@
     <ClCompile Include="parser-linenumber.c" />
     <ClCompile Include="parser-print.c" />
     <ClCompile Include="parser-rem.c" />
+    <ClCompile Include="parser-return.c" />
     <ClCompile Include="parser-string.c" />
     <ClCompile Include="parser-utils.c" />
     <ClCompile Include="parser-while.c" />
@@ -182,6 +184,7 @@
     <ClInclude Include="parser-end.h" />
     <ClInclude Include="parser-expression.h" />
     <ClInclude Include="parser-for.h" />
+    <ClInclude Include="parser-gosub.h" />
     <ClInclude Include="parser-if.h" />
     <ClInclude Include="parser-goto.h" />
     <ClInclude Include="parser-input.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="parser-linenumber.h" />
     <ClInclude Include="parser-print.h" />
     <ClInclude Include="parser-rem.h" />
+    <ClInclude Include="parser-return.h" />
     <ClInclude Include="parser-string.h" />
     <ClInclude Include="parser-utils.h" />
     <ClInclude Include="parser-while.h" />
