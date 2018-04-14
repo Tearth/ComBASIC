@@ -24,6 +24,11 @@ const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] =
 	"WHILE",
 };
 
+const char* functions[MAX_KEYWORDS_TOKENS_COUNT] =
+{
+	"ABS"
+};
+
 const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = 
 {
 	"(",
@@ -112,6 +117,11 @@ lexical_token* lexical_readword(const char* source, int* length)
 		if (keywords[i] && strcmp(read_token->value.data, keywords[i]) == 0)
 		{
 			read_token->token_type = T_KEYWORD;
+			break;
+		}
+		else if (functions[i] && strcmp(read_token->value.data, functions[i]) == 0)
+		{
+			read_token->token_type = T_FUNCTION;
 			break;
 		}
 		else if (operators[i] && strcmp(read_token->value.data, operators[i]) == 0)
@@ -301,7 +311,7 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 			lexical_token* left_token = tokens_vector->data[i - 1];
 			lexical_token* right_token = tokens_vector->data[i + 1];
 
-			if (left_token->token_type != T_NUMBER && left_token->token_type != T_IDENTIFIER && strcmp(")", left_token->value.data) != 0)
+			if (left_token->token_type != T_NUMBER && left_token->token_type != T_FUNCTION && left_token->token_type != T_IDENTIFIER && strcmp(")", left_token->value.data) != 0)
 			{
 				if (strcmp("NOT", current_token->value.data) == 0)
 				{
@@ -325,10 +335,10 @@ void lexical_fixunaryoperators(vector* tokens_vector)
 				{
 					vector_insert(tokens_vector, right_parenthesis_token, i + 2);
 				}
-				else if (right_token->token_type == T_OPERATOR && strcmp("(", right_token->value.data) == 0)
+				else if (right_token->token_type == T_FUNCTION || (right_token->token_type == T_OPERATOR && strcmp("(", right_token->value.data) == 0))
 				{
 					int parenthesis_balance = 1;
-					int current_search_index = i + 2;
+					int current_search_index = right_token->token_type == T_FUNCTION ? i + 3 : i + 2;
 
 					while (parenthesis_balance > 0)
 					{

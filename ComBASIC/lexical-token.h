@@ -4,6 +4,7 @@
 typedef enum lexical_token_type
 {
 	T_KEYWORD,
+	T_FUNCTION,
 	T_IDENTIFIER,
 	T_NUMBER,
 	T_STRING,
