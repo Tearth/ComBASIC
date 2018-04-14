@@ -182,6 +182,12 @@
     <ClCompile Include="parser-return.c">
       <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="generator-gosub.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
+    <ClCompile Include="generator-return.c">
+      <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -306,6 +312,12 @@
     </ClInclude>
     <ClInclude Include="parser-return.h">
       <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-gosub.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="generator-return.h">
+      <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

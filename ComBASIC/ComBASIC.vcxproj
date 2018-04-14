@@ -124,6 +124,7 @@
     <ClCompile Include="generator-end.c" />
     <ClCompile Include="generator-expression.c" />
     <ClCompile Include="generator-for.c" />
+    <ClCompile Include="generator-gosub.c" />
     <ClCompile Include="generator-goto.c" />
     <ClCompile Include="generator-if.c" />
     <ClCompile Include="generator-input.c" />
@@ -131,6 +132,7 @@
     <ClCompile Include="generator-linenumber.c" />
     <ClCompile Include="generator-print.c" />
     <ClCompile Include="generator-rem.c" />
+    <ClCompile Include="generator-return.c" />
     <ClCompile Include="generator-while.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="lexical-token.c" />
@@ -169,6 +171,7 @@
     <ClInclude Include="generator-end.h" />
     <ClInclude Include="generator-expression.h" />
     <ClInclude Include="generator-for.h" />
+    <ClInclude Include="generator-gosub.h" />
     <ClInclude Include="generator-goto.h" />
     <ClInclude Include="generator-if.h" />
     <ClInclude Include="generator-input.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="generator-linenumber.h" />
     <ClInclude Include="generator-print.h" />
     <ClInclude Include="generator-rem.h" />
+    <ClInclude Include="generator-return.h" />
     <ClInclude Include="generator-while.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="lexical-token.h" />
