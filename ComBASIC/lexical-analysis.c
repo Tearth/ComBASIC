@@ -26,7 +26,8 @@ const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] =
 
 const char* functions[MAX_KEYWORDS_TOKENS_COUNT] =
 {
-	"ABS"
+	"ABS",
+	"TIME"
 };
 
 const char* operators[MAX_KEYWORDS_TOKENS_COUNT] = 

@@ -12,6 +12,7 @@ extern SetConsoleCursorPosition
 extern GetConsoleScreenBufferInfo
 extern FillConsoleOutputCharacterA
 extern ReadConsoleA
+extern GetTickCount
 
 _getstdinputhandle:
     push    ebp
@@ -251,6 +252,15 @@ _clear:
     mov     esp, ebp
     pop     ebp
     ret
+    
+_gettime:
+    push    ebp
+    mov     ebp, esp
+    
+    call    GetTickCount
+    
+    mov     esp, ebp
+    pop     ebp
     
 _exit:
     push    ebp

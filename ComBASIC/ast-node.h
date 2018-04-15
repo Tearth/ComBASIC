@@ -36,6 +36,7 @@ typedef enum ast_node_type
 	N_REM,
 	N_RETURN,
 	N_SUB,
+	N_TIME,
 	N_VARIABLE,
 	N_WEND,
 	N_WHILE,
