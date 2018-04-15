@@ -22,24 +22,48 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 
 	if (root->children.count > 0)
 	{
-		ast_node* first = root->children.data[1];
-		ast_node* second = root->children.data[0];
+		ast_node *first, *second;
+		int first_stack_pointer, second_stack_pointer;
 
-		generator_expression_build_r(code, first, stack_pointer, symbol_table);
-		string_append_s(code, "\tpush\teax\n");
-		int first_stack_pointer = *stack_pointer;
-		(*stack_pointer) += 4;
+		if (root->children.count == 2)
+		{
+			first = root->children.data[1];
 
-		generator_expression_build_r(code, second, stack_pointer, symbol_table);
-		string_append_s(code, "\tpush\teax\n");
-		int second_stack_pointer = *stack_pointer;
-		(*stack_pointer) += 4;
+			generator_expression_build_r(code, first, stack_pointer, symbol_table);
+			string_append_s(code, "\tpush\teax\n");
+			first_stack_pointer = *stack_pointer;
+			(*stack_pointer) += 4;
 
-		sprintf_s(buffer, 128, "\tmov \teax, [ebp-%d]\n", first_stack_pointer);
-		string_append_s(code, buffer);
+			second = root->children.data[0];
 
-		sprintf_s(buffer, 128, "\tmov \tebx, [ebp-%d]\n", second_stack_pointer);
-		string_append_s(code, buffer);
+			generator_expression_build_r(code, second, stack_pointer, symbol_table);
+			string_append_s(code, "\tpush\teax\n");
+			second_stack_pointer = *stack_pointer;
+			(*stack_pointer) += 4;
+		}
+		else if (root->children.count == 1)
+		{
+			first = root->children.data[0];
+
+			generator_expression_build_r(code, first, stack_pointer, symbol_table);
+			string_append_s(code, "\tpush\teax\n");
+			first_stack_pointer = *stack_pointer;
+			(*stack_pointer) += 4;
+		}
+
+		if (root->children.count == 2)
+		{
+			sprintf_s(buffer, 128, "\tmov \teax, [ebp-%d]\n", first_stack_pointer);
+			string_append_s(code, buffer);
+
+			sprintf_s(buffer, 128, "\tmov \tebx, [ebp-%d]\n", second_stack_pointer);
+			string_append_s(code, buffer);
+		}
+		else if (root->children.count == 1)
+		{
+			sprintf_s(buffer, 128, "\tmov \teax, [ebp-%d]\n", first_stack_pointer);
+			string_append_s(code, buffer);
+		}
 
 		switch (root->type)
 		{
@@ -204,6 +228,20 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 				string_append_s(code, buffer);
 
 				string_append_s(code, "\tmov \teax, 0\n");
+
+				sprintf_s(buffer, 128, "_expression_label%d:\n", expression_labels_count);
+				string_append_s(code, buffer);
+
+				expression_labels_count++;
+				break;
+			}
+
+			case N_ABS:
+			{
+				string_append_s(code, "\tcmp \teax, 0\n");
+				sprintf_s(buffer, 128, "\tjg  \t_expression_label%d\n", expression_labels_count);
+
+				string_append_s(code, "\tneg \teax\n");
 
 				sprintf_s(buffer, 128, "_expression_label%d:\n", expression_labels_count);
 				string_append_s(code, buffer);
