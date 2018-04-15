@@ -4,6 +4,7 @@
 
 typedef enum ast_node_type
 {
+	N_ABS,
 	N_ADD,
 	N_AND,
 	N_CLS,

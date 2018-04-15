@@ -3,7 +3,7 @@
 bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
 {
 	// Expression
-	ast_node* expression_node = parser_expression_build(tokens, keyword, index, symbol_table);
+	ast_node* expression_node = parser_expression_build(tokens, index, symbol_table);
 	vector_add(&keyword->children, expression_node);
 
 	// THEN keyword

@@ -4,9 +4,10 @@
 #include "symbol-table.h"
 #include "symbol-node.h"
 #include "parser-utils.h"
+#include "parser-function.h"
 
-ast_node* parser_expression_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
-vector* parser_expression_buildrpn(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+ast_node* parser_expression_build(vector* tokens, int* index, vector* symbol_table);
+vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_table);
 vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table);
 void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root);
 
