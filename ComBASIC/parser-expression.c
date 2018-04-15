@@ -210,7 +210,7 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 		}
 		else
 		{
-			int arguments_count = parser_function_getargumentscount(current_node->type);
+			int arguments_count = parser_expression_getargumentscount(current_node->type);
 
 			for (int i = 0; i < arguments_count; i++)
 			{
@@ -267,4 +267,13 @@ int parser_expression_getpriority(lexical_token* token)
 
 	printf("ERROR: Unrecognised symbol: %s.\n");
 	exit(-1);
+}
+
+int parser_expression_getargumentscount(ast_node_type node_type)
+{
+	switch (node_type)
+	{
+		case N_ABS:		return 1;
+		default:		return 2;
+	}
 }
