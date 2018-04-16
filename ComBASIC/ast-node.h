@@ -35,6 +35,7 @@ typedef enum ast_node_type
 	N_PRINT,
 	N_REM,
 	N_RETURN,
+	N_RND,
 	N_SUB,
 	N_TIME,
 	N_VARIABLE,

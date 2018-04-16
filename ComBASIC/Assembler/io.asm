@@ -265,6 +265,30 @@ _gettime:
     pop     ebp
 	ret
 
+_rnd:
+    push    ebp
+    mov     ebp, esp
+    
+    call    _gettime
+    mov     ebx, 1664525
+    imul    ebx
+    
+    mov     ebx, 1013904223
+    add     eax, ebx
+    
+    and     eax, 0x7FFFFFFF
+    
+    cdq
+    mov     ebx, [ebp+8]
+    add     ebx, 1
+    idiv    ebx
+    
+    mov     eax, edx
+    
+    mov     esp, ebp
+    pop     ebp
+    ret     4
+
 _wait:
 	push    ebp
     mov     ebp, esp

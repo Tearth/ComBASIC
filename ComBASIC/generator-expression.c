@@ -270,6 +270,13 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 			break;
 		}
 
+		case N_RND:
+		{
+			string_append_s(code, "\tpush\teax\n");
+			string_append_s(code, "\tcall\t_rnd\n");
+			break;
+		}
+
 		default:
 		{
 			printf("ERROR: invalid operator.\n");

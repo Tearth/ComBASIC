@@ -185,6 +185,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 			case T_FUNCTION:
 			{
 				if (strcmp("ABS", current_token->value.data) == 0)			node->type = N_ABS;
+				if (strcmp("RND", current_token->value.data) == 0)			node->type = N_RND;
 				if (strcmp("TIME", current_token->value.data) == 0)			node->type = N_TIME;
 
 				break;
@@ -275,6 +276,7 @@ int parser_expression_getargumentscount(ast_node_type node_type)
 	switch (node_type)
 	{
 		case N_ABS:		return 1;
+		case N_RND:		return 1;
 		case N_TIME:	return 0;
 		default:		return 2;
 	}
