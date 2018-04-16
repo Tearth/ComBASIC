@@ -1,5 +1,8 @@
 ; ComBASIC input/output functions
 
+section .data
+    random_seed  DD      0
+
 section .bss
     iobuffer:    resb    128
 
@@ -269,7 +272,14 @@ _rnd:
     push    ebp
     mov     ebp, esp
     
+    mov     eax, [random_seed]
+    cmp     eax, 0
+    jnz     _rnd_calculate
+    
     call    _gettime
+    mov     [random_seed], eax
+    
+_rnd_calculate:  
     mov     ebx, 1664525
     imul    ebx
     
@@ -283,6 +293,7 @@ _rnd:
     add     ebx, 1
     idiv    ebx
     
+    mov     [random_seed], eax
     mov     eax, edx
     
     mov     esp, ebp
