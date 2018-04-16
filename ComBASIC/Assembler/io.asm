@@ -270,6 +270,8 @@ _wait:
     mov     ebp, esp
     
 	; VOID WINAPI Sleep(dwMilliseconds);
+	mov     eax, [ebp+8]
+    push    eax
     call    Sleep
     
     mov     esp, ebp

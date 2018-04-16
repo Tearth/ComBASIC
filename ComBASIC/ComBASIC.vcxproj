@@ -133,6 +133,7 @@
     <ClCompile Include="generator-print.c" />
     <ClCompile Include="generator-rem.c" />
     <ClCompile Include="generator-return.c" />
+    <ClCompile Include="generator-wait.c" />
     <ClCompile Include="generator-while.c" />
     <ClCompile Include="lexical-analysis.c" />
     <ClCompile Include="lexical-token.c" />
@@ -181,6 +182,7 @@
     <ClInclude Include="generator-print.h" />
     <ClInclude Include="generator-rem.h" />
     <ClInclude Include="generator-return.h" />
+    <ClInclude Include="generator-wait.h" />
     <ClInclude Include="generator-while.h" />
     <ClInclude Include="lexical-analysis.h" />
     <ClInclude Include="lexical-token.h" />

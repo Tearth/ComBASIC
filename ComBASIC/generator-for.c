@@ -72,7 +72,7 @@ void generator_for_build(string* code, ast_node* root, vector* symbol_table)
 	sprintf_s(buffer, 128, "\tmov \tecx, [%s]\n", index_variable_node->value.data);
 	string_append_s(code, buffer);
 
-	string_append_s(code, "\tpop\teax\n");
+	string_append_s(code, "\tpop \teax\n");
 
 	string_append_s(code, "\tadd \tecx, eax\n");
 
