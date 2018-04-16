@@ -53,6 +53,7 @@ bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* s
 		case N_PRINT:	{ result = parser_print_build(tokens, keyword, index, symbol_table); break; }
 		case N_REM:		{ result = parser_rem_build(tokens, keyword, index, symbol_table); break; }
 		case N_RETURN:	{ result = parser_return_build(tokens, keyword, index, symbol_table); break; }
+		case N_WAIT:	{ result = parser_wait_build(tokens, keyword, index, symbol_table); break; }
 		case N_WHILE:	{ result = parser_while_build(tokens, keyword, index, symbol_table); break; }
 	}
 

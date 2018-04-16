@@ -188,6 +188,9 @@
     <ClCompile Include="generator-return.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
+    <ClCompile Include="parser-wait.c">
+      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vector.h">
@@ -318,6 +321,9 @@
     </ClInclude>
     <ClInclude Include="generator-return.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="parser-wait.h">
+      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

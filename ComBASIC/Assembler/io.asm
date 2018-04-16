@@ -13,6 +13,7 @@ extern GetConsoleScreenBufferInfo
 extern FillConsoleOutputCharacterA
 extern ReadConsoleA
 extern GetTickCount
+extern Sleep
 
 _getstdinputhandle:
     push    ebp
@@ -257,10 +258,23 @@ _gettime:
     push    ebp
     mov     ebp, esp
     
+	; DWORD GetTickCount(void)
     call    GetTickCount
     
     mov     esp, ebp
     pop     ebp
+	ret
+
+_wait:
+	push    ebp
+    mov     ebp, esp
+    
+	; VOID WINAPI Sleep(dwMilliseconds);
+    call    Sleep
+    
+    mov     esp, ebp
+    pop     ebp
+	ret		4
     
 _exit:
     push    ebp

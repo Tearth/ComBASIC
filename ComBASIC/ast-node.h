@@ -38,6 +38,7 @@ typedef enum ast_node_type
 	N_SUB,
 	N_TIME,
 	N_VARIABLE,
+	N_WAIT,
 	N_WEND,
 	N_WHILE,
 	N_ROOT

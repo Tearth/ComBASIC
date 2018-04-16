@@ -21,6 +21,7 @@ ast_node* parser_keyword_build(vector* tokens, int* index)
 	else if (strcmp("PRINT", token->value.data) == 0)	keyword_token->type = N_PRINT;
 	else if (strcmp("REM", token->value.data) == 0)		keyword_token->type = N_REM;
 	else if (strcmp("RETURN", token->value.data) == 0)	keyword_token->type = N_RETURN;
+	else if (strcmp("WAIT", token->value.data) == 0)	keyword_token->type = N_WAIT;
 	else if (strcmp("WEND", token->value.data) == 0)	keyword_token->type = N_WEND;
 	else if (strcmp("WHILE", token->value.data) == 0)	keyword_token->type = N_WHILE;
 

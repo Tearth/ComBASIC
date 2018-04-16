@@ -20,6 +20,7 @@ const char* keywords[MAX_KEYWORDS_TOKENS_COUNT] =
 	"STEP",
 	"THEN",
 	"TO",
+	"WAIT",
 	"WEND",
 	"WHILE",
 };

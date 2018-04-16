@@ -155,6 +155,7 @@
     <ClCompile Include="parser-return.c" />
     <ClCompile Include="parser-string.c" />
     <ClCompile Include="parser-utils.c" />
+    <ClCompile Include="parser-wait.c" />
     <ClCompile Include="parser-while.c" />
     <ClCompile Include="string.c" />
     <ClCompile Include="symbol-node.c" />
@@ -200,6 +201,7 @@
     <ClInclude Include="parser-return.h" />
     <ClInclude Include="parser-string.h" />
     <ClInclude Include="parser-utils.h" />
+    <ClInclude Include="parser-wait.h" />
     <ClInclude Include="parser-while.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="symbol-node.h" />
