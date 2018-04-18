@@ -1,3 +1,8 @@
+/**
+* @file string.h
+* @brief Simple implementation of the C++ string with all basic methods to manage structure.
+*/
+
 #pragma once
 #include <stdlib.h>
 #include <stdbool.h>

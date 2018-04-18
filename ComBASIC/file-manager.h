@@ -1,3 +1,8 @@
+/**
+* @file file-manager.h
+* @brief Basic functions to load and save files.
+*/
+
 #pragma once
 #include <stdlib.h>
 #include <stdio.h>

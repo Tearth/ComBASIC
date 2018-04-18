@@ -1,3 +1,8 @@
+/**
+* @file vector.h
+* @brief Simple implementation of the C++ vector with all basic methods to manage structure.
+*/
+
 #pragma once
 #include <stdlib.h>
 #include <stdio.h>
