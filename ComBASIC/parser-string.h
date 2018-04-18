@@ -1,3 +1,8 @@
+/**
+* @file parser-string.h
+* @brief String parser.
+*/
+
 #pragma once
 #include "ast-node.h"
 #include "lexical-analysis.h"
