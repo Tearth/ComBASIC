@@ -1,6 +1,6 @@
 #include "parser-string.h"
 
-bool parser_string_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+ast_node* parser_string_build(vector* tokens, int* index, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
 
@@ -11,8 +11,6 @@ bool parser_string_build(vector* tokens, ast_node* keyword, int* index, vector* 
 	ast_node* string_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(string_node, N_VARIABLE, string_symbol->name.data);
 
-	vector_add(&keyword->children, string_node);
 	(*index)++;
-
-	return true;
+	return string_node;
 }

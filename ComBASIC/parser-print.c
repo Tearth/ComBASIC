@@ -8,7 +8,8 @@ bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	{
 		if (parser_expect_string(current_token))
 		{
-			parser_string_build(tokens, keyword, index, symbol_table);
+			ast_node* string_node = parser_string_build(tokens, index, symbol_table);
+			vector_add(&keyword->children, string_node);
 		}
 		else if (parser_expect_expression(current_token))
 		{

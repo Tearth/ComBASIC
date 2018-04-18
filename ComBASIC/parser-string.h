@@ -9,4 +9,4 @@
 #include "symbol-table.h"
 #include "parser-utils.h"
 
-bool parser_string_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+ast_node* parser_string_build(vector* tokens, int* index, vector* symbol_table);

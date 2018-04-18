@@ -6,7 +6,8 @@ bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_string(current_token)) return false;
 	
-	parser_string_build(tokens, keyword, index, symbol_table);
+	ast_node* string_node = parser_string_build(tokens, index, symbol_table);
+	vector_add(&keyword->children, string_node);
 
 	current_token = tokens->data[*index];
 	if (!parser_expect_special(current_token, T_SEMICOLON)) return false;
