@@ -33,12 +33,6 @@
     <Filter Include="Source Files\Compilation\SemanticAnalysis\Parsers">
       <UniqueIdentifier>{af34232c-68f8-4b45-8e3c-28d839d9992b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Compilation\SemanticAnalysis">
-      <UniqueIdentifier>{d1c41d98-d9cf-4665-82b7-7845b3a8ce25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Compilation\SemanticAnalysis\Parsers">
-      <UniqueIdentifier>{8ffdc205-8e4a-4cc7-9dc0-513220057761}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assembler">
       <UniqueIdentifier>{05e63ca2-9320-4903-a5f3-c6cc8aeaad72}</UniqueIdentifier>
     </Filter>
@@ -53,6 +47,12 @@
     </Filter>
     <Filter Include="Source Files\Compilation\CodeGeneration\Generators">
       <UniqueIdentifier>{72de325a-d6d7-4fd6-9fb4-8cc29d7ac459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Compilation\SyntaxAnalysis">
+      <UniqueIdentifier>{d1c41d98-d9cf-4665-82b7-7845b3a8ce25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Compilation\SyntaxAnalysis\Parsers">
+      <UniqueIdentifier>{8ffdc205-8e4a-4cc7-9dc0-513220057761}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -203,34 +203,34 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="parser-linenumber.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-keyword.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-cls.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-rem.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-print.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="lexical-analysis.h">
       <Filter>Header Files\Compilation\LexicalAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="ast-builder.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="symbol-table.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="ast-node.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="symbol-node.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="file-manager.h">
       <Filter>Header Files\Utils</Filter>
@@ -251,16 +251,16 @@
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-string.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-expression.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-expression.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-let.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-let.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
@@ -269,16 +269,16 @@
       <Filter>Header Files\Compilation\LexicalAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="parser-end.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-end.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-block.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-if.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-block.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
@@ -287,37 +287,37 @@
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-goto.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-goto.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-while.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-while.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-input.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-input.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-for.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-for.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-utils.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-gosub.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="parser-return.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-gosub.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
@@ -326,7 +326,7 @@
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>
     </ClInclude>
     <ClInclude Include="parser-wait.h">
-      <Filter>Header Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Header Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClInclude>
     <ClInclude Include="generator-wait.h">
       <Filter>Header Files\Compilation\CodeGeneration\Generators</Filter>

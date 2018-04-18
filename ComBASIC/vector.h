@@ -58,7 +58,7 @@ void vector_remove(vector* vector, int index);
 
 /**
 * @brief Clears the vector structure by removing all items from the internal list. Note that the items must be
-	     manually free, otherwise there will be memory leak.
+*	     manually free, otherwise there will be memory leak.
 * @param vector Vector structure to clear.
 */
 void vector_clear(vector* vector);

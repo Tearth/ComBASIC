@@ -1,7 +1,15 @@
+/**
+* @file ast-node.h
+* @brief AST node is just a simple node (or leaf) in AST. It contains its type, value and vector of children.
+*/
+
 #pragma once
 #include "string.h"
 #include "vector.h"
 
+/**
+* @brief The list of ast node types.
+*/
 typedef enum ast_node_type
 {
 	N_ABS,
@@ -45,12 +53,37 @@ typedef enum ast_node_type
 	N_ROOT
 } ast_node_type;
 
+/**
+* @brief The structure which contains data about ast node like type, value (line number, variable name, ...), value.
+*/
 typedef struct ast_node
 {
+	/**
+	* @brief The AST node type.
+	*/
 	ast_node_type type;
+
+	/**
+	* @brief The AST node value.
+	*/
 	string value;
+
+	/**
+	* @brief The AST node children (empty if leaf).
+	*/
 	vector children;
 } ast_node;
 
+/**
+* @brief Inits the AST node based on the passed parameters.
+* @param node The AST node to init.
+* @param type AST node type.
+* @param value The AST node value.
+*/
 void astnode_init(ast_node* node, ast_node_type type, const char* value);
+
+/**
+* @brief Clears all AST.
+* @param node AST to clear.
+*/
 void astnode_clear(ast_node* node);
