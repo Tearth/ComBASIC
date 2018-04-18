@@ -56,12 +56,12 @@ vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_ta
 * @brief Converts an output RPN vector to the vector of AST nodes (but still not tree).
 * @param rpn The output RPN vector.
 * @param symbol_table Symbol table.
-* @return The vector of AST RPN expression nodes.
+* @return The vector of RPN expression nodes.
 */
 vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table);
 
 /**
-* @brief Converts an vector of AST RPN nodes to the tree.
+* @brief Converts an vector of RPN nodes to the tree.
 * @param rpn_nodes The vector of RPN nodes.
 * @param expression_root The expression root node.
 */

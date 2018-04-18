@@ -8,7 +8,7 @@
 #include "vector.h"
 
 /**
-* @brief The list of ast node types.
+* @brief The list of AST node types.
 */
 typedef enum ast_node_type
 {
@@ -54,7 +54,7 @@ typedef enum ast_node_type
 } ast_node_type;
 
 /**
-* @brief The structure which contains data about ast node like type, value (line number, variable name, ...), value.
+* @brief The structure which contains data about AST node like type, value (line number, variable name, ...), value.
 */
 typedef struct ast_node
 {
