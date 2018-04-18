@@ -267,7 +267,7 @@ int parser_expression_getpriority(lexical_token* token)
 	else if (parser_expect_operator(token, "("))		return 10;
 	else if (parser_expect_operator(token, ")"))		return 10;
 
-	printf("ERROR: Unrecognised symbol: %s.\n");
+	printf("ERROR: Unrecognised symbol: %s.\n", token->value.data);
 	exit(-1);
 }
 
