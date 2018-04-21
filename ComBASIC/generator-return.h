@@ -1,6 +1,6 @@
 /**
-* @file generator-ret.h
-* @brief RET asm generator.
+* @file generator-return.h
+* @brief RETURN asm generator.
 *
 * @code
 * 10 RETURN

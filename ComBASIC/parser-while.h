@@ -32,7 +32,7 @@
 * @param keyword The AST node with WHILE keyword.
 * @param index Current token index.
 * @param symbol_table Symbol table.
-* @return True if the WHILE ... WEND statement is valid, otherwise false.
+* @return True if the WHILE statement is valid, otherwise false.
 */
 bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
 

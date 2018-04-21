@@ -1,5 +1,5 @@
 /**
-* @file generator-gosub.h
+* @file generator-goto.h
 * @brief GOTO asm generator.
 *
 * @code
