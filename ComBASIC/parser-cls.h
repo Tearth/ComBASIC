@@ -24,6 +24,7 @@
 * @param tokens The vector of tokens to parse.
 * @param keyword The AST node with WHILE keyword.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @param symbol_table Symbol table.
 * @return True if the CLS statement is valid, otherwise false.
 */

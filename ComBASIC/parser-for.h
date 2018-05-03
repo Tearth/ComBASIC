@@ -41,6 +41,7 @@
 * @param tokens The vector of tokens to parse.
 * @param keyword The AST node with WHILE keyword.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @param symbol_table Symbol table.
 * @return True if the FOR statement is valid, otherwise false.
 */
@@ -50,6 +51,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, lexical_tok
 * @brief Gets the vector of tokens which are contained in FOR body (instruction block).
 * @param tokens The vector of tokens to parse.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @return Vector of tokens contained in FOR body.
 */
 vector* parser_for_buildbody(vector* tokens, int* index, lexical_token* line_number);

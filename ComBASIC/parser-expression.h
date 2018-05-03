@@ -38,6 +38,7 @@
 * @brief Builds an AST (Abstract Syntax Tree) for the expression.
 * @param tokens The vector of tokens to parse.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @param symbol_table Symbol table.
 * @return The pointer to the ast root node of the parsed expression.
 */
@@ -47,6 +48,7 @@ ast_node* parser_expression_build(vector* tokens, int* index, lexical_token* lin
 * @brief Converts an vector of tokens to the RPN output vector.
 * @param tokens The vector of tokens to parse.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @param symbol_table Symbol table.
 * @return The vector with valid RPN expression.
 */
@@ -64,6 +66,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table);
 * @brief Converts an vector of RPN nodes to the tree.
 * @param rpn_nodes The vector of RPN nodes.
 * @param expression_root The expression root node.
+* @param line_number Current line number to display in error messages.
 */
 void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root, lexical_token* line_number);
 

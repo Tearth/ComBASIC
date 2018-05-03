@@ -37,6 +37,7 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table);
 * @param tokens The vector of tokens to parse.
 * @param keyword The keyword.
 * @param index Current token index.
+* @param line_number Current line number to display in error messages.
 * @param symbol_table Symbol table.
 * @return True if the keyword and its parameters were valid, otherwise false.
 */
