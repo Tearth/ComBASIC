@@ -1,6 +1,6 @@
 #include "parser-input.h"
 
-bool parser_input_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_input_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	// Prompt string
 	lexical_token* current_token = tokens->data[*index];

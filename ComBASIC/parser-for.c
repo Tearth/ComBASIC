@@ -1,6 +1,6 @@
 #include "parser-for.h"
 
-bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_for_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
 
@@ -25,7 +25,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	current_token = tokens->data[++(*index)];
 	if (!parser_expect_expression(current_token)) return false;
 
-	vector_add(&initial_expression_root->children, parser_expression_build(tokens, index, symbol_table));
+	vector_add(&initial_expression_root->children, parser_expression_build(tokens, index, line_number, symbol_table));
 	vector_add(&keyword->children, initial_expression_root);
 
 	// TO keyword
@@ -36,7 +36,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	current_token = tokens->data[++(*index)];
 	if (!parser_expect_expression(current_token)) return false;
 
-	vector_add(&keyword->children, parser_expression_build(tokens, index, symbol_table));
+	vector_add(&keyword->children, parser_expression_build(tokens, index, line_number, symbol_table));
 
 	// STEP keyword
 	current_token = tokens->data[*index];
@@ -45,14 +45,14 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 		current_token = tokens->data[++(*index)];
 		if (!parser_expect_expression(current_token)) return false;
 
-		vector_add(&keyword->children, parser_expression_build(tokens, index, symbol_table));
+		vector_add(&keyword->children, parser_expression_build(tokens, index, line_number, symbol_table));
 	}
 
 	current_token = tokens->data[*index];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	// FOR body
-	vector* body_tokens = parser_for_buildbody(tokens, index);
+	vector* body_tokens = parser_for_buildbody(tokens, index, line_number);
 
 	ast_node* forbody_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(forbody_node, N_ROOT, "");
@@ -67,7 +67,7 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 	return parser_expect_endofinstruction(current_token);
 }
 
-vector* parser_for_buildbody(vector* tokens, int* index)
+vector* parser_for_buildbody(vector* tokens, int* index, lexical_token* line_number)
 {
 	vector* block_tokens = (vector*)malloc(sizeof(vector));
 	vector_init(block_tokens);
@@ -89,7 +89,7 @@ vector* parser_for_buildbody(vector* tokens, int* index)
 
 	if (for_balance != 0)
 	{
-		printf("ERROR: Invalid FOR statement.\n");
+		printf("\n\nPARSER ERROR: Invalid FOR statement at line %s: invalid NEXT keywords count.\n", line_number->value.data);
 		exit(-1);
 	}
 

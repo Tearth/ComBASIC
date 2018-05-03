@@ -1,6 +1,6 @@
 #include "parser-print.h"
 
-bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_print_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	lexical_token* current_token = tokens->data[*index];
 
@@ -13,7 +13,7 @@ bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* s
 		}
 		else if (parser_expect_expression(current_token))
 		{
-			ast_node* expression_node = parser_expression_build(tokens, index, symbol_table);
+			ast_node* expression_node = parser_expression_build(tokens, index, line_number, symbol_table);
 			vector_add(&keyword->children, expression_node);
 		}
 

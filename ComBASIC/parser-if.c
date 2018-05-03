@@ -1,9 +1,9 @@
 #include "parser-if.h"
 
-bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_if_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	// Expression
-	ast_node* expression_node = parser_expression_build(tokens, index, symbol_table);
+	ast_node* expression_node = parser_expression_build(tokens, index, line_number, symbol_table);
 	vector_add(&keyword->children, expression_node);
 
 	// THEN keyword
@@ -14,7 +14,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	// IF body
-	vector* body_tokens = parser_if_buildbody(tokens, index);
+	vector* body_tokens = parser_if_buildbody(tokens, index, line_number);
 
 	ast_node* ifbody_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(ifbody_node, N_ROOT, "");
@@ -33,7 +33,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 		current_token = tokens->data[++(*index)];
 		if (!parser_expect_endofinstruction(current_token)) return false;
 
-		vector* else_tokens = parser_if_buildelse(tokens, index);
+		vector* else_tokens = parser_if_buildelse(tokens, index, line_number);
 
 		ast_node* elsebody_node = (ast_node*)malloc(sizeof(ast_node));
 		astnode_init(elsebody_node, N_ROOT, "");
@@ -49,7 +49,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 	return parser_expect_endofinstruction(current_token);
 }
 
-vector* parser_if_buildbody(vector* tokens, int* index)
+vector* parser_if_buildbody(vector* tokens, int* index, lexical_token* line_number)
 {
 	vector* block_tokens = (vector*)malloc(sizeof(vector));
 	vector_init(block_tokens);
@@ -72,7 +72,7 @@ vector* parser_if_buildbody(vector* tokens, int* index)
 
 	if (if_balance != 0)
 	{
-		printf("ERROR: Invalid IF statement");
+		printf("\n\nPARSER ERROR: Invalid IF statement at line %s: invalid END IF or ELSE keywords count.", line_number->value.data);
 		exit(-1);
 	}
 
@@ -80,7 +80,7 @@ vector* parser_if_buildbody(vector* tokens, int* index)
 	return block_tokens;
 }
 
-vector* parser_if_buildelse(vector* tokens, int* index)
+vector* parser_if_buildelse(vector* tokens, int* index, lexical_token* line_number)
 {
 	vector* block_tokens = (vector*)malloc(sizeof(vector));
 	vector_init(block_tokens);
@@ -102,7 +102,7 @@ vector* parser_if_buildelse(vector* tokens, int* index)
 
 	if (if_balance != 0)
 	{
-		printf("ERROR: Invalid IF statement");
+		printf("\n\nPARSER ERROR: Invalid IF statement at line %s: invalid END IF keyword count.", line_number->value.data);
 		exit(-1);
 	}
 

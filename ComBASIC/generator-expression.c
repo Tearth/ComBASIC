@@ -279,7 +279,7 @@ void generator_expression_build_r(string* code, ast_node* root, int* stack_point
 
 		default:
 		{
-			printf("ERROR: invalid operator.\n");
+			printf("\n\nGENERATOR ERROR: invalid operator in expression generator.\n");
 			exit(-1);
 		}
 	}

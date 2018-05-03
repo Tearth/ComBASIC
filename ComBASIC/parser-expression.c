@@ -1,13 +1,13 @@
 #include "parser-expression.h"
 
-ast_node* parser_expression_build(vector* tokens, int* index, vector* symbol_table)
+ast_node* parser_expression_build(vector* tokens, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	ast_node* expression_root = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(expression_root, N_EXPRESSION, "");
 
-	vector* rpn = parser_expression_buildrpn(tokens, index, symbol_table);
+	vector* rpn = parser_expression_buildrpn(tokens, index, line_number, symbol_table);
 	vector* rpn_nodes = parser_expression_buildrpnnodes(rpn, symbol_table);
-	parser_expression_buildrpntree(rpn_nodes, expression_root);
+	parser_expression_buildrpntree(rpn_nodes, expression_root, line_number);
 
 	vector_clear(rpn_nodes);
 	vector_clear(rpn);
@@ -18,7 +18,7 @@ ast_node* parser_expression_build(vector* tokens, int* index, vector* symbol_tab
 	return expression_root;
 }
 
-vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_table)
+vector* parser_expression_buildrpn(vector* tokens, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	vector* rpn = (vector*)malloc(sizeof(vector));
 	vector_init(rpn);
@@ -50,7 +50,7 @@ vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_ta
 
 			if (stack.count == 0)
 			{
-				printf("ERROR: Invalid function.\n");
+				printf("\n\nPARSER ERROR: Invalid function arguments count at line %s.\n", line_number->value.data);
 				exit(-1);
 			}
 		}
@@ -73,7 +73,7 @@ vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_ta
 
 				if (stack.count == 0)
 				{
-					printf("ERROR: Invalid expression (right parenthesis).\n");
+					printf("\n\nPARSER ERROR: Invalid expression at line %s: no right parenthesis.\n", line_number->value.data);
 					exit(-1);
 				}
 
@@ -88,9 +88,22 @@ vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_ta
 				else
 				{
 					lexical_token* last_operator_on_stack = stack.data[stack.count - 1];
-					int current_token_priority = parser_expression_getpriority(current_token);
 
-					while (stack.count > 0 && current_token_priority <= parser_expression_getpriority(last_operator_on_stack))
+					int current_token_priority = parser_expression_getpriority(current_token);
+					if (current_token_priority == -1)
+					{
+						printf("\n\nPARSER ERROR: Unrecognised symbol at line %s: %s.\n", line_number->value.data, current_token->value.data);
+						exit(-1);
+					}
+
+					int last_operator_priority = parser_expression_getpriority(last_operator_on_stack);
+					if (last_operator_priority == -1)
+					{
+						printf("\n\nPARSER ERROR: Unrecognised symbol at line %s: %s.\n", line_number->value.data, last_operator_on_stack->value.data);
+						exit(-1);
+					}
+
+					while (stack.count > 0 && current_token_priority <= last_operator_priority)
 					{
 						vector_add(rpn, last_operator_on_stack);
 						vector_remove(&stack, stack.count - 1);
@@ -121,7 +134,7 @@ vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_ta
 
 	if (stack.count > 0)
 	{
-		printf("ERROR: Invalid expression (redundant parenthesis).\n");
+		printf("\n\nPARSER ERROR: Invalid expression at line %s: redundant parenthesis.\n", line_number->value.data);
 		exit(-1);
 	}
 
@@ -198,7 +211,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table)
 	return rpn_nodes;
 }
 
-void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root)
+void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root, lexical_token* line_number)
 {
 	vector stack;
 	vector_init(&stack);
@@ -227,7 +240,7 @@ void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root
 
 	if (stack.count != 1)
 	{
-		printf("ERROR: Invalid expression (too many numbers or operators).\n");
+		printf("\n\nPARSER ERROR: Invalid expression at line %s: too many numbers or operators.\n", line_number->value.data);
 		exit(-1);
 	}
 
@@ -267,8 +280,7 @@ int parser_expression_getpriority(lexical_token* token)
 	else if (parser_expect_operator(token, "("))		return 10;
 	else if (parser_expect_operator(token, ")"))		return 10;
 
-	printf("ERROR: Unrecognised symbol: %s.\n", token->value.data);
-	exit(-1);
+	return -1;
 }
 
 int parser_expression_getargumentscount(ast_node_type node_type)

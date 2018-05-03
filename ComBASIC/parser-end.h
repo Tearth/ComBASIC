@@ -27,4 +27,4 @@
 * @param symbol_table Symbol table.
 * @return True if the END statement is valid, otherwise false.
 */
-bool parser_end_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_end_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);

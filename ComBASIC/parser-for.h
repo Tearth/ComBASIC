@@ -44,7 +44,7 @@
 * @param symbol_table Symbol table.
 * @return True if the FOR statement is valid, otherwise false.
 */
-bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_for_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);
 
 /**
 * @brief Gets the vector of tokens which are contained in FOR body (instruction block).
@@ -52,4 +52,4 @@ bool parser_for_build(vector* tokens, ast_node* keyword, int* index, vector* sym
 * @param index Current token index.
 * @return Vector of tokens contained in FOR body.
 */
-vector* parser_for_buildbody(vector* tokens, int* index);
+vector* parser_for_buildbody(vector* tokens, int* index, lexical_token* line_number);

@@ -34,7 +34,7 @@
 * @param symbol_table Symbol table.
 * @return True if the WHILE statement is valid, otherwise false.
 */
-bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_while_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);
 
 /**
 * @brief Gets the vector of tokens which are contained in WHILE body (instruction block).
@@ -42,4 +42,4 @@ bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* s
 * @param index Current token index.
 * @return Vector of tokens contained in WHILE body.
 */
-vector* parser_while_buildbody(vector* tokens, int* index);
+vector* parser_while_buildbody(vector* tokens, int* index, lexical_token* line_number);

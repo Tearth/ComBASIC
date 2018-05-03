@@ -38,4 +38,4 @@
 * @param symbol_table Symbol table.
 * @return True if the PRINT statement is valid, otherwise false.
 */
-bool parser_print_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_print_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);

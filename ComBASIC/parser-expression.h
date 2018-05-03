@@ -41,7 +41,7 @@
 * @param symbol_table Symbol table.
 * @return The pointer to the ast root node of the parsed expression.
 */
-ast_node* parser_expression_build(vector* tokens, int* index, vector* symbol_table);
+ast_node* parser_expression_build(vector* tokens, int* index, lexical_token* line_number, vector* symbol_table);
 
 /**
 * @brief Converts an vector of tokens to the RPN output vector.
@@ -50,7 +50,7 @@ ast_node* parser_expression_build(vector* tokens, int* index, vector* symbol_tab
 * @param symbol_table Symbol table.
 * @return The vector with valid RPN expression.
 */
-vector* parser_expression_buildrpn(vector* tokens, int* index, vector* symbol_table);
+vector* parser_expression_buildrpn(vector* tokens, int* index, lexical_token* line_number, vector* symbol_table);
 
 /**
 * @brief Converts an output RPN vector to the vector of AST nodes (but still not tree).
@@ -65,7 +65,7 @@ vector* parser_expression_buildrpnnodes(vector* rpn, vector* symbol_table);
 * @param rpn_nodes The vector of RPN nodes.
 * @param expression_root The expression root node.
 */
-void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root);
+void parser_expression_buildrpntree(vector* rpn_nodes, ast_node* expression_root, lexical_token* line_number);
 
 /**
 * @brief Checks if the specified token is a part of the expression.

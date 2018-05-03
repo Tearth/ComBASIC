@@ -40,7 +40,7 @@
 * @param symbol_table Symbol table.
 * @return True if the IF statement is valid, otherwise false.
 */
-bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool parser_if_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);
 
 /**
 * @brief Gets the vector of tokens which are contained in IF body (instruction block).
@@ -48,7 +48,7 @@ bool parser_if_build(vector* tokens, ast_node* keyword, int* index, vector* symb
 * @param index Current token index.
 * @return Vector of tokens contained in IF body.
 */
-vector* parser_if_buildbody(vector* tokens, int* index);
+vector* parser_if_buildbody(vector* tokens, int* index, lexical_token* line_number);
 
 /**
 * @brief Gets the vector of tokens which are contained in IF else-body (instruction block).
@@ -56,4 +56,4 @@ vector* parser_if_buildbody(vector* tokens, int* index);
 * @param index Current token index.
 * @return Vector of tokens contained in IF else-body.
 */
-vector* parser_if_buildelse(vector* tokens, int* index);
+vector* parser_if_buildelse(vector* tokens, int* index, lexical_token* line_number);

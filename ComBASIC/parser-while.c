@@ -1,16 +1,16 @@
 #include "parser-while.h"
 
-bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* symbol_table)
+bool parser_while_build(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table)
 {
 	// Expression
-	ast_node* expression_node = parser_expression_build(tokens, index, symbol_table);
+	ast_node* expression_node = parser_expression_build(tokens, index, line_number, symbol_table);
 	vector_add(&keyword->children, expression_node);
 
 	lexical_token* current_token = tokens->data[*index];
 	if (!parser_expect_endofinstruction(current_token)) return false;
 
 	// WHILE body
-	vector* body_tokens = parser_while_buildbody(tokens, index);
+	vector* body_tokens = parser_while_buildbody(tokens, index, line_number);
 
 	ast_node* whilebody_node = (ast_node*)malloc(sizeof(ast_node));
 	astnode_init(whilebody_node, N_ROOT, "");
@@ -25,7 +25,7 @@ bool parser_while_build(vector* tokens, ast_node* keyword, int* index, vector* s
 	return parser_expect_endofinstruction(current_token);
 }
 
-vector* parser_while_buildbody(vector* tokens, int* index)
+vector* parser_while_buildbody(vector* tokens, int* index, lexical_token* line_number)
 {
 	vector* block_tokens = (vector*)malloc(sizeof(vector));
 	vector_init(block_tokens);
@@ -47,7 +47,7 @@ vector* parser_while_buildbody(vector* tokens, int* index)
 
 	if (while_balance != 0)
 	{
-		printf("ERROR: Invalid WHILE statement.\n");
+		printf("\n\nPARSER ERROR: Invalid WHILE statement at line %s: invalid WEND keyword count.\n", line_number->value.data);
 		exit(-1);
 	}
 

@@ -40,4 +40,4 @@ bool parser_block_build(vector* tokens, ast_node* root, vector* symbol_table);
 * @param symbol_table Symbol table.
 * @return True if the keyword and its parameters were valid, otherwise false.
 */
-bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, vector* symbol_table);
+bool ast_parsearguments(vector* tokens, ast_node* keyword, int* index, lexical_token* line_number, vector* symbol_table);
