@@ -1,0 +1,120 @@
+03-05-2018
+    -> dodano lepsze wyświetlanie błędów (pokazujące błędną linię w miarę możliwości)
+
+21-04-2018
+    -> poprawino tabelkę z operatorami w README
+
+20-04-2018
+    -> dodano komentarze do generatorów
+
+18-04-2018
+    -> dodano koemntarze do: vector, string, file manager, parsery
+
+16-04-2018
+    -> dodano parser słowa kluczowego WAIT
+    -> dodano generator słowa kluczowego WAIT
+    -> dodano funkcję RND
+
+15-04-2018
+    -> dodano funkcje: TIME, ABS
+    -> dodano generatory funkcji: TIME, ABS
+
+14-04-2018
+    -> dodano parsery dla słów kluczowych: GOSUB, RETURN
+    -> dodano generatory dla słów kluczowych: GOSUB, RETURN
+    -> dodano wsparcie dla wyświetlania wielu elementów w instrukcji PRINT
+    -> dodano wsparcie dla pobierania wielu liczb w instrukcji INPUT
+    -> dodano słowo kluczowe STEP do instrukcji FOR
+    -> dodano wsparcie dla funkcji w analizatorze leksykalnym
+
+13-04-2018
+    -> połączone wspólne fragmenty kodu w parserach do funkcji
+
+10-04-2018
+    -> naprawiono błędne priorytety nawiasów
+    -> dodano README
+    -> naprawino błąd w sytuacji gdy słowo kluczowe IF nie było zamknięte przez END IF
+
+09-04-2018
+    -> naprawiono błąd w sytuacji gdy nie było słowa kluczowego zamykającego blok instrukcji
+
+08-04-2018
+    -> dodano generator dla słowa kluczowego FOR
+    -> dodano operatory: AND, OR
+    -> naprawiono błędne priorytety operatorów
+    -> naprawiono błąd uniemożliwiający poprawne wczytywanie liczb w funkcji asemblerowej
+
+07-04-2018
+    -> dodano parsery dla słów kluczowych: INPUT, FOR
+    -> dodano generatory dla słowa kluczowego INPUT
+
+06-04-2018
+    -> dodano parsery dla słów kluczowych: GOTO, WHILE
+    -> dodano generatory dla słów kluczowych: GOTO, WHILE
+    -> naprawiono błędne czyszczenie stosu po wywołaniu funkcji asemblerowej _printnumber
+    -> dodano funkcję asemblerową czytającą liczbę z konsoli
+
+05-04-2018
+    -> dodano generator dla słowa kluczowego IF
+    -> dodano mechanizm wykrywający błędne słowa kluczowe w trakcie generowania kodu Asemblera
+
+04-04-2018
+    -> dodano parsery dla słów kluczowych: IF, END
+    -> dodano operatory: <, <=, >, >=, <>, NOT, MOD
+    -> naprawiono funkcję asemblerową wyświetlającą liczby ujemne
+    -> dodano funkcję string_removeall dla struktury string
+    -> dodano parser dla bloku instrukcji
+    -> dodano generator dla bloku instrukcji
+
+03-04-2018
+    -> dodano operatory: =, %
+    -> dodano obsługę liczb całkowitych ujemnych
+    -> dodano funkcję vector_insert dla struktury vector
+    -> naprawiono wycieki pamięci
+
+02-04-2018
+    -> przeniesiono tworzenie symboli do osobnej funkcji
+
+01-04-2018
+    -> dodano funkcję asemblerową do wyświetlania liczby
+    -> dodano parser dla słowa kluczowego LET
+    -> dodano generator dla słowa kluczowego LET
+    -> dodano generator dla wyrażeń
+
+31-03-2018
+    -> dodano parser wyrażeń
+    -> dodano funkcje do budowania drzewa AST dla wyrażeń
+
+30-03-2018
+    -> naprawiono nieprawidłowe czyszczenie stosu po wyjściu z funkcji asemblerowej
+    -> dodano funkcje do generowania wyjściowego pliku z kodem Asemblera
+    -> dodano funkcję do zapisywania pliku wyjściowego
+    -> dodano generatory kodu Asemblera dla słów kluczowych: PRINT, CLS
+    -> naprawiono wycieki pamięci związane z generatorami kodu Asemblera
+
+29-03-2018
+    -> dodano funkcje asemblerowe służące do wyświetlania znaku i tekstu na konsoli oraz ich czyszczenia
+    -> dodano automatyczne generowanie nazw dla identyfikatorów niejawnych stringów
+
+28-03-2018
+    -> dodano funkcje budujące drzewo AST
+    -> dodano parser słów kluczowych: CLS, REM, PRINT
+    -> połączono przełączniki służące do wyświetlania informacji w trakcie kompilacji w jeden -d
+    -> dodano tablice symboli
+    -> dodano funkcje służące do klonowania struktury string
+
+27-03-2018
+    -> usunięto funkcje dotyczące ładowania gramatyki
+    -> uproszczono implementacje struktur string i vector poprzez usunięcie redundantnych funkcji
+
+26-03-2018
+    -> dodano funkcje do analizy leksykalnej
+    -> dodano funkcje do ładowania pliku z gramatyką
+    -> dodano mechanizm wykrywania wycieków pamięci
+    -> usunięto dotychczasowe wycieki pamięci
+
+25-03-2018
+    -> dodano implementację struktury vector
+    -> dodano implementację struktury string
+    -> dodano parsowanie opcji (przełączników)
+    -> dodano funkcje odpowiedzialne za ładowanie plików

@@ -27,12 +27,6 @@
     <Filter Include="Header Files\Compilation\LexicalAnalysis">
       <UniqueIdentifier>{61b0298b-b694-4ad8-b575-f64a74853537}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Compilation\SemanticAnalysis">
-      <UniqueIdentifier>{ca139f34-4214-40b3-b773-c712ea042048}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Compilation\SemanticAnalysis\Parsers">
-      <UniqueIdentifier>{af34232c-68f8-4b45-8e3c-28d839d9992b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assembler">
       <UniqueIdentifier>{05e63ca2-9320-4903-a5f3-c6cc8aeaad72}</UniqueIdentifier>
     </Filter>
@@ -54,6 +48,12 @@
     <Filter Include="Header Files\Compilation\SyntaxAnalysis\Parsers">
       <UniqueIdentifier>{8ffdc205-8e4a-4cc7-9dc0-513220057761}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Compilation\SyntaxAnalysis">
+      <UniqueIdentifier>{ca139f34-4214-40b3-b773-c712ea042048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Compilation\SyntaxAnalysis\Parsers">
+      <UniqueIdentifier>{af34232c-68f8-4b45-8e3c-28d839d9992b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -66,34 +66,34 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="parser-linenumber.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-keyword.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-cls.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-rem.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-print.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="lexical-analysis.c">
       <Filter>Source Files\Compilation\LexicalAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="ast-node.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="ast-builder.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="symbol-table.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="symbol-node.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="file-manager.c">
       <Filter>Source Files\Utils</Filter>
@@ -114,16 +114,16 @@
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-string.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-expression.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-expression.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-let.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-let.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
@@ -132,16 +132,16 @@
       <Filter>Source Files\Compilation\LexicalAnalysis</Filter>
     </ClCompile>
     <ClCompile Include="parser-end.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-end.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-block.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-if.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-block.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
@@ -150,37 +150,37 @@
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-goto.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-goto.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-while.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-while.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-input.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-input.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-for.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-for.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-utils.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-gosub.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="parser-return.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-gosub.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
@@ -189,7 +189,7 @@
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
     </ClCompile>
     <ClCompile Include="parser-wait.c">
-      <Filter>Source Files\Compilation\SemanticAnalysis\Parsers</Filter>
+      <Filter>Source Files\Compilation\SyntaxAnalysis\Parsers</Filter>
     </ClCompile>
     <ClCompile Include="generator-wait.c">
       <Filter>Source Files\Compilation\CodeGeneration\Generators</Filter>
